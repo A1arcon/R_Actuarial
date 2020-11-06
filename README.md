@@ -1,4 +1,4 @@
-# R Actuarial por Edgar Gerardo Alarcón González
+# "R Actuarial" por Edgar Gerardo Alarcón González
 Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
 
 ## Teoría del Riesgo (actualizado al 5/11/2020)
@@ -36,3 +36,4 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 - Enlace al canal de Youtube: https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog
 
+## Esperen más próximamente...
