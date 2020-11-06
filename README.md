@@ -14,26 +14,26 @@ Aquí encontrarán los códigos que fueron utilizados para la elaboración de la
 
 El Act. Edgar Alarcón nos plática sobre una clase de familias muy importantes para modelar variables aleatorias discretas que representan la frecuencia del número de reclamaciones en un seguro, analizando un ejemplo de su implementación en R.
 
-2. **Modelo de pérdidas agregadas - Formula de Panjer en R** - https://www.youtube.com/watch?v=H4ETDaUUvTk&t
+2. [**Modelo de pérdidas agregadas - Formula de Panjer en R**](https://www.youtube.com/watch?v=H4ETDaUUvTk&t)
 
 El Act. Edgar Alarcón nos habla sobre un modelo fundamental para describir el riesgo de una aseguradora: El Modelo de Pérdida Agregada, S=X1+...+XN. Para esto, hace uso de las propiedades de la familia de clase (a,b,0) y la fórmula recursiva de Panjer para obtener la distribución de S, su media y su varianza. Finalmente, implementa las fórmulas en R Studio, con la paquetería "actuar".
 
-3. **Función de Verosimilitud y Estimación de Parámetros con R** - https://www.youtube.com/watch?v=zPSj0ltrBoc&t
+3. [**Función de Verosimilitud y Estimación de Parámetros con R**](https://www.youtube.com/watch?v=zPSj0ltrBoc&t)
 
 El Act. Edgar Alarcón nos habla sobre uno de los elementos estadísticos más importantes, la función de verosimilitud y, en particular, sobre un tema muy importante como es la estimación de parámetros por el método de máxima verosimilitud.
 
 Finalmente, implementa las fórmulas en R Studio, mostrándonos una sencilla aplicación en R Shiny, donde podremos visualizar un ejemplo teórico-práctico de lo desarrollado a lo largo del video.
 
-4. **Integración de Regiones vía Monte Carlo, con R** - https://www.youtube.com/watch?v=Lot8__UCG5U
+4. [**Integración de Regiones vía Monte Carlo, con R**](https://www.youtube.com/watch?v=Lot8__UCG5U)
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesante aplicación del Método de Simulación Montecarlo para estimar la medida (longitud, área, volumen o hipervolumen) de un subconjunto del espacio Euclidiano con ayuda de R-Studio. 
 
-5. **Integración de Funciones vía Monte Carlo con R** - https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t
+5. [**Integración de Funciones vía Monte Carlo con R**](https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t)
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesante aplicación del Método de Simulación Montecarlo para estimar una integral definida (área bajo la curva en una región) usando teoremas sencillos de probabilidad y mostrándonos el código de esta aplicación en R-Studio y una aplicación en Shiny que realiza todo el proceso. 
 
-- Enlace a la carpeta con los Scripts:  https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT
+- [Carpeta con los scripts de las cápsulas](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT)
 
-- Enlace al canal de Youtube: https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog
+- [Canal de Youtube de AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 ## Esperen más próximamente...
