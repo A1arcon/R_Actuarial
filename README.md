@@ -4,13 +4,13 @@ Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, e
 ## Teoría del Riesgo (actualizado al 5/11/2020)
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Acttuaries).
 
-https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo
+[Carpeta de Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo)
 
 ## Cápsuas AMAT (actualizado al 5/11/2020)
 
 Aquí encontrarán los códigos que fueron utilizados para la elaboración de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
-1. **Número de reclamaciones - Distribuciones de Clase (a, b, 0) en R** - https://www.youtube.com/watch?v=ZX2W59Mdaag&t
+1. [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en R**](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
 
 El Act. Edgar Alarcón nos plática sobre una clase de familias muy importantes para modelar variables aleatorias discretas que representan la frecuencia del número de reclamaciones en un seguro, analizando un ejemplo de su implementación en R.
 
