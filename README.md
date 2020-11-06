@@ -28,7 +28,7 @@ Finalmente, implementa las fórmulas en R Studio, mostrándonos una sencilla apl
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesante aplicación del Método de Simulación Montecarlo para estimar la medida (longitud, área, volumen o hipervolumen) de un subconjunto del espacio Euclidiano con ayuda de R-Studio. 
 
-5. Integración de Funciones vía Monte Carlo con R - https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t
+5. **Integración de Funciones vía Monte Carlo con R** - https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesante aplicación del Método de Simulación Montecarlo para estimar una integral definida (área bajo la curva en una región) usando teoremas sencillos de probabilidad y mostrándonos el código de esta aplicación en R-Studio y una aplicación en Shiny que realiza todo el proceso. 
 
