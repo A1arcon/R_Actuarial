@@ -38,12 +38,14 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 ## Probabilidad
 
-1. [**Votos (Bertrand's ballot theorem)**]()
+1. [**Votos (Bertrand's ballot theorem)**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/1.%20Votos%20(Bertrand's%20ballot%20theorem))
 
 El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilidad que A siempre vaya en la delantera en los conteos?. En este código explicamos la solución de una forma un tanto eurística y verificamos el resultado haciendo uso de simulaciones.
 
-2. [**La paradoja del cumplaños del cumpleaños**]() [(Video)](https://www.youtube.com/watch?v=7uzx6D_0V7M)
+2. [**La paradoja del cumplaños del cumpleaños**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/2.%20Cumplea%C3%B1os) [(Video)](https://www.youtube.com/watch?v=7uzx6D_0V7M)
 
 Para ponerlos en contexto, se siguiere ver el siguiente [(video)](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
+
+- [Carpeta de todos los ejercicios](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad)
 
 ## Esperen más próximamente...
