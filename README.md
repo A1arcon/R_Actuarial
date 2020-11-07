@@ -36,4 +36,14 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 - [Canal de Youtube de AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
+## Probabilidad
+
+1. [**Votos (Bertrand's ballot theorem)**]()
+
+El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilidad que A siempre vaya en la delantera en los conteos?. En este código explicamos la solución de una forma un tanto eurística y verificamos el resultado haciendo uso de simulaciones.
+
+2. [**La paradoja del cumplaños del cumpleaños**]() [(Video)](https://www.youtube.com/watch?v=7uzx6D_0V7M)
+
+Para ponerlos en contexto, se siguiere ver el siguiente [(video)](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
+
 ## Esperen más próximamente...
