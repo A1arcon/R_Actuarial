@@ -36,7 +36,7 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 - [Canal de Youtube de AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
-## Probabilidad
+## Probabilidad (Actualizado al 7/11/2020)
 
 1. [**Votos (Bertrand's ballot theorem)**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/1.%20Votos%20(Bertrand's%20ballot%20theorem))
 
