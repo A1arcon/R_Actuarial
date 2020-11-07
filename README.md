@@ -4,7 +4,7 @@ Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, e
 ## Teoría del Riesgo (actualizado al 5/11/2020)
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Actuaries).
 
-[Carpeta de Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo)
+[Carpeta de Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM))
 
 ## Cápsuas AMAT (actualizado al 5/11/2020)
 
@@ -36,7 +36,7 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 - [Canal de Youtube de AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
-## Probabilidad
+## Probabilidad (Actualizado al 7/11/2020)
 
 1. [**Votos (Bertrand's ballot theorem)**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/1.%20Votos%20(Bertrand's%20ballot%20theorem))
 
