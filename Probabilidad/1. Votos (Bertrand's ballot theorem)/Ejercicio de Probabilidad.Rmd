@@ -97,7 +97,7 @@ Habiendo hecho todo lo anterior, podemos comenzar con la prueba del ejercicio pr
 \begin{align*}
     \mathbb{P}[X_t > 0 \hspace{0.25cm} \forall t\geq 1] &= 1 - \mathbb{P}[\exists t \hspace{0.25cm} \text{tal que} \hspace{0.25cm} X_t \leq 0] \\
       &= 1 - \left( \mathbb{P}[\exists t \hspace{0.25cm} \text{tal que} \hspace{0.25cm} X_t \leq 0,X_1 = -1] + \mathbb{P}[\exists t \hspace{0.25cm} \text{tal que} \hspace{0.25cm} X_t \leq 0,X_1 = 1]  \right) \\
-      &= 1 - \mathbb{P}[X_1 = -1] \tageq{Af 3, 4 y 5}\\
+      &= 1 - 2\mathbb{P}[X_1 = -1] \tageq{Af 3, 4 y 5}\\
       &= 1 - 2 \left(\frac{m}{n+m}\right) = \frac{n-m}{n+m}
 \end{align*}
 
