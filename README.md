@@ -44,7 +44,7 @@ El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilid
 
 2. [**La paradoja del cumplaños del cumpleaños**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/2.%20Cumplea%C3%B1os) [(Video)](https://www.youtube.com/watch?v=7uzx6D_0V7M)
 
-Para ponerlos en contexto, se siguiere ver el siguiente [(video)](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
+Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
 
 - [Carpeta de todos los ejercicios](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad)
 
