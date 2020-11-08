@@ -6,13 +6,13 @@ Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos 
 
 [Carpeta de Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM))
 
-## Cápsuas AMAT (actualizado al 5/11/2020)
+## Cápsuas AMAT (actualizado al 8/11/2020)
 
 Aquí encontrarán los códigos que fueron utilizados para la elaboración de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
 1. [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en R**](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
 
-El Act. Edgar Alarcón nos plática sobre una clase de familias muy importantes para modelar variables aleatorias discretas que representan la frecuencia del número de reclamaciones en un seguro, analizando un ejemplo de su implementación en R.
+El Act. Edgar Alarcón nos plática sobre una clase de familias muy importantes para modelar variables aleatorias discretas que representan la frecuencia del número de reclamaciones en un seguro, analizando un ejemplo de su implementación en R. En el [video](https://www.youtube.com/watch?v=ZX2W59Mdaag&t) se menciona que es posible demostrar que las distribuciones de clase (a,b,0) propuestas son de hecho las únicas que satisfacen la propiedad recursiva, dicha demostración la podrás ver dando clic [aquí](https://github.com/A1arcon/R_Actuarial/blob/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0)/Unicidad%20de%20Clase(a%2Cb%2C0).pdf).
 
 2. [**Modelo de pérdidas agregadas - Formula de Panjer en R**](https://www.youtube.com/watch?v=H4ETDaUUvTk&t)
 
