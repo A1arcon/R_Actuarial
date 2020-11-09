@@ -46,11 +46,11 @@ Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.yout
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto.
 
-1. [Introducción a R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
+1. [**Introducción a R Markdown**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
 [Aquí](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/Introducci%C3%B3n%20a%20R%20Markdown.pdf) damos una introducción a la realización de reportes con R Markdown, las reglas básicas y comandos más importantes se comentan en estos archivos que son a su vez un ejemplo de cómo empezar a usar este tipo de archivos.
 
-2. [Modelos con tablas de contingencia](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia)
+2. [**Modelos con tablas de contingencia**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia)
 
 Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.Rmd) busca principalmente ejemplificar el uso de tablas con apoyo de la paquetería 'kable', gráficos con 'ggplot' y la técnica de Macros en R en un archivo Markdown. El [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.pdf) habla sobre diversos modelos que se pueden aplicar a tablas de contingencia "Independencia", "Cuasi-Independencia", "Homogeneidad Marginal", "Simetría" y "Cuasi-Simetría". Una aplicación de los modelos lineales generalizados y datos categóricos.
 
