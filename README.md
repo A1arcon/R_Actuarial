@@ -1,4 +1,4 @@
-# "R Actuarial" por Edgar Gerardo Alarcón González
+# "R Actuarial" por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
 Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
 
 ## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)) (actualizado al 5/11/2020)
