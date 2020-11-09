@@ -48,7 +48,7 @@ Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al
 
 1. [Introducción a R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
-[Aquí](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/R%20Markdown.Rmd) damos una introducción a la realización de reportes con R Markdown, las reglas básicas y comandos más importantes se comentan en estos archivos que son a su vez un ejemplo de cómo empezar a usar este tipo de archivos.
+[Aquí](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/Introducci%C3%B3n%20a%20R%20Markdown.pdf) damos una introducción a la realización de reportes con R Markdown, las reglas básicas y comandos más importantes se comentan en estos archivos que son a su vez un ejemplo de cómo empezar a usar este tipo de archivos.
 
 2. [Modelos con tablas de contingencia](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia)
 
