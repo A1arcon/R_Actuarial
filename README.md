@@ -4,7 +4,7 @@
 <a href="http://www.fciencias.unam.mx/directorio/80028">
 <img src="https://img.shields.io/badge/Docente-Fac.%20Ciencias-yellowgreen">
 
-<b href="https://amat.mx/cursos">
+<a href="https://amat.mx/cursos">
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
 # "R Actuarial" por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
