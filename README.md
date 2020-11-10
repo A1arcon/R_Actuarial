@@ -55,3 +55,9 @@ Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al
 Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.Rmd) busca principalmente ejemplificar el uso de tablas con apoyo de la paquetería 'kable', gráficos con 'ggplot' y la técnica de Macros en R en un archivo Markdown. El [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.pdf) habla sobre diversos modelos que se pueden aplicar a tablas de contingencia "Independencia", "Cuasi-Independencia", "Homogeneidad Marginal", "Simetría" y "Cuasi-Simetría". Una aplicación de los modelos lineales generalizados y datos categóricos.
 
 ## Esperen más próximamente...
+
+### FAQ
+
+- [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y rápida](https://youtu.be/te1fJgn71js)
+
+- [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
