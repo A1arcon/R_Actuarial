@@ -1,9 +1,7 @@
 ---
 title: "Introducción a R Markdown - GitHub"
 author: "Alarcón González Edgar Gerardo"
-output: 
-  html_document:
-    keep_md: true
+output: rmarkdown::github_document
 ---
 
 # Usando R Markdown para GitHub
@@ -14,21 +12,23 @@ Este archivo es idéntico al que tiene nombre $\texttt{R Markdown.Rmd}$, la dife
 ---
 title: "Introducción a R Markdown - GitHub"
 author: "Alarcón González Edgar Gerardo"
+output: rmarkdown::github_document
+---
+```
+
+Esto crea un archivo con extensión $\texttt{.md}$ que es el formato que va a leer **GitHub**. Una alternativa es que se creen dos archivos $\texttt{.html}$ y uno $\texttt{.md}$, esto lo puedo lograr con el siguiente cambio en el preámbulo.
+
+```ruby
+---
+title: "Introducción a R Markdown - GitHub"
+author: "Alarcón González Edgar Gerardo"
 output: 
   html_document:
     keep_md: true
 ---
 ```
 
-Esto crea un archivo $\texttt{.html}$ y uno $\texttt{.md}$, sin embargo el archivo que va a leer **GitHub** es el de la extensión $\texttt{.md}$. Una alternativa es que simplemente se cree este último archivo que se haría con este comando:
-
-```ruby
-title: "Introducción a R Markdown - GitHub"
-author: "Alarcón González Edgar Gerardo"
-output: rmarkdown::github_document
-```
-
-La ventaja que tiene esta última opción es que al compilarlo directamente en RStudio, se nos mostrará un archivo que es más fiel a como se observará en la versión final que subiremos a **GitHub**. Adicionalmente agregaremos la siguiente opción de los $\texttt{chunk}$ para almacenar imágenes que sean creadas en este documento.
+La ventaja que tiene la primera opción es que al compilarlo directamente en RStudio, se nos mostrará un archivo que es más fiel a como se observará en la versión final que subiremos a **GitHub**. Adicionalmente agregaremos la siguiente opción de los $\texttt{chunk}$ para almacenar imágenes que sean creadas en este documento.
 
 ```{r}
 knitr::opts_chunk$set(
@@ -48,9 +48,14 @@ Si se desea escribir una fórmula matemática, para GitHub esto será más compl
 
 Esto nos mostrará un resultado como <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
-Pero se debe hacer esto en lugar de simplemente escribir $\texttt{\$e^{i \pi} = -1\$}$. 
+Pero se debe hacer esto en lugar de simplemente escribir `$e^{i \pi} = -1$`. Haz clic [aquí](https://gist.github.com/a-rodin/fef3f543412d6e1ec5b6cf55bf197d7b) para más información.
+
 
 **Tristemente, se sugiere simplemente no escribir ecuaciones en un archivo que se desea publicar en GitHub, aunque esto puede que cambie en un futuro**.
+
+# Aclaración
+
+Lo más recomendado es publicar un archivo, ya sea del tipo $\texttt{.html}$ con RStudio y subirlo a **GitHub** o bien simplemente compilar uno con extensión $\texttt{.pdf}$ y subirlo al repositorio.
 
 ## Mostramos el resto del documento de forma intacta con la finalidad de ver las posibles diferencias y similitudes
 
