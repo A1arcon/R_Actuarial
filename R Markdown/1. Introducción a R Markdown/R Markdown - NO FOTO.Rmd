@@ -1,6 +1,7 @@
 ---
 title: "Introducción a R Markdown"
-output: html_notebook
+author: "Alarcón González Edgar Gerardo"
+output: html_document
 ---
 
 ---
@@ -239,7 +240,7 @@ Usualmente es necesario agregar imágenes (fotos) a ciertos documentos, para hac
 
 ```{r , echo=T, out.width='70%', fig.align='center', eval=T}
 library(knitr) 
-include_graphics("imagen.PNG")
+# include_graphics("imagen.PNG")
 ```
 
 # Tablas
@@ -256,7 +257,7 @@ kable(head(iris))
 
 - iris: Es una base de datos precargada ya en R.
 
-#Reglas
+# Reglas
 
 Para correr un código en R Markdown es necesario que se cumpla lo siguiente:
 

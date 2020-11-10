@@ -257,7 +257,7 @@ kable(head(iris))
 
 - iris: Es una base de datos precargada ya en R.
 
-#Reglas
+# Reglas
 
 Para correr un código en R Markdown es necesario que se cumpla lo siguiente:
 
