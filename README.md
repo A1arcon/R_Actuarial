@@ -58,6 +58,6 @@ Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%
 
 ### FAQ
 
-- [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y rápida](https://youtu.be/te1fJgn71js)
+- [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y rápida?](https://youtu.be/te1fJgn71js)
 
 - [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
