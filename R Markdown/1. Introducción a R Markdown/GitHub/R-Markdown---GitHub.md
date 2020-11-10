@@ -1,16 +1,59 @@
 ---
-title: "Introducción a R Markdown"
+title: "Introducción a R Markdown - GitHub"
 author: "Alarcón González Edgar Gerardo"
-output: html_document
+output: 
+  html_document:
+    keep_md: true
 ---
 
+# Usando R Markdown para GitHub
+
+Este archivo es idéntico al que tiene nombre $\texttt{R Markdown.Rmd}$, la diferencia es que está especialmente diseñada para **GitHub**. Para esto, en el preámbulo del documento se agregó lo siguiente:
+
+```ruby
 ---
-Con lo siguiente alineamos el texto en html:
+title: "Introducción a R Markdown - GitHub"
+author: "Alarcón González Edgar Gerardo"
+output: 
+  html_document:
+    keep_md: true
 ---
-<style>
-body {
-text-align: justify}
-</style>
+```
+
+Esto crea un archivo $\texttt{.html}$ y uno $\texttt{.md}$, sin embargo el archivo que va a leer **GitHub** es el de la extensión $\texttt{.md}$. Una alternativa es que simplemente se cree este último archivo que se haría con este comando:
+
+```ruby
+title: "Introducción a R Markdown - GitHub"
+author: "Alarcón González Edgar Gerardo"
+output: rmarkdown::github_document
+```
+
+La ventaja que tiene esta última opción es que al compilarlo directamente en RStudio, se nos mostrará un archivo que es más fiel a como se observará en la versión final que subiremos a **GitHub**. Adicionalmente agregaremos la siguiente opción de los $\texttt{chunk}$ para almacenar imágenes que sean creadas en este documento.
+
+
+```r
+knitr::opts_chunk$set(
+  fig.path = "Imágenes_del_Documento/Imágen-"
+)
+```
+
+Las imágenes las podrán encontrar en donde se encuentra y se haya compilado el archivo que este archivo que estás leyendo.
+
+# Una mala noticia
+
+Si se desea escribir una fórmula matemática, para GitHub esto será más complicado a como se hace normalmente usando simplemente signos $\$$. En este caso tendremos que usar algo del estilo
+
+```ruby
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+```
+
+Esto nos mostrará un resultado como <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+
+Pero se debe hacer esto en lugar de simplemente escribir $\texttt{\$e^{i \pi} = -1\$}$. 
+
+**Tristemente, se sugiere simplemente no escribir ecuaciones en un archivo que se desea publicar en GitHub, aunque esto puede que cambie en un futuro**.
+
+## Mostramos el resto del documento de forma intacta con la finalidad de ver las posibles diferencias y similitudes
 
 # ¿Cómo ejecutar un archivo R Markdown?
 
@@ -72,8 +115,13 @@ Tengamos en mente la idea de las dos hojas puestas una sobre otra, por su traduc
 
 Utilizando el chunk anterior dentro del código de manera usual, nos mostraría lo siguiente:
 
-```{r}
+
+```r
 1+1
+```
+
+```
+## [1] 2
 ```
 
 Se le puede asignar un Chunk de la siguiente manera:
@@ -98,8 +146,13 @@ Los chunks tienen diferentes opciones, éstas pueden ser consultadas en la sigui
 
 Nos da como resultado:
 
-```{r , echo = T}
+
+```r
 2*10
+```
+
+```
+## [1] 20
 ```
 
 Cambiando el código anterior por *echo = F*, nos arroja el siguiente resultado:
@@ -112,8 +165,9 @@ Cambiando el código anterior por *echo = F*, nos arroja el siguiente resultado:
 
 Nos da como resultado:
 
-```{r , echo = F}
-2*10
+
+```
+## [1] 20
 ```
 
 - out.width: Nos permite controlar qué tan grande queremos un gráfico, medido en porcentaje.
@@ -126,9 +180,12 @@ Nos da como resultado:
 
 Nos da como resultado:
 
-```{r , echo = T, out.width='50%'}
+
+```r
 hist(rnorm(100))
 ```
+
+<img src="Imágenes_del_Documento/Imágen-unnamed-chunk-5-1.png" width="50%" />
 
 Cambiando el código anterior por *out.width='10%'*, nos arroja el siguiente resultado:
 
@@ -140,9 +197,12 @@ Cambiando el código anterior por *out.width='10%'*, nos arroja el siguiente res
 
 Nos da como resultado:
 
-```{r , echo = T, out.width='10%'}
+
+```r
 hist(rnorm(100))
 ```
+
+<img src="Imágenes_del_Documento/Imágen-unnamed-chunk-6-1.png" width="10%" />
 
 - fig.align: Nos permite agregar un gráfico al centro del documento:
 
@@ -154,9 +214,12 @@ hist(rnorm(100))
 
 Nos da como resultado:
 
-```{r , echo = T, out.width='50%', fig.align='center'}
+
+```r
 hist(rnorm(100))
 ```
+
+<img src="Imágenes_del_Documento/Imágen-unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" />
 
 - eval: Nos permite evaluar o no el código que se está mostrando.
 
@@ -168,7 +231,8 @@ hist(rnorm(100))
 
 Nos da como resultado:
 
-```{r , echo = T, out.width='50%', fig.align='center', eval=F}
+
+```r
 hist(rnorm(100))
 ```
 
@@ -187,12 +251,18 @@ Un detalle importante es que, regresando a la idea original de que tenemos dos h
 
 Nos da como resultado:
 
-```{r}
+
+```r
 x<-10
 ```
 
-```{r}
+
+```r
 x+1
+```
+
+```
+## [1] 11
 ```
 
 Es aquí donde debemos tener cuidado con las opciones de los Chunk, realizando cosas como lo siguiente:
@@ -238,18 +308,33 @@ Claramente, lo anterior requiere de ciertos conocimientos en $\LaTeX$, pero desa
  
 Usualmente es necesario agregar imágenes (fotos) a ciertos documentos, para hacer esto el procedimiento es sencillo, vamos a requerir la librería $\texttt{knitr}$ y que la imagen que vamos a agregar se encuentre exactamente donde se encuentra nuestro archivo $\texttt{.RMD}$, posteriormente, basta con ejecutar el siguiente código:
 
-```{r , echo=T, out.width='70%', fig.align='center', eval=T}
+
+```r
 library(knitr) 
 include_graphics("imagen.PNG")
 ```
+
+<img src="imagen.PNG" width="70%" style="display: block; margin: auto;" />
 
 # Tablas
 
 El lenguaje $\LaTeX$ tiene su manera de escribir las tablas, sin embargo, la librería $\texttt{knitr}$ tiene un código para que no tengamos que escribir a mano una tabla en $\LaTeX$, basta con realizar lo siguiente para mostrar una tabla en éste lenguaje.
 
-```{r , echo=T, out.width='70%', fig.align='center', eval=T}
+
+```r
 kable(head(iris))
 ```
+
+
+
+| Sepal.Length| Sepal.Width| Petal.Length| Petal.Width|Species |
+|------------:|-----------:|------------:|-----------:|:-------|
+|          5.1|         3.5|          1.4|         0.2|setosa  |
+|          4.9|         3.0|          1.4|         0.2|setosa  |
+|          4.7|         3.2|          1.3|         0.2|setosa  |
+|          4.6|         3.1|          1.5|         0.2|setosa  |
+|          5.0|         3.6|          1.4|         0.2|setosa  |
+|          5.4|         3.9|          1.7|         0.4|setosa  |
 
 - kable: Es la función que nos permite visualizar la tabla de esta manera.
 
