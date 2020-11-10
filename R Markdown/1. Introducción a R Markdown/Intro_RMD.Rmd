@@ -1,7 +1,6 @@
 ---
 title: "Introducción a R Markdown"
-author: "Alarcón González Edgar Gerardo"
-output: html_document
+output: html_notebook
 ---
 
 ---
