@@ -1,3 +1,14 @@
+
+<img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
+
+<a href="http://www.fciencias.unam.mx/directorio/80028">
+<img src="https://img.shields.io/badge/Docente-Fac.%20Ciencias-yellowgreen">
+
+<a href="https://amat.mx/cursos">
+<img src="https://img.shields.io/badge/Docente-AMAT-red">
+
+
+
 # "R Actuarial" por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
 Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
 
@@ -42,13 +53,15 @@ El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilid
 
 Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
 
-## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 9/11/2020)
+## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 10/11/2020)
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto.
 
 1. [**Introducción a R Markdown**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
 [Aquí](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/Introducci%C3%B3n%20a%20R%20Markdown.pdf) damos una introducción a la realización de reportes con R Markdown, las reglas básicas y comandos más importantes se comentan en estos archivos que son a su vez un ejemplo de cómo empezar a usar este tipo de archivos.
+
+> Adicionalmente, si ya eres experimentado con RMarkdown y si desean subir un archivo con formato `.md` en **GitHub** con ayuda de RStudio, pueden dar clic [aquí](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/GitHub) para explorar una carpeta donde vemos un [ejemplo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown/GitHub/R-Markdown---GitHub.md).
 
 2. [**Modelos con tablas de contingencia**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia)
 
