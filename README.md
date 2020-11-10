@@ -1,4 +1,5 @@
 
+<a href="https://www.unam.mx/">
 <img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
 
 <a href="http://www.fciencias.unam.mx/directorio/80028">
@@ -7,15 +8,13 @@
 <a href="https://amat.mx/cursos">
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
-
-
-# "R Actuarial" por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
+# ["R Actuarial"](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
 Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
 
 ## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)) (actualizado al 5/11/2020)
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Actuaries).
 
-## [Cápsuas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
+## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 Aquí encontrarán los códigos que fueron utilizados para la elaboración de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
