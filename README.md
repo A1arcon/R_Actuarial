@@ -1,5 +1,13 @@
-<a href="http://www.fciencias.unam.mx/directorio/80028">
+
 <img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
+
+<a href="http://www.fciencias.unam.mx/directorio/80028">
+<img src="https://img.shields.io/badge/Docente-Fac.%20Ciencias-9cf">
+
+<a href="https://amat.mx/cursos">
+<img src="https://img.shields.io/badge/Docente-AMAT-red">
+
+
 
 # "R Actuarial" por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
 Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
