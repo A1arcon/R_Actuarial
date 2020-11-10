@@ -2,7 +2,7 @@
 <img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
 
 <a href="http://www.fciencias.unam.mx/directorio/80028">
-<img src="https://img.shields.io/badge/Docente-Fac.%20Ciencias-9cf">
+<img src="https://img.shields.io/badge/Docente-Fac.%20Ciencias-yellowgreen">
 
 <a href="https://amat.mx/cursos">
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
