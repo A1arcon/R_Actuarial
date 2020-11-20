@@ -9,7 +9,8 @@
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
 # ["R Actuarial"](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
-Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, proyectos, etc.
+
+El objetivo de este repositorio es brindar un apoyo a la comunidad interesada en mejorar sus técnicas en el lenguaje de programación R o emprenderlo desde un punto de vista muy aplicado.  Un repositorio con códigos de R para aplicaciones actuariales: probabilidad, estadística y finanzas.
 
 ## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)) (actualizado al 5/11/2020)
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Actuaries).
