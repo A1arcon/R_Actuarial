@@ -54,7 +54,11 @@ Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.yout
 
 ## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 10/11/2020)
 
-Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto.
+Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto. 
+
+**IMPORTANTE**
+
+Se recomienda la instalación de [MikTek]() antes de comenzar para poder compilar archivos del tipo \texttt{pdf} y así poder usar herramientas más fuertes de LaTeX.
 
 1. [**Introducción a R Markdown**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
@@ -66,7 +70,23 @@ Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al
 
 Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.Rmd) busca principalmente ejemplificar el uso de tablas con apoyo de la paquetería 'kable', gráficos con 'ggplot' y la técnica de Macros en R en un archivo Markdown. El [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.pdf) habla sobre diversos modelos que se pueden aplicar a tablas de contingencia "Independencia", "Cuasi-Independencia", "Homogeneidad Marginal", "Simetría" y "Cuasi-Simetría". Una aplicación de los modelos lineales generalizados y datos categóricos.
 
+3. [**Predicción de la precipitación en estados al noroeste de México**]()
+
+Este [archivo]() es un proyecto que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con ggplot. Además, viene un ejemplo de cómo conectar un RMarkdown de formato \texttt{pdf} con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta]() que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek]().
+
 ## Esperen más próximamente...
+
+### Contacto
+
+Estoy muy atento a los comentarios que me puedan hacer, así como para atender dudas, apoyo o participación en proyectos. 
+
+Teléfono: (55) 8718-0868
+
+Celular y what's app: (55) 3912-0683
+
+Correo: alarcon@ciencias.unam.mx
+
+Quedo a sus órdenes y gracias por la atención.
 
 ### FAQ
 
