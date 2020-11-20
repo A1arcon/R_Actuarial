@@ -72,7 +72,7 @@ Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%
 
 3. [**Predicción de la precipitación en estados al noroeste de México**]()
 
-Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto%20RMD.Rmd) es un [proyecto](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto-RMD.pdf) que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico) que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex). ¡No olviden cambiar su directorio de trabajo!
+Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto%20RMD.Rmd) es un [proyecto](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto-RMD.pdf) (es un poco largo, así que tendrán que descargar el archivo para verlo) que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico) que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex). ¡No olviden cambiar su directorio de trabajo!
 
 ## Esperen más próximamente...
 
@@ -86,7 +86,7 @@ Celular y what's app: (55) 3912-0683
 
 Correo: alarcon@ciencias.unam.mx
 
-Quedo a sus órdenes y gracias por la atención.
+Quedo a sus órdenes y espero esto ayude al gremio.
 
 ### FAQ
 
