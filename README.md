@@ -58,7 +58,7 @@ Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al
 
 **IMPORTANTE**
 
-Se recomienda la instalación de [MikTek]() antes de comenzar para poder compilar archivos del tipo \texttt{pdf} y así poder usar herramientas más fuertes de LaTeX.
+Se recomienda la instalación de [MikTek]() antes de comenzar para poder compilar archivos del tipo `pdf` y así poder usar herramientas más fuertes de LaTeX.
 
 1. [**Introducción a R Markdown**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
@@ -72,7 +72,7 @@ Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%
 
 3. [**Predicción de la precipitación en estados al noroeste de México**]()
 
-Este [archivo]() es un proyecto que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con ggplot. Además, viene un ejemplo de cómo conectar un RMarkdown de formato \texttt{pdf} con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta]() que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek]().
+Este [archivo]() es un proyecto que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta]() que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek]().
 
 ## Esperen más próximamente...
 
