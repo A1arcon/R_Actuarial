@@ -1,0 +1,554 @@
+\documentclass[10pt,twoside,openright]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsmath} % Para alinear ecuaciones.
+\pagenumbering{gobble} %Para quitar el número de página.
+\usepackage{caption} % Para quitar los números en las figuras (fotos)
+\usepackage{graphicx} % Para los gráficos
+\setlength{\parindent}{0pt} %le quitas la indentacion
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2cm]{geometry}
+
+\newcommand{\derivada}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\parent}[1]{\left({#1}\right)}
+\newcommand{\tageq}[1]{\tag{#1}\label{eq:#1}}
+
+\newcommand{\payoff}[0]{\textit{payoff}}
+\newcommand{\call}[0]{\textit{call}}
+\newcommand{\putop}[0]{\textit{put}}
+\newcommand{\straddle}[0]{\textit{straddle}}
+
+\title{Tarea 8 - Derivados a tiempo continuo}
+\author{Edgar Gerardo Alarcón González}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+Del examen general de finanzas matemáticas del posgrado en ciencias matemáticas, enero 2017, resolveremos los ejercicios 3 y 4, relativos a finanzas en tiempo continuo. \\
+
+\vspace{0.5 cm}
+
+\textbf{Ejercicio 3.} 
+
+Un \textit{straddle} es una opción europea construida sobre un subyacente $S$ sintetizada por la compra simultánea de un \call{} y un \putop{} de la misma maduración y \textit{strike}.
+
+\begin{enumerate}[i)]
+    \item Determinar el \payoff{} de esta opción en el modelo de Black-Scholes. Dar su premio al tiempo $t$. Dar en particular la fórmula cuando la opción está a la moneda (\textit{at the money}) a tiempo $t=0$.
+    \item Determinar las ganancias y pérdidas máximas que se pueden realizar al comprar tal opción. ¿Cuál es la estrategia de esta opción?
+\end{enumerate}
+    
+\vspace{0.25 cm}
+
+\textit{Antecedentes.} \\
+
+Para hablar de un \straddle{} primero comencemos recordando un poco de los contratos \call{} y \putop{}. 
+
+\begin{itemize}
+    
+    \item Opción \call{} Europea
+    
+    Un contrato \call{} es una opción de compra, es decir, este contrato se vende a cambio de una \textbf{prima} y en él se pacta que a tiempo $T>0$ el tenedor del mismo tendrá la opción de comprar o no un bien subyacente con valor $S(T)$ a un precio $E$ de ejercicio (\textit{strike}) pactado a tiempo $t=0$. De tal manera que el tenedor del contrato ejercerá su derecho de compra si $S(T)>E$ y no lo hará en otro caso. Esto se traduce a que las ganancias a tiempo $T$ (\payoff{}), sin contemplar la prima de venta del contrato (Figura 1), de la posición larga (perspectiva del tenedor/comprador del contrato) estarán dadas por la siguiente función.
+    
+    $$
+    \payoff{}_{\call{}}^{L} = max(S(T)-E,0)
+    $$
+    
+    Mientras que la posición corta (perspectiva del vendedor del contrato) obtiene como ganancia el negativo de esta relación
+    
+    $$
+    \payoff{}_{\call{}}^{C} = min(E-S(T),0)
+    $$
+    
+    Recordemos que podemos calcular el valor de la opción \call{} a tiempo $t\in[0,T]$ de la siguiente manera gracias a la fórmula de Black-Scholes
+    
+    $$
+    V_{\call{}}(S_t,t) = S_t \Phi(d_1) - Ee^{-r(T-t)} \Phi(d_2)
+    $$
+    
+    Donde:
+    
+    \begin{itemize}
+        \item $S_t := S(t)$ es el precio del bien subyacente a tiempo $t$,
+        \item $r$ es la tasa libre de riesgo,
+        \item $T$ es el tiempo de maduración del contrato,
+        \item $E$ es el precio \textit{strike} (de ejercicio),
+        \item $\Phi$ es la función de distribución (acumulada) de una normal estándar,
+        \item $\sigma$ la volatilidad en el retorno del bien subyacente,
+        \item $\displaystyle d_1 = \frac{log(S_t/E)+\parent{r+\frac{1}{2}\sigma^2}(T-t)}{\sigma \sqrt{T-t}}$, y,
+        \item $\displaystyle d_2 = \frac{log(S_t/E)+\parent{r-\frac{1}{2}\sigma^2}(T-t)}{\sigma \sqrt{T-t}}=d_1-\sigma\sqrt{T-t}$.
+    \end{itemize}
+    
+    \item Opción \putop{} Europea
+    
+    Un contrato \putop{} es una opción de venta, es decir, este contrato se vende a cambio de una \textbf{prima} y en él se pacta que a tiempo $T>0$ el tenedor del mismo tendrá la opción de vender o no un bien subyacente con valor $S(T)$ a un precio $E$ de ejercicio pactado a tiempo $t=0$. De tal manera que el tenedor del contrato ejercerá su derecho de venta si $S(T)<E$ y no lo hará en otro caso. Esto se traduce a que las ganancias a tiempo $T$, sin contemplar la prima de venta del contrato (Figura 1), de la posición larga estarán dadas por la siguiente función.
+    
+    $$
+    \payoff{}_{\putop{}}^{L} = max(E-S(T),0)
+    $$
+    
+    Mientras que la posición corta obtiene como ganancia el negativo de esta relación
+    
+    $$
+    \payoff{}_{\putop{}}^{C} = min\parent{S(T)-E,0}
+    $$
+    
+    Recordemos que la "paridad \putop-\call{}"{} relaciona el valor de una opción \call{} y una \putop{} de esta forma para cualquier tiempo $t$.
+    
+    $$
+    V_{\call{}}(S_t,t) - V_{\putop{}}(S_t,t) = S_t - E e^{-r(T-t)}
+    $$
+    
+    De aquí, podremos calcular el valor de una opción \putop{} partiendo del valor de una opción \call{} de la siguiente manera (invocando la simetría/paridad de $\Phi$).
+    
+    \begin{align*}
+        V_{\putop{}} (S_t,t) &= Ee^{r(T-t)} - S_t + V_{\putop{}} (S_t,t)\\
+        &=  E e^{-r(T-t)} \Phi(-d_2) - S_t \Phi(-d_1)
+    \end{align*}
+    
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=14cm]{1.jpg}
+        \captionsetup{labelformat=empty}
+        \caption{Figura 1: \payoff{} de opciones \call{} y \putop{}}
+    \end{figure}
+    
+    Cuando incluimos la prima que se debe pagar por comprar el contrato, tendremos a tiempo $T$ las verdaderas ganancias (positivas) y pérdidas (negativas) que tiene cada una de las partes (Figura 2), a esto se le conoce como \textit{profit}. En este sentido, nos damos cuenta de que una opción \call{} se compra cuando se cree que el bien subyacente subirá de precio (con respecto al precio \textit{strike} $E$) y se vende si se cree lo contrario. Análogamente una opción \putop{} se compra cuando se cree que el precio del activo bajará de precio (con respecto al precio \textit{strike} $E$) y se vende cuando se cree lo contrario. Una diferencia importante entre ambas es que en la opción \call{} los flujos de efectivo no están acotados y por el contrario en la opción \putop{} sí.
+    
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=14cm]{2.jpg}
+        \captionsetup{labelformat=empty}
+        \caption{Figura 2: \payoff{} de opciones \call{} y \putop{} considerando primas de venta (\textit{profit})}
+    \end{figure}
+    
+\end{itemize}
+
+\vspace{1cm}
+
+\textit{Nota 1}: En general, el bien subyacente tiene un valor no conocido a tiempo $t$, esto significa que $S=S(t)$. \\
+
+\textit{Nota 2}: La $P$ en la "Figura 2", representa el valor futuro a tiempo $T$ de la prima (precio de compra de la opción).\\
+
+\newpage
+
+\textit{Solución.} \\
+
+\begin{enumerate}[i)]
+
+    \item Como se nos indica en las instrucciones, una opción \straddle{} Europea se construye con la compra de dos opciones Europeas, una \call{} y una \putop{} tales que ambas compartan la misma maduración $T$ y precio \textit{strike} $E$. Con base en esta información, como ambos \payoff{} se tratan por separado y pensando en que somos la parte larga en ambas opciones y sin conciderar la prima por venta (Figura 3), entonces las ganancias en ambas se suman, y así tendremos que 
+    \vspace{-0.35cm}
+    
+    \begin{align*}
+        \payoff{}_{\straddle{}}^L &= \payoff{}_{\call{}}^L + \payoff{}_{\putop{}}^L = max(S(T)-E,0) + max(E-S(T),0) \\
+        &= |S(T)-E|
+    \end{align*}
+    
+    por otro lado, si fuéramos la parte corta tendríamos bajo un razonamiento análogo que
+    
+    \vspace{-0.35cm}    
+    
+    \begin{align*}
+        \payoff{}_{\straddle{}}^C &= \payoff{}_{\call{}}^C + \payoff{}_{\putop{}}^C = min(E-S(T),0) + min\parent{S(T)-E,0}\\
+        &=-|S(T)-E|
+    \end{align*}
+    
+    Cuando se contempla la prima de venta a tiempo $T$, podremos ver nuestro \textit{profit} (las ganancias o pérdidas). En la "Figura 3"{} tenemos la representación gráfica de los \payoff{} y \textit{profit} de este tipo de opciones para las posiciones larga y corta, donde $P$ representa el valor futuro de la prima de venta en este tiempo.
+    
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=14cm]{3.jpg}
+        \captionsetup{labelformat=empty}
+        \caption{Figura 3: \payoff{} y\textit{profit} de una opción \straddle{}}
+    \end{figure}
+    
+    Ahora bien, si deseamos conocer se "premio" o valor a tiempo $t\in[0,T]$, podemos usar directamente la ecuación de Black-Scholes y en particular ahora que ya conocemos su \payoff{}, podemos usar la fórmula de valuación de cualquier opción para un \payoff{} arbitrario.
+    
+    $$
+    V(S,t) = e^{-r(T-t)} \int_0^\infty \phi\parent{log(S/S')\middle|-\parent{r-\frac{1}{2}\sigma^2}(T-t),\sigma^2(T-t)}\payoff(S')\frac{dS'}{S'}
+    $$
+    
+    Donde $\phi$ es la función de densidad de una Normal estándar. De aquí, es claro que al usar que en general, $\payoff{}_{\straddle{}} &= \payoff{}_{\call{}} + \payoff{}_{\putop{}}$, entonces $\forall t\in[0,T]$
+    
+    \begin{align*}
+        V_{\straddle{}}(S_t,t)&=V_{\call{}}(S_t,t)+V_{\putop{}}(S_t,t)\\
+        &= S_t \Phi(d_1) - E e^{-r(T-t)} \Phi(d_2) +  E e^{-r(T-t)} \Phi(-d_2) - S_t \Phi(-d_1)\\
+        &= S_t \parent{\Phi(d_1)-\Phi(-d_1)} - E e^{-r(T-t)} \parent{\Phi(d_2)-\Phi(-d_2)}\\
+        &= S_t \parent{2\Phi(d_1)-1}- E e^{-r(T-t)} \parent{2\Phi(d_2)-1}
+    \end{align*}
+    
+        Donde la primera igualdad era ya intuitiva, dado que estamos adoptando la misma posición (larga o corta) en ambas opciones, es decir, si compro un \straddle{} es porque, en un mercado libre de arbitraje, compré un \call{} y un \putop{}, entonces el costo debe ser la suma de los costos; análogamente si lo vendiera. En particular, si la opción estuviera \textit{at the money} en $t=0$ entonces es porque $E=S_0$ y por lo tanto tendríamos que para cada 
+        
+        $$
+        V_{\straddle{}}(S_t,t)=S_t \parent{2\Phi(d_1)-1}- S_0 e^{-r(T-t)} \parent{2\Phi(d_2)-1}, \hspace{0.5cm} \forall t\in[0,T].
+        $$
+    
+    \item Ahora, al buscar las pérdidas y ganancias máximas con esta opción, basta con que nos fijemos en el \textit{profit} de ambas posiciones, larga y corta (Figura 3); recordemos que $P=VF_T(E):=pe^{rT}$, donde $p$ es el precio al que se vendió el contrato (prima de venta en $t=0$), el cual debe coincidir con la suma de los precios individuales de la opción \call{} y \putop{}. Además, podemos apoyarnos directamente de conocer el \payoff{} en general para una opción \straddle{}.
+    
+    \begin{itemize}
+        
+        \item \underline{Posición larga}
+        
+        En este caso tendremos que 
+        
+        $$
+        \textit{profit}^L_\straddle{} = \payoff{}^L_\straddle{} - P = |S(T)-E| - p e^{rT}
+        $$
+        
+        De tal manera que la ganancia está no acotada, pues crece tanto como $S(T)$ se aleja de $E$. Siendo más específicos, por parte de la opción \put{}, ésta me está haciendo ganar si el precio del bien subyacente es bajo, de este lado (izquierdo), la ganancia más alta es la misma que la del \putop{} largo, $E-P$; mientras que del otro lado (derecho), las ganancias son por parte de la opción \call{}, las cuales son no acotadas. Por otro lado, la pérdida más grande se da justo cuando el precio del subyacente a tiempo T no se aleja mucho del precio de ejercicio, en este caso mi pérdida máxima es de $-P$.
+        
+        \item \underline{Posición corta}
+        
+        En este caso tendremos que 
+        
+        $$
+        \textit{profit}^C_\straddle{} = \payoff{}^C_\straddle{} + P = -|S(T)-E| + p e^{rT}
+        $$
+        
+        Simétricamente, la pérdida está no acotada, pues decrece tanto como $S(T)$ se aleja de $E$. Siendo más específicos, por parte de la opción \putop{}, ésta me está haciendo perder si el precio del bien subyacente es bajo, de este lado (izquierdo), la pérdida más alta es la misma que la del \putop{} corto, $P-E$; mientras que del otro lado (derecho), las pérdidas son por parte de la opción \call{}, las cuales son no acotadas. Por otro lado, la ganancia más grande se da justo cuando el precio del subyacente a tiempo T no se aleja mucho del precio de ejercicio, en este caso mi ganancia máxima es de $P$.
+        
+    \end{itemize}
+    
+    En conclusión, la estrategia de esta opción es, por parte de la posición larga, comprarla cuando se especula que el subyacente se alejará mucho del precio de ejercicio (alta volatilidad); mientras que por parte de la posición corta, venderla cuando se especula que el subyacente se quedará cerca del precio de ejercicio (baja volatilidad).
+    
+\end{enumerate}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\textbf{Ejercicio 4.} 
+
+Dado un precio \textit{strike} $E$, una opción \textit{digital} es una opción europea tal que posee un \payoff{} de la forma $\mathbf{1}_{S_T >E}$
+
+\begin{enumerate}[i)]
+    \item Determinar el precio de arbitraje en el modelo de Black-Scholes de tal opción
+    \item Calcular el delta de una opción digital.
+\end{enumerate}
+    
+\vspace{0.25 cm}
+
+\textit{Solución.} 
+\vspace{0.25 cm}
+
+\begin{enumerate}[i)]
+    
+    \item Existen diversas formas de hacerlo, nosotros lo haremos por dos estilos diferentes. El primero será con una fórmula y el segundo mediante un portafolio que replica el \payoff{}.
+    
+    \textit{Estilo 1 - Por fórmula} 
+    
+    Para esto, usaremos la antes mencionada fórmula de valuación de cualquier opción con un \payoff{} arbitrario.
+    
+    $$
+    V(S,t) = e^{-r(T-t)} \int_0^\infty \phi\parent{log(S/S')\middle|-\parent{r-\frac{1}{2}\sigma^2}(T-t),\sigma^2(T-t)}\payoff(S')\frac{dS'}{S'}
+    $$
+    
+    En este caso particular tenemos entonces que $\payoff(S')=\mathbf{1}_{S'>E}$. Entonces tenemos que
+    
+    \begin{align*}
+       V_{\textit{digital}}(S_t,t) &= e^{-r(T-t)} \int_E^\infty \phi\parent{log(S_t/S_t')\middle|-\parent{r-\frac{1}{2}\sigma^2}(T-t),\sigma^2(T-t)}\frac{dS_t'}{S_t'} \\
+       &= e^{-r(T-t)} \int_E^\infty \phi\parent{log(S_t)-log(S_t')\middle|-\parent{r-\frac{1}{2}\sigma^2}(T-t),\sigma^2(T-t)}\frac{dS_t'}{S_t'}
+    \end{align*}
+    
+    Haciendo un cambio de variable $x=log(S_t)-log(S_t')$ tendremos que $dx=-dS_t'/S_t'$ entonces
+    
+    \begin{align*}
+       V_{\textit{digital}}(S_t,t) &= e^{-r(T-t)} \int_{-\infty}^{log(S_t)-log(E)} \phi\parent{x\middle|-\parent{r-\frac{1}{2}\sigma^2}(T-t),\sigma^2(T-t)}dx\\
+        &= e^{-r(T-t)}\Phi\parent{\frac{log(S_t/E)+\parent{r-\frac{1}{2}\sigma^2}(T-t)}{\sigma\sqrt{T-t}}}\\
+        &=e^{-r(T-t)}\Phi\parent{d_2}
+    \end{align*}
+    
+    \textit{Estilo 2 - Replicando el payoff} 
+    
+    Consideremos la siguiente estrategia: Ir largo en $n$ contratos \call{} con $strike=E$ y vender en corto $n$ contratos \call{} con $strike=E+1/n$ todos los contratos bajo con mismo subyacente $S$ y tiempo de maduración $T$. Notemos que a tiempo $T$ tendremos beneficios y obligaciones del tipo \call{} de todas las opciones con las que estamos trabajando. Si denotamos $\payoff{}=\payoff{}(E)$ simplemente para hacer énfasis en el \textit{strike} que estamos manejando, podremos ver de esta manera que el \payoff{} de nuestra estrategia será el siguiente
+    
+    \begin{align*}
+        \payoff{}_{estrategia} &= n \parent{\payoff{}_{call}^L (E) + \payoff{}_{call}^C (E+1/n)} \\
+        &= n \parent{\payoff{}_{call}^L (E) - \payoff{}_{call}^L (E+1/n)} \\
+        &= n \parent{max\{S_T-E,0\}-max\{S_T-(E+1/n),0\}}
+    \end{align*}
+    
+    De tal manera que si lo vemos por casos, el \payoff{} de nuestra estrategia tiene el siguiente comportamiento
+    
+    \begin{align*}
+        \payoff{}_{estrategia} =
+        \begin{cases}
+           0 & si \qquad S_T \leq E\\
+           n(S_T-E) & si \qquad E < S_T \leq E+1/n\\
+           n(1/n)=1 & si \qquad E+1/n < S_T
+        \end{cases}
+    \end{align*}
+    
+    \newpage
+    
+    Recordemos que en general el \payoff{} se piensa como función de $S_T$, y siendo este el caso, notemos que el de nuestra estrategia es una función no decreciente, donde la parte creciente es una recta con pendiente tan grande como lo sea $n$ (Figura 5).
+    
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=10cm]{5.jpg}
+        \captionsetup{labelformat=empty}
+        \caption{Figura 5: \payoff{} de la estrategia propuesta.}
+    \end{figure}
+    
+    De aquí notemos que 
+    
+    $$
+    \underset{n\rightarrow \infty}{lim} \payoff{}_{estrategia} = \mathbf{1}_{S_T >E} = \payoff{}_{digital}
+    $$
+    
+    Por lo tanto, el portafolio de la opción \textit{digital} puede ser tan cercano como nosotros queramos al de nuestra estrategia por la propiedad arquimediana. Suponiendo que podemos comprar "fracciones" de portafolio, podemos denotar como $\varepsilon=1/n$ y así, cuando $n\uparrow\infty$ entonces $\varepsilon\downarrow 0$. De tal manera que bajo este cambio de variable tendremos que 
+    
+    $$
+    \underset{\varepsilon\rightarrow 0}{lim} \hspace{0.1cm} \payoff{}_{estrategia} = \mathbf{1}_{S_T >E} = \payoff{}_{digital}
+    $$
+    
+    Ahora, como nuestro portafolio (estrategia) replica al de la opción \textit{digital}, entonces bajo un mercado libre de arbitraje, los precios de la opción \textit{digital} y la de mi portafolio deben coincidir. Procedemos entonces a valuar nuestro portafolio, lo cuál es fácil de hacer porque lo hemos construido a partir de opciones \call{} y nosotros conocemos el valor de esta opción, de hecho para cualquier tiempo $t\in[0,1]$, que ya anteriormente hemos denotado como $V_{\call}(S_t,t)$. Esto es sencillo, recordando que nuestra estrategia consiste ir largo en $n=1/\varepsilon$ contratos \call{} con $strike=E$ y vender en corto $n=1/\varepsilon$ contratos \call{} con $strike=E+1/n=E+\varepsilon$ todos los contratos bajo con mismo subyacente $S$ y tiempo de maduración $T$. Si denotamos como $V(S_t,t)=V^E(S_t,t)$ como el precio o la valuación de una opción, únicamente para enfatizar el \textit{strike} que se está utilizando, podemos traducir todo lo anterior a que la valuación de nuestra estrategia, para cada $\varepsilon$ fijo, está dada por
+    
+    $$
+    V_{estrategia}(S_t,t)=\frac{V^{E}_{\call}(S_t,t)-V^{E+\varepsilon}_{\call}(S_t,t)}{\varepsilon}=-\frac{V^{E+\varepsilon}_{\call}(S_t,t)-V^{E}_{\call}(S_t,t)}{\varepsilon}
+    $$
+    
+    Tomando el límite para así replicar la opción \textit{digital} tendremos que
+    
+    \begin{align*}
+        V_{digital}(S_t,t) &= \underset{\varepsilon\rightarrow 0}{lim} \hspace{0.1cm} V_{estrategia}(S_t,t)\\
+        &= -\underset{\varepsilon\rightarrow 0}{lim} \hspace{0.1cm}\frac{V^{E+\varepsilon}_{\call}(S_t,t)-V^{E}_{\call}(S_t,t)}{\varepsilon}\\
+        &= -\derivada{V^{E}_{\call}(S_t,t)}{E}
+    \end{align*}
+    
+    Ahora, para poder realizar esta último cálculo, tengamos presente lo siguiente
+    
+    $$
+    \derivada{}{E}d_2&=\derivada{}{E}\parent{d_1-\sigma\sqrt{T-t}}=\derivada{}{E}d_1
+    $$
+    
+    Donde en particular podemos ver que 
+    
+    \vspace{-0.55cm}
+    
+    \begin{align*}
+        \derivada{}{E}d_1&=\derivada{}{E}\frac{log(S_t/E)+\parent{r+\frac{1}{2}\sigma^2}(T-t)}{\sigma \sqrt{T-t}}=-\frac{1}{E\sigma\sqrt{T-t}}
+    \end{align*}
+
+    Independientemente de esto, haciendo un par de cálculos vemos que
+
+    \vspace{-0.55cm}
+
+    \begin{align*}
+        S_t \cdot exp\parent{-\frac{d_1^2}{2}} &= S_t \cdot exp\parent{-\frac{\parent{d_2+\sigma\sqrt{T-t}}^2}{2}}\\
+        &= S_t \cdot exp\parent{-\frac{d_2^2+2d_2\sigma\sqrt{T-t}+\sigma^2\parent{T-t}}{2}}\\
+        &= exp\parent{-\frac{d_2^2}{2}} \cdot S_t \cdot exp\parent{-\frac{2d_2\sigma\sqrt{T-t}+\sigma^2\parent{T-t}}{2}}\\
+        &= exp\parent{-\frac{d_2^2}{2}} \cdot exp\parent{log(S_t)-d_2\sigma\sqrt{T-t}+\frac{1}{2}\sigma^2\parent{T-t}}\\
+        &= exp\parent{-\frac{d_2^2}{2}} \cdot exp\parent{log(S_t)-log(S_t/E)-\parent{r+\frac{1}{2}\sigma^2}(T-t)+\frac{1}{2}\sigma^2\parent{T-t}}\\
+        &= exp\parent{-\frac{d_2^2}{2}} \cdot exp\parent{log(E)-r(T-t)}\\
+        &= E e^{-r(T-t)} exp\parent{-\frac{d_2^2}{2}}
+    \end{align*}
+
+    Lo cual implica que
+
+    \vspace{-0.55cm}
+
+    \begin{align*}
+        e^{-r(T-t)}E\phi\parent{d_2}-S_t \phi(d_1) = \frac{1}{\sqrt{2\pi}}\parent{e^{-r(T-t)}E e^{-d_2^2/2} - S_t e^{-d_1^2/2}} = 0
+    \end{align*}
+   
+    Antes de continuar, veamos que en efecto la derivada de la valuación de la opción \call{} con respecto al \textit{strike} en efecto coincide con la de la opción \textit{digital} que de hecho obtenemos en el \textit{Estilo 1}, programando esto en R tenemos que
+    
+    <<message=FALSE>>=
+    # Las siguientes funciones asumen la existencia de los objetos:
+    
+    # 1. St    := Precio del bien subyacente en tiempo t.
+    # 2. T     := Tiempo de maduración de la opción.
+    # 3. t     := Tiempo de valuación de la opción.
+    # 4. r     := Tasa libre de riesgo.
+    # 5. sigma := Volatilidad.
+    
+    
+    # Opción Digital ----------------------------------------------------------
+    V_digital <- function(E){
+      # Calculamos
+      d1 = (log(St/E)+(r+1/2*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+      d2 = d1 - sigma*sqrt(T-t)
+      # Precio
+      return(exp(-r*(T-t))*pnorm(d2))
+    }
+    
+    
+    # Opción Call -------------------------------------------------------------
+    V_call <- function(E){
+      # Calculamos
+      d1 = (log(St/E)+(r+1/2*sigma^2)*(T-t))/(sigma*sqrt(T-t))
+      d2 = d1 - sigma*sqrt(T-t)
+      # Precio
+      return(-(St*pnorm(d1)-E*exp(-r*(T-t))*pnorm(d2)))
+    }
+    ## Derivamos
+    V_call_derivada <- function(E){
+      numDeriv::grad(V_call,E)
+    }
+    @
+    
+    <<echo=FALSE>>=
+    # Gráficos ----------------------------------------------------------------
+
+    par(mfrow=c(2,2))
+    
+    ## Gráfico 1~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    # 1. St    := Precio del bien subyacente en tiempo t.
+    St = 50
+    # 2. T     := Tiempo de maduración de la opción.
+    T = 1
+    # 3. t     := Tiempo de valuación de la opción.
+    t = 0
+    # 4. r     := Tasa libre de riesgo.
+    r = 0.05
+    # 5. sigma := Volatilidad.
+    sigma = 2
+    
+    curve(V_digital,from=0,to=100,
+          main=latex2exp::TeX(paste0("$S_t$=",St,", $T=",T,"$, $t=",t,"$, $r=",r*100,"%$, ",
+                                     "$\\sigma$=",sigma)),
+          ylab=latex2exp::TeX("$V_{digital}(S_t,t)$"),
+          xlab="Precio de ejercicio",
+          col="darkblue",
+          lwd=3,ylim=c(0,1))
+    curve(V_call_derivada,from=0.1,to=100,
+          add=TRUE,col="gold",lwd=3,lty=2)
+    abline(h=0,v=0,col="red")
+    legend("topright", legend=c(latex2exp::TeX("$V_{digital}$"), latex2exp::TeX("$\\dV_{call}/dE}$") ),
+           col=c("darkblue", "gold"), lty=1:2,lwd=2,bg='lightblue')
+    
+    ## Gráfico 2 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    # 1. St    := Precio del bien subyacente en tiempo t.
+    St = 50
+    # 2. T     := Tiempo de maduración de la opción.
+    T = 1
+    # 3. t     := Tiempo de valuación de la opción.
+    t = 0.8
+    # 4. r     := Tasa libre de riesgo.
+    r = 0.05
+    # 5. sigma := Volatilidad.
+    sigma = 2
+    
+    curve(V_digital,from=0,to=100,
+          main=latex2exp::TeX(paste0("$S_t$=",St,", $T=",T,"$, $t=",t,"$, $r=",r*100,"%$, ",
+                                     "$\\sigma$=",sigma)),
+          ylab=latex2exp::TeX("$V_{digital}(S_t,t)$"),
+          xlab="Precio de ejercicio",
+          col="darkblue",
+          lwd=3,ylim=c(0,1))
+    curve(V_call_derivada,from=0.1,to=100,
+          add=TRUE,col="gold",lwd=3,lty=2)
+    abline(h=0,v=0,col="red")
+    legend("topright", legend=c(latex2exp::TeX("$V_{digital}$"), latex2exp::TeX("$\\dV_{call}/dE}$") ),
+           col=c("darkblue", "gold"), lty=1:2,lwd=2,bg='lightblue')
+    
+    ## Gráfico 3~~~~~~~~~~~~~~~~~~~~~~~
+    
+    # 1. St    := Precio del bien subyacente en tiempo t.
+    St = 50
+    # 2. T     := Tiempo de maduración de la opción.
+    T = 1
+    # 3. t     := Tiempo de valuación de la opción.
+    t = 0.95
+    # 4. r     := Tasa libre de riesgo.
+    r = 0.05
+    # 5. sigma := Volatilidad.
+    sigma = 2
+    
+    curve(V_digital,from=0,to=100,
+          main=latex2exp::TeX(paste0("$S_t$=",St,", $T=",T,"$, $t=",t,"$, $r=",r*100,"%$, ",
+                                     "$\\sigma$=",sigma)),
+          ylab=latex2exp::TeX("$V_{digital}(S_t,t)$"),
+          xlab="Precio de ejercicio",
+          col="darkblue",
+          lwd=3,ylim=c(0,1))
+    curve(V_call_derivada,from=0.1,to=100,
+          add=TRUE,col="gold",lwd=3,lty=2)
+    abline(h=0,v=0,col="red")
+    legend("topright", legend=c(latex2exp::TeX("$V_{digital}$"), latex2exp::TeX("$\\dV_{call}/dE}$") ),
+           col=c("darkblue", "gold"), lty=1:2,lwd=2,bg='lightblue')
+    
+    ## Gráfico 4~~~~~~~~~~~~~~~~~~~~~
+    
+    # 1. St    := Precio del bien subyacente en tiempo t.
+    St = 50
+    # 2. T     := Tiempo de maduración de la opción.
+    T = 1
+    # 3. t     := Tiempo de valuación de la opción.
+    t = 1
+    # 4. r     := Tasa libre de riesgo.
+    r = 0.05
+    # 5. sigma := Volatilidad.
+    sigma = 2
+    
+    curve(V_digital,from=0,to=100,
+          main=latex2exp::TeX(paste0("$S_t$=",St,", $T=",T,"$, $t=",t,"$, $r=",r*100,"%$, ",
+                                     "$\\sigma$=",sigma)),
+          ylab=latex2exp::TeX("$V_{digital}(S_t,t)$"),
+          xlab="Precio de ejercicio",
+          col="darkblue",
+          lwd=3,ylim=c(0,1))
+    curve(V_call_derivada,from=0.1,to=100,
+          add=TRUE,col="gold",lwd=3,lty=2)
+    abline(h=0,v=0,col="red")
+    legend("topright", legend=c(latex2exp::TeX("$V_{digital}$"), latex2exp::TeX("$\\dV_{call}/dE}$") ),
+           col=c("darkblue", "gold"), lty=1:2,lwd=2,bg='lightblue')
+    
+    
+    par(mfrow=c(1,1))
+    @
+
+    \textit{Nota:} Los gráficos realizados en R sobre la opción \textit{digital} y la parcial de la opción \call{} con respecto al \textit{strike} NO son los \payoff{} ni se parecen necesariamente. Lo que vemos son los gráficos de la valuación de la opción \textit{digital} a diferentes tiempos de valuación.\\
+    
+    Con todo lo anterior, hacemos ahora así el cálculo siguiente
+   
+    \begin{align*}
+       V_{\textit{digital}}(S_t,t)&=-\derivada{V_{\textit{call}}(S_t,t)}{E}\\
+       &=\derivada{}{E} \parent{E e^{-r(T-t)} \Phi(d_2) - S_t \Phi(d_1)}\\
+       &= e^{-r(T-t)} \derivada{}{E} \parent{E \Phi(d_2)} - S_t \derivada{}{E} \Phi(d_1)\\
+       &= e^{-r(T-t)} \parent{\Phi(d_2)+E\phi\parent{d_2}\derivada{}{E}d_1} - S_t \phi(d_1) \derivada{}{E} d_1\\
+       &= e^{-r(T-t)}\Phi(d_2) + e^{-r(T-t)}E\phi\parent{d_2}\derivada{}{E}d_1- S_t \phi(d_1) \derivada{}{E} d_1\\
+       &= e^{-r(T-t)}\Phi(d_2) + \parent{\derivada{}{E}d_1} \parent{e^{-r(T-t)}E\phi\parent{d_2}-S_t \phi(d_1)}\\
+       &= e^{-r(T-t)}\Phi(d_2)
+    \end{align*}
+    
+    $$
+    \therefore V_{\textit{digital}}(S_t,t)= e^{-r(T-t)}\Phi(d_2) \hspace{0.5cm} \forall t\in[0,T].
+    $$
+    
+    \item Recordemos que "el delta" de una opción en general hace referencia a la "letra griega" $\Delta$ que se obtiene de la siguiente manera
+    
+    $$
+    \Delta = \derivada{V}{S}
+    $$
+    
+    En nuestro caso particular, tenemos que calcular la $\Delta$ referente a una opción \textit{digital} de tal manera que podemos utilizar el primer inciso donde obtuvimos ya que $V=V_{\textit{digital}}(S_t,t)= e^{-r(T-t)}\Phi(d_2)$. Comenzaremos realizando el siguiente cálculo
+    
+    \begin{align*}
+        \derivada{}{S_t} d_2 = \derivada{}{S_t} \parent{\frac{log(S_t/E)+\parent{r-\frac{1}{2}\sigma^2}(T-t)}{\sigma \sqrt{T-t}}} = \frac{1}{S_t \sigma \sqrt{T-t}}
+    \end{align*}
+    
+    De tal manera que 
+    
+    \begin{align*}
+        \Delta&=\derivada{V_{\textit{digital}}(S_t,t)}{S_t} = \derivada{}{S_t}e^{-r(T-t)}\Phi(d_2)=e^{-r(T-t)}\phi(d_2)\derivada{}{S_t}d_2=\frac{e^{-r(T-t)}\phi(d_2)}{S_t \sigma \sqrt{T-t}}
+    \end{align*}
+    
+    De donde recordamos un resultado anterior que nos lleva a
+    
+    $$
+    e^{-r(T-t)}E\phi\parent{d_2}-S_t \phi(d_1) = 0 \Longleftrightarrow e^{-r(T-t)}E\phi\parent{d_2}=S_t \phi(d_1) \Longleftrightarrow e^{-r(T-t)}\phi\parent{d_2} = \frac{S_t \phi(d_1)}{E}
+    $$
+    
+    $$\therefore \frac{e^{-r(T-t)}\phi(d_2)}{S_t \sigma \sqrt{T-t}} = \Delta = \frac{\phi(d_1)}{E\sigma \sqrt{T-t}}$$
+    
+\end{enumerate}
+
+\end{document}
