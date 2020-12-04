@@ -9,7 +9,8 @@
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
 # ["R Actuarial"](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
-Un repositorio con códigos de R para aplicaciones actuariales. Notas, tareas, exámenes, scripts, etc.
+
+El objetivo de este repositorio es brindar un apoyo a la comunidad interesada en mejorar sus técnicas en el lenguaje de programación R o emprenderlo desde un punto de vista muy aplicado.  Un repositorio con códigos de R para aplicaciones actuariales: probabilidad, estadística, riesgo y finanzas.
 
 ## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)) (actualizado al 5/11/2020)
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Actuaries).
@@ -52,13 +53,13 @@ El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilid
 
 Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
 
-## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 10/11/2020)
+## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 20/11/2020)
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto. 
 
 **IMPORTANTE**
 
-Se recomienda la instalación de [MikTek]() antes de comenzar para poder compilar archivos del tipo `pdf` y así poder usar herramientas más fuertes de LaTeX.
+Se recomienda la instalación de [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex) antes de comenzar para poder compilar archivos del tipo `pdf` y así poder usar herramientas más fuertes de LaTeX.
 
 1. [**Introducción a R Markdown**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/1.%20Introducci%C3%B3n%20a%20R%20Markdown)
 
@@ -70,9 +71,9 @@ Se recomienda la instalación de [MikTek]() antes de comenzar para poder compila
 
 Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.Rmd) busca principalmente ejemplificar el uso de tablas con apoyo de la paquetería 'kable', gráficos con 'ggplot' y la técnica de Macros en R en un archivo Markdown. El [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Modelos%20con%20tablas%20de%20contingencia/Reporte.pdf) habla sobre diversos modelos que se pueden aplicar a tablas de contingencia "Independencia", "Cuasi-Independencia", "Homogeneidad Marginal", "Simetría" y "Cuasi-Simetría". Una aplicación de los modelos lineales generalizados y datos categóricos.
 
-3. [**Predicción de la precipitación en estados al noroeste de México**]()
+3. [**Predicción de la precipitación en estados al noroeste de México**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico)
 
-Este [archivo]() es un proyecto que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta]() que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek]().
+Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto%20RMD.Rmd) es un [proyecto](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto-RMD.pdf) (es un poco largo, así que tendrán que descargar el archivo para verlo) que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico) que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex). ¡No olviden cambiar su directorio de trabajo!
 
 ## Esperen más próximamente...
 
@@ -86,7 +87,7 @@ Celular y what's app: (55) 3912-0683
 
 Correo: alarcon@ciencias.unam.mx
 
-Quedo a sus órdenes y gracias por la atención.
+Quedo a sus órdenes y espero esto ayude al gremio.
 
 ### FAQ
 
