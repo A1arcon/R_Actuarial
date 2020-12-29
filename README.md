@@ -108,3 +108,5 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 - [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y rápida?](https://youtu.be/te1fJgn71js)
 
 - [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
+
+- [¿Cómo puedo descargar un archivo en particular en GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
