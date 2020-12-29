@@ -109,7 +109,7 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 
 - [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
 
-- [¿Cómo puedo descargar un archivo en particular en GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
+- [¿Cómo puedo descargar un archivo en particular de GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
 
 > Una respuesta rápida a esta última pregunta es la siguiente. 
 > 1. Ve al archivo que quieres descargar.
