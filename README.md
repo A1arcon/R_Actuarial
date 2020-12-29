@@ -55,7 +55,7 @@ Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.yout
 
 ## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 4/12/2020)
 
-1. [Tiempo continuo - 1](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/1.%20Tiempo%20continuo%20-%201)
+1. [**Tiempo continuo** - 1](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/1.%20Tiempo%20continuo%20-%201) (Documento en [Overleaf](https://www.overleaf.com/read/zntgzskstfyh))
 
 Del [examen general de finanzas matematicas del posgrado en ciencias matematicas, enero 2017](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/FinanzasMate2017-1.pdf), resolveremos los ejercicios 3 y 4, relativos a finanzas en tiempo continuo. En [este documento](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/Derivados_a_Tiempo_Continuo.pdf) veremos las soluciones escritas junto con imágenes, `LaTeX` y `R`. [Este script](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/main.Rtex) fue realizado completamente online en la página [Overleaf](https://www.overleaf.com/). Este es un buen ejemplo para poder usar esta plataforma y juntar estos dos lenguajes de programación en un estilo muy similar a un `R Sweave`.
 
