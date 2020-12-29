@@ -1,0 +1,64 @@
+% Herramientas para beamer------------------------------------------------
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\geometry{paperwidth=140mm,paperheight=125mm} % Tamaño de la hoja
+% Para justificar el texto.
+\apptocmd{\frame}{}{\justifying}{} 
+\apptocmd{\column}{}{\justifying}{}
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+% Blocks de colores ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Amarillo
+\newenvironment{yellow_block}[1]
+{
+\setbeamercolor{block title}{fg=black,bg=yellow!50!white}
+\setbeamercolor{block body}{fg=black,bg=yellow!30!white}
+\begin{block}{#1}
+}
+{
+\end{block}
+\setbeamercolor{block title}{fg=blocktitlefgsave,bg=blocktitlebgsave}
+\setbeamercolor{block body}{fg=blockbodyfgsave,bg=blockbodybgsave}
+}
+% En general podemos definir así los bloques
+\newenvironment{color_block}[2]
+{
+\setbeamercolor{block title}{fg=#1,bg=#1!50!white}
+\setbeamercolor{block body}{fg=black, bg=#1!30!white}
+\begin{block}{#2}
+}
+{
+\end{block}
+\setbeamercolor{block title}{fg=blocktitlefgsave,bg=blocktitlebgsave}
+\setbeamercolor{block body}{fg=blockbodyfgsave,bg=blockbodybgsave}
+}
+% Proofs de colores ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Amarillo
+\newenvironment{yellow_proof}[1]
+{
+\setbeamercolor{block title}{fg=black,bg=yellow!50!white}
+\setbeamercolor{block body}{fg=black,bg=yellow!30!white}
+\begin{proof}[#1]
+}
+{
+\end{proof}
+\setbeamercolor{block title}{fg=blocktitlefgsave,bg=blocktitlebgsave}
+\setbeamercolor{block body}{fg=blockbodyfgsave,bg=blockbodybgsave}
+}
+% En general podemos definir así los bloques
+\newenvironment{color_proof}[2]
+{
+\setbeamercolor{block title}{fg=#1,bg=#1!50!white}
+\setbeamercolor{block body}{fg=black, bg=#1!30!white}
+\begin{proof}[#2]
+}
+{
+\end{proof}
+\setbeamercolor{block title}{fg=blocktitlefgsave,bg=blocktitlebgsave}
+\setbeamercolor{block body}{fg=blockbodyfgsave,bg=blockbodybgsave}
+}
+% ------------------------------------------------------------------------
+% Paqueterías extra y funciones creadas.
+\usepackage[spanish]{babel}
+\newcommand{\derivada}[2]{\frac{\partial{#1}}{\partial{#2}}}
+

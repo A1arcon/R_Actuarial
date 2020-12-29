@@ -1,0 +1,200 @@
+---
+title: "Blocks de Colores en Beamer"
+author: "Edgar Gerardo Alarcón González"
+date: \today
+output:
+  beamer_presentation:
+    theme: "Berkeley"
+    colortheme: "crane"
+    fonttheme: "structurebold"
+    slide_level: 3
+    includes:
+      in_header: "preamble.tex"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE,eval=FALSE)
+```
+
+### Nuestra función
+
+\texttt{color\_block} es una función creada por mi, la sintaxis es la siguiente:
+
+\vspace{1cm}
+
+```{r,echo=TRUE,eval=FALSE}
+\begin{color_block}{color}{Título del bloque}
+
+Texto dentro del bloque
+
+\end{color_block}
+```
+
+### Ejemplo
+
+- Código:
+
+```{r}
+\begin{color_block}{red}{Rojo}
+
+Este es un ejemplo
+
+\end{color_block}
+```
+
+\hspace{1cm}
+
+- Resultado:
+
+\begin{color_block}{red}{Rojo}
+
+Este es un ejemplo
+
+\end{color_block}
+
+\vspace{1cm}
+
+¡Realmente es muy sencillo!
+
+### ¡Muchos ejemplos!
+
+- \texttt{yellow}
+
+\begin{color_block}{yellow}{Amarillo}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+- \texttt{orange}
+
+\begin{color_block}{orange}{Naranja}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+- \texttt{violet}
+
+\begin{color_block}{violet}{Violeta}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+- \texttt{blue}
+
+\begin{color_block}{blue}{Azul}
+
+Este es un ejemplo
+
+\end{color_block}
+
+###
+
+- \texttt{cyan}
+
+\begin{color_block}{cyan}{Cyan}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+- \texttt{teal}
+
+\begin{color_block}{teal}{Teal}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+- \texttt{gray}
+
+\begin{color_block}{gray}{Gris}
+
+Este es un ejemplo
+
+\end{color_block}
+
+
+
+### Un caso especial
+
+En el caso del color amarillo, las letras no se alcanzan a ver, para eso, creamos una función especial la cual es
+
+```{r}
+\begin{yellow_block}{Amarillo}
+
+Esto es un ejemplo
+
+\end{yellow_block}
+```
+
+
+\begin{yellow_block}{Amarillo}
+
+Esto es un ejemplo
+
+\end{yellow_block}
+
+### Pruebas
+
+\texttt{color\_proof} es una función creada por mi, la sintaxis es la siguiente:
+
+\vspace{1cm}
+
+```{r,echo=TRUE,eval=FALSE}
+\begin{color_proof}{color}{Título de la prueba}
+
+Prueba de lo dicho.
+
+\end{color_block}
+```
+
+### Ejemplo
+
+- Código
+
+```{r}
+\begin{color_proof}{red}{Demostración: Soy muy cool.}
+
+Es trivial.
+
+\end{color_proof}
+```
+
+\vspace{1cm}
+
+- Resultado
+
+\begin{color_proof}{red}{Demostración: Soy muy cool.}
+
+Es trivial.
+
+\end{color_proof}
+
+Funciona de forma similar y con los mismos colores que la función anterior.
+
+### ¿Qué necesito para hacer esto?
+
+Para poder hacer uso de esta función necesitas dos cosas
+
+1. Debes tener en el mismo directorio de trabajo (*working directory*) donde tengas tu presentación de beamer para RMarkdown el archivo \texttt{preamble.tex} que he agregado a un lado del archivo que estás leyendo, puedes descargarlo con mi GitHub.
+
+https://github.com/A1arcon/R_Actuarial
+
+2. Agrega en el preámbulo de tu archivo R Markdown lo siguiente
+
+```{r}
+output:
+  beamer_presentation:
+    includes:
+      in_header: "preamble.tex"
+```
+
+Esto puede servir como ejemplo de la creación de ambientes con dos parámetros en \LaTeX, favor de revisar el archivo \texttt{preamble.tex}.
