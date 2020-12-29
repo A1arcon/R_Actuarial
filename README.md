@@ -110,3 +110,9 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 - [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
 
 - [¿Cómo puedo descargar un archivo en particular en GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
+
+> Una respuesta rápida a esta última pregunta es la siguiente. 
+> 1. Ve al archivo que quieres descargar.
+> 2. Dale click para ver los contenidos dentro de la UI (*Interfaz de Usuario*) de GitHub.
+> 3. En el lado superior derecho de la visualización del archivo, da **click derecho** en el botón que dice `Raw`.
+> 4. Seleccionar la opción *save as* (guardar cómo) y el resto es seleccionar dónde lo deseamos guardar.
