@@ -59,7 +59,7 @@ Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.yout
 
 Del [examen general de finanzas matematicas del posgrado en ciencias matematicas, enero 2017](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/FinanzasMate2017-1.pdf), resolveremos los ejercicios 3 y 4, relativos a finanzas en tiempo continuo. En [este documento](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/Derivados_a_Tiempo_Continuo.pdf) veremos las soluciones escritas junto con imágenes, `LaTeX` y `R`. [Este script](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/main.Rtex) fue realizado completamente online en la página [Overleaf](https://www.overleaf.com/). Este es un buen ejemplo para poder usar esta plataforma y juntar estos dos lenguajes de programación en un estilo muy similar a un `R Sweave`.
 
-## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 20/11/2020)
+## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 28/12/2020)
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto. 
 
@@ -80,6 +80,10 @@ Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%
 3. [**Predicción de la precipitación en estados al noroeste de México**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico)
 
 Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto%20RMD.Rmd) es un [proyecto](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto-RMD.pdf) (es un poco largo, así que tendrán que descargar el archivo para verlo) que realicé en una clase de estadística espacial. El objetivo es pronosticar la precipitación en ciertas zonas de México, por los estados de Baja California Norte y Sur, Sonora y Sinaloa. En este R Markdown encontrarán un ejemplo de cómo poner un índice o tabla de contenido (table of contents), así como para hacer gráficos de calor con `ggplot`. Además, viene un ejemplo de cómo conectar un RMarkdown de formato `pdf` con otros archivos del mismo formato, lo que se hizo aquí fue conectar con una portada para el trabajo, esto pues no siempre es sencillo diseñar algo de este estilo en R Markdown. Por lo mismo, para que el documento trabaje bien, necesitarán descargar toda la [carpeta](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/3.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico) que contiene el archivo y posteriormente compilarlo. Recuerden hacer una instalación correcta de [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex). ¡No olviden cambiar su directorio de trabajo!
+
+4. [**Blocks de Colores en Beamer**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/4.%20Blocks%20de%20Colores)
+
+En este [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/4.%20Blocks%20de%20Colores/Blocks_de_Colores.pdf) en formato de presentación Beamer escrito en un [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/4.%20Blocks%20de%20Colores/Blocks_de_Colores.RMD) R Markdown mostramos el uso de una serie de funciones creadas en formato `LaTeX` en un [preámbulo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/4.%20Blocks%20de%20Colores/preamble.tex) que nos permitirán crear los conocidos "Blocks" de diferentes colores en un ambiente de `LaTeX`. [Beamer](https://es.overleaf.com/learn/latex/beamer) es una herramienta de `LaTeX` sumamente utilizada en el ámbito matemático para hacer presentaciones. Resulta que R permite hacer este tipo de presentaciones en su modalidad R Markdown. Más aún, es posible ligar un preámbulo escrito en la extensión `.tex` a un archivo R Markdown. Este documento es un ejemplo de ello.
 
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
@@ -104,3 +108,11 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 - [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y rápida?](https://youtu.be/te1fJgn71js)
 
 - [¿Cómo puedo descargar los archivos que tiene un repositorio en GitHub?](https://youtu.be/vuvp_-cPYNA)
+
+- [¿Cómo puedo descargar un archivo en particular de GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
+
+> Una respuesta rápida a esta última pregunta es la siguiente. 
+> 1. Ve al archivo que quieres descargar.
+> 2. Dale click para ver los contenidos dentro de la UI (*Interfaz de Usuario*) de GitHub.
+> 3. En el lado superior derecho de la visualización del archivo, da **click derecho** en el botón que dice `Raw`.
+> 4. Seleccionar la opción *save as* (guardar cómo) y el resto es seleccionar dónde lo deseamos guardar.
