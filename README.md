@@ -59,7 +59,7 @@ Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.yout
 
 Del [examen general de finanzas matematicas del posgrado en ciencias matematicas, enero 2017](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/FinanzasMate2017-1.pdf), resolveremos los ejercicios 3 y 4, relativos a finanzas en tiempo continuo. En [este documento](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/Derivados_a_Tiempo_Continuo.pdf) veremos las soluciones escritas junto con imágenes, `LaTeX` y `R`. [Este script](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/main.Rtex) fue realizado completamente online en la página [Overleaf](https://www.overleaf.com/). Este es un buen ejemplo para poder usar esta plataforma y juntar estos dos lenguajes de programación en un estilo muy similar a un `R Sweave`.
 
-## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 28/12/2020)
+## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 31/12/2020)
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown permiten al usuario escribir ecuaciones, instertar gráficos, crear tablas de datos y escribir código de R con el apoyo de LaTeX todo en un mismo archivo. Estos archivos pueden llevar una presentación técnica al nivel más alto. 
 
