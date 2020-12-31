@@ -197,4 +197,4 @@ output:
       in_header: "preamble.tex"
 ```
 
-Esto puede servir como ejemplo de la creación de ambientes con dos parámetros en \LaTeX, favor de revisar el archivo \texttt{preamble.tex}.
+Esto puede servir como ejemplo de la creación de ambientes con dos parámetros en \LaTeX, favor de revisar el archivo \href{https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/4.%20Blocks%20de%20Colores/preamble.tex}{\texttt{preamble.tex}}. Podrás encontrar también más colores haciendo \href{https://en.wikibooks.org/wiki/LaTeX/Colors}{clic aquí}.
