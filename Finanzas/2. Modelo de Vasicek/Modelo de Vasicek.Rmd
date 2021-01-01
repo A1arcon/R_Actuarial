@@ -1,0 +1,154 @@
+---
+title: "Modelo de Vasicek"
+author: "Edgar Gerardo Alarcón González"
+date: \today
+output:
+  beamer_presentation:
+    theme: "Berkeley"
+    colortheme: "crane"
+    fonttheme: "structurebold"
+    slide_level: 3
+    includes:
+      in_header: "preamble.tex"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Introducción
+
+### Antecedentes
+
+Para poder hablar del **modelo de Vasicek**, debemos saber cuál es el objetivo y de dónde surge esta metodología. Con esta finalidad, recordemos primeramente uno de los resultados más importantes que tenemos en los productos financieros derivados.
+
+\begin{color_block}{violet}{Ecuación de Black-Scholes}
+
+$$
+\derivada{V}{t} + \frac{1}{2} \sigma^2 S^2 \derivada{^2 V}{S^2} + rS \derivada{V}{S} - rV = 0
+$$
+
+\end{color_block}
+
+Recordemos que esta ecuación nos puede servir para valuar un producto financiero **derivado de un bien subyacente** $\mathbf{S}$. Esto significa que nos basamos en el comportamiento de $S$ y apoyados de lema de Itô se logra realizar una valuación **neutral al riesgo** del derivado.
+
+### Antecedentes
+
+Pongámonos en contexto con un contrato financiero muy importante.
+
+\vspace{0.4cm}
+
+\begin{color_block}{brown}{Bono \href{https://www.youtube.com/watch?v=IuyejHOGCro}{(Ver video)}}
+
+A grandes rasgos, un \textbf{Bono} es un contrato financiero que respecta a un préstamo. En este contrato participan dos partes, el prestamista y el prestatario. Existen diversos tipos de bonos, pero en los más esenciales se consiste en dar un préstamo a tiempo $t=0$ el cual se liquidará en un tiempo de maduración $t=T$, todo esto con ciertos intereses. \\
+
+\vspace{0.5cm}
+
+Cuando en tiempos tales que $t\in(0,T)$, el prestatario paga un porcentaje \href{https://www.cuidatudinero.com/13075374/como-calcular-la-tasa-de-cupon-de-los-bonos}{(tasa cupón)} del préstamo total al prestamista (\textit{Valor Facial/Nominal}), se dice que ese bono está cuponado o simplemente se le llama "bono"{} pero cuando esto no sucede y únicamente se paga el préstamo en el tiempo de maduración a la tasa de interés establecida, entonces se le llama "bono cupón-cero".
+
+\end{color_block}
+
+Estos contratos se dice tienen "problemas técnicos" pues valuarlos resulta más complicado **al no existir un bien subyacente** ($\mathbf{S}$) del cual apoyarse.
+
+### Antecedentes
+
+<!-- Esto puede servir para justificar el texto de la ventana actual. -->
+<!-- \justifying -->
+
+Ahora veamos el siguiente resultado.
+
+\begin{color_block}{blue}{Ecuación para valuar un Bono.}
+
+$$
+\derivada{V}{t} + \frac{1}{2} w^2 \derivada{^2 V}{r^2} + (u-\lambda w) \derivada{V}{r} - rV = 0
+$$
+
+\end{color_block}
+
+\vspace{-0.3cm}
+
+Donde
+
+- $r$ es una tasa de interés.
+
+- $u$ es la \href{https://www.investopedia.com/terms/s/spot_rate.asp}{tasa spot} real.
+
+- $T$ es el tiempo de maduración del Bono.
+
+- $t$ es un tiempo tal que está en el intervalo $[0,T]$.
+
+- $V := V(r,t;T)$ es el precio del bono a tiempo $t$ y tasa $r$.
+
+- $u - \lambda w$ y $w$ funciones que dependen de $r$ y $t$.
+
+De esta ecuación, el primer término se interpreta como el "tiempo de decaimiento", el segundo como "difusión", el tercero como "deriva" (*drift*) y el cuarto como "descuento".
+
+
+### Antecedentes
+
+La solución de la ecuación para la valuación de un bono se puede interpretar como el **valor presente esperado** de todos los flujos de efectivo. Por ejemplo, suponiendo que hay un *payoff* y sabiendo que las tasas de interés también *pueden ser aleatorias* entonces el valor de un contrato en tiempo $t$ sería.
+
+$$
+\mathbb{E}\left[e^{-\int_t^T r(\tau)d\tau}Payoff\right]
+$$
+
+Así como en las opciones que ya hemos trabajado, esta esperanza no se calcula con respecto de la *variable aleatoria real*, sino con respecto a una **variable neutral al riesgo**. La diferencia está en que en el término del *drift* no se hace con respecto a la tasa spot real, sino con respecto a la llamada **tasa spot neutral al riesgo** esta es $u-\lambda w$. De tal manera que se modelará el valor del instrumento financiero usando una tasa neutral al riesgo. Esta tasa satisface
+
+\vspace{-0.1cm}
+
+$$
+\partial r = (u-\lambda w)\partial t + w \partial X
+$$
+
+Donde $X$, que modela el precio del riesgo de mercado, será incluida pues $r$ no se negocia.
+
+# El Modelo
+
+### ¿Qué es y cuál es el objetivo del modelo?
+
+Lo que busca el Modelo de Vasicek es modelar una **tasa spot** $r_t$ neutral al riesgo basándose en la valuación de Bonos y más en particular en la dinámica que estos tienen con base en la siguiente ecuación diferencial estocástica \footnotemark. 
+
+\begin{color_block}{olive}{Modelo de Vasicek}
+
+$$
+\partial r_t = (a-br_t)\partial t + \sigma dW_t
+$$
+
+Donde $a$, $b$ y $\sigma$ son constantes estrictamente positivas y $W_t$ es un movimiento Browniano estándar bajo la medida martingala spot.
+
+\end{color_block}
+
+Se sabe que los Bonos cuponados se pueden descomponer en Bonos cupón cero, de tal manera que el modelo se centra principalmente en este tipo de instrumentos financieros para posteriormente realizar una generalización. Para efectos de esta presentación, nos centraremos en mostrar resultados y estudiar el caso para Bonos no cuponados.
+
+\footnotetext{Existen más parametrizaciones del modelo, por ejemplo $\partial r_t = \kappa (\theta-r_t)\partial t + \beta dW_t$.}
+
+## Proposiciones
+
+
+\begin{color_block}{violet}{1. Solución para $r_t$.}
+
+brl
+
+\end{color_block}
+
+
+\begin{color_proof}{red}{Demostración}
+
+La prueba de esta proposición se encuentra en el libro \href{FALTA}{Martingale Methods in Financial Modelling - Marek Musiela \& Marek Rutkowski - Lemma 10.1.2}.
+
+\end{color_proof}
+
+### Proposiciones
+
+\begin{color_block}{blue}{2. Solución para la valuación de un Bono cupón cero.}
+
+brl
+
+\end{color_block}
+
+\begin{color_proof}{cyan}{Demostración}
+
+je
+
+\end{color_proof}
