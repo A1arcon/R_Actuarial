@@ -53,11 +53,15 @@ El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilid
 
 Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
 
-## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 4/12/2020)
+## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 2/1/2021)
 
 1. [**Tiempo continuo** - 1](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/1.%20Tiempo%20continuo%20-%201) (Documento en [Overleaf](https://www.overleaf.com/read/zntgzskstfyh))
 
 Del [examen general de finanzas matematicas del posgrado en ciencias matematicas, enero 2017](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/FinanzasMate2017-1.pdf), resolveremos los ejercicios 3 y 4, relativos a finanzas en tiempo continuo. En [este documento](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/Derivados_a_Tiempo_Continuo.pdf) veremos las soluciones escritas junto con imágenes, `LaTeX` y `R`. [Este script](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/1.%20Tiempo%20continuo%20-%201/main.Rtex) fue realizado completamente online en la página [Overleaf](https://www.overleaf.com/). Este es un buen ejemplo para poder usar esta plataforma y juntar estos dos lenguajes de programación en un estilo muy similar a un `R Sweave`.
+
+2. [**Modelo de Vasicek**](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/2.%20Modelo%20de%20Vasicek) (Presentación en [**Beamer**](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/2.%20Modelo%20de%20Vasicek) y aplicación en [**Shiny**](https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993))
+
+Esta es una breve e introductoria explicación de un modelo de tasas de interés bajo una medida martingala de no arbitraje para el cálculo de tasas spot. Aquí mostramos un ejemplo de cómo hacer una [presentación](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/2.%20Modelo%20de%20Vasicek/Presentation/Modelo-de-Vasicek.pdf) en Beamer usando `R Markdown`. Lo interesante de este documento es que muestra cómo ligar un `R Markdown` con un [preámbulo](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/2.%20Modelo%20de%20Vasicek/Presentation/preamble.tex) `.tex`. Más aún, se ve cómo usar diferentes colores para los bloques en Beamer, poner imágenes, establecer un tema, poner pies de página, urls, etc. Con el objetivo de ver de forma un tanto más interactiva la teoría de la que el trabajo menciona, se desarrolló también una aplicación en [Shiny](https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993). Podrán acceder a todos los enlaces importantes que tiene este documento descargando la [presentación](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/2.%20Modelo%20de%20Vasicek/Presentation/Modelo-de-Vasicek.pdf) en `.pdf`.
 
 ## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 31/12/2020)
 
