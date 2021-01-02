@@ -372,7 +372,6 @@ Podrán ver todas las fuentes de información completas con la que se construyó
 
 ###
 
-
 \begin{center}
   \href{https://github.com/A1arcon/R_Actuarial}{\includegraphics[scale=0.5]{yoda.jpg}}
 \end{center}       
