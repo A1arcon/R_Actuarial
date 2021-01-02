@@ -19,7 +19,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Introducción
 
-### Antecedentes
+## Objetivo
+
+El objetivo de este trabajo es explicar el contexto general y la razón de existir del Modelo de Vasicek, así como mostrar sus resultados teóricos más importantes. Explorar la información obtenida con diversas fuentes de información, comparar y ver su comportamiento basados en una implementación computacional. 
+
+Los temas más importantes a revisar, los podrán observar en la barra al costado izquierdo de este documento.
+
+## Antecedentes
+
+### Antecedentes (Black-Scholes)
 
 Para poder hablar del **modelo de Vasicek**, debemos saber cuál es el objetivo y de dónde surge esta metodología. Con esta finalidad, recordemos primeramente uno de los resultados más importantes que tenemos en los productos financieros derivados.
 
@@ -33,7 +41,7 @@ $$
 
 Recordemos que esta ecuación nos puede servir para valuar un producto financiero **derivado de un bien subyacente** $\mathbf{S}$. Esto significa que nos basamos en el comportamiento de $S$ y apoyados de lema de Itô se logra realizar una valuación **neutral al riesgo** del derivado.
 
-### Antecedentes
+### Antecedentes (Bono)
 
 Pongámonos en contexto con un contrato financiero muy importante.
 
@@ -51,7 +59,7 @@ Cuando en tiempos tales que $t\in(0,T)$, el prestatario paga un porcentaje \href
 
 Estos contratos se dice tienen "problemas técnicos" pues valuarlos resulta más complicado **al no existir un bien subyacente** ($\mathbf{S}$) del cual apoyarse.
 
-### Antecedentes
+### Antecedentes (Valuación de un Bono)
 
 <!-- Esto puede servir para justificar el texto de la ventana actual. -->
 <!-- \justifying -->
@@ -85,7 +93,7 @@ Donde
 De esta ecuación, el primer término se interpreta como el "tiempo de decaimiento", el segundo como "difusión", el tercero como "deriva" (*drift*) y el cuarto como "descuento".
 
 
-### Antecedentes
+### Antecedentes (Nociones teóricas)
 
 La solución de la ecuación para la valuación de un bono se puede interpretar como el **valor presente esperado** de todos los flujos de efectivo. Por ejemplo, suponiendo que hay un *payoff* y sabiendo que las tasas de interés también *pueden ser aleatorias* entonces el valor de un contrato en tiempo $t$ sería.
 
@@ -138,7 +146,7 @@ De la ecuación diferencial estocástica planteada por Vasicek
 
 - $\sigma^2/(2b)$ representa la \textbf{varianza a largo plazo}, con esta varianza se \textit{reagrupan} alrededor de $a/b$.
 
-## Proposiciones
+## Proposiciones (Para la tasa spot)
 
 
 \begin{color_block}{violet}{1. Solución para $r_t$.}
@@ -177,7 +185,7 @@ La prueba de esta proposición se encuentra en el libro \href{https://tinyurl.co
 
 \end{color_proof}
 
-### Proposiciones
+### Proposiciones (Para la tasa spot)
 
 Derivado de los resultados anteriores, no es muy complicado notar que 
 
@@ -193,7 +201,7 @@ $$
 
 Que nos permite ver el porqué de la interpretación de los parámetros.
 
-### Proposiciones
+### Proposiciones (Para el valor del Bono)
 
 \begin{color_block}{blue}{2. Solución para la valuación de un Bono cupón cero.}
 
@@ -334,13 +342,25 @@ Una vez que ya hemos verificado con un ejemplo que nuestra implementación es co
 
 ## ¿Qué es lo que sigue?
 
-En el libro 
+En el libro \href{https://tinyurl.com/ycsbky8k}{Paul Wilmott - Paul Wilmott Introduces Quantitative Finance} se habla sobre un modelo de Vasicek extendido. Con el objetivo de calibrar el modelo tradicional, se propone estimar estadísticamente los parámetros $b$ y $\sigma$. Por otro lado, el parámetro $a$ se propone ahora como una función del tiempo $a(t)$, modificación que altera la ecuación diferencial estocástica de la siguiente forma
+
+$$
+\partial r_t = (a(t)-br_t)\partial t + \sigma dW_t
+$$
+
+Esto eventualmente afectará las relaciones anteriores y también se podrá encontrar una solución explícita para la función $a(t)$.
 
 ## Conclusiones
 
+Aún quedan bastantes cosas por hacer con respecto al modelo, al menos en términos aplicados. Se puede explorar la metodología Monte Carlo propuesta por \href{https://www.r-bloggers.com/author/lee/}{Lee} para entender el funcionamiento estocástico de lo realizado. 
+
+A su vez, es importante buscar cómo encontrar una estimación "estadísticamente adecuada" para los parámetros del modelo, en nuestros ejemplos hemos logrado ver el comportamiento teórico del mismo variando sus parámetros. Pero lo ideal sería usar la información estadística disponible para estimar los parámetros que mejor se adecúen al modelo.
+
+En este trabajo hemos logrado verificar computacionalmente el desarrollo teórico del modelo, se hace énfasis final en que una implementación práctica con datos reales será lo idea y un buen paso siguiente a dar antes que explorar el modelo de Vasicek extendido por ejemplo.
+
 # Bibliografía
 
-Podrán ver todas las fuentes de información con la que se construyó esta presentación dando clic en los siguientes enlaces.
+Podrán ver todas las fuentes de información completas con la que se construyó esta presentación dando clic en los siguientes enlaces.
 
 - \href{https://drive.google.com/file/d/16lkTntZXmnh8Ev1d2kFH3FL8ofVIs2NB/view?usp=sharing}{Etheridge A. - A Course in Financial Calculus}
 
