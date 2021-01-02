@@ -2,7 +2,7 @@
 
 library(latex2exp)
 
-plot.rt <- function(t,s,rs,a,b){
+plot.rt <- function(t,s,rs,a,b,sigma){
   
   # Función para obtener la esperanza de rt.
   E.rt.Fs <- function(t,s,rs,a,b){
@@ -15,11 +15,14 @@ plot.rt <- function(t,s,rs,a,b){
         ylab = TeX("$E(r_t|F_s)$"),
         xlim = c(-1,t),
         xlab = "t",
+        yaxt = 'n',
         main = "Tasa esperada por Vasicek (s=0)")
+  axis(2, at=seq(0,1,by=.2), labels=paste(100*seq(0,1,by=.2), "%") )
   abline(h = c(a/b,rs),col=c("red","purple"),lwd=2,lty=2)
-  abline(h=0,v=0)
-  legend("left", legend=c(TeX("$r_t$"), TeX("$a/b$"),TeX("$r_s$")),
-         col=c("blue", "red", "purple"), cex=0.8, lty=c(1,2,2),
+  abline(h = 0, v = 0)
+  abline(h = a/b+c(sigma/sqrt(2*b),-sigma/sqrt(2*b)),col="goldenrod",lwd=2,lty=3)
+  legend("topleft", legend=c(TeX("$r_t$"), TeX("$a/b$"),TeX("$r_s$"),"LTSD"),
+         col=c("blue", "red", "purple","goldenrod"), cex=0.8, lty=c(1,2,2,3),
          text.font=4, bg='lightblue')
   
 }
@@ -94,7 +97,7 @@ plot.bono<-function(tf,a,b,sigma,s = 0,rs = 0.05){
   abline(v = xmax,col="red",lwd=2,lty=2)
   abline(h = fmax,col="purple",lwd=2,lty=2)
   abline(h=1,col="darkgreen",lty=3,lwd=3)
-  legend("left", legend=c("$",TeX("$t_{máx}$"),TeX("$Bono_{máx}$"),"$=1"),
+  legend("topleft", legend=c("$",TeX("$t_{máx}$"),TeX("$Bono_{máx}$"),"$=1"),
          col=c("blue","red","purple","darkgreen"), cex=0.8, 
          lty=c(1,2,2,3),
          text.font=4, bg='lightblue')
@@ -127,10 +130,13 @@ ui <- fluidPage(
                               label = "Selecciona un valor para 'a'",
                               value = 0.25,min = 0,max = 1,step = 0.01),
                   sliderInput(inputId = "b",
-                              label = "Selecciona un valor para 'b'",
+                              label = "Selecciona un valor para 'b' (velocidad de reversión)",
                               value = 0.5,min = 0,max = 1,step = 0.01),
+                  sliderInput(inputId = "sigma",
+                              label = "Selecciona un valor para 'sigma' (volatilidad instantánea)",
+                              value = 0.25,min = 0,max = 1,step = 0.01),
                   sliderInput(inputId = "rs",
-                              label = "Selecciona un valor para 'rs'",
+                              label = "Selecciona un valor para 'rs' (valor observado a tiempo 's')",
                               value = 0.05,min = 0.01,max = 0.99,step = 0.01)
                 ),
                 
@@ -151,13 +157,13 @@ ui <- fluidPage(
                                     label = "Selecciona un valor para 'a'",
                                     value = 0.25,min = 0,max = 1,step = 0.01),
                         sliderInput(inputId = "b_bono",
-                                    label = "Selecciona un valor para 'b'",
+                                    label = "Selecciona un valor para 'b' (velocidad de reversión)",
                                     value = 0.5,min = 0,max = 1,step = 0.01),
                         sliderInput(inputId = "sigma_bono",
-                                    label = "Selecciona un valor para 'sigma'",
-                                    value = 0.5,min = 0,max = 2,step = 0.1),
+                                    label = "Selecciona un valor para 'sigma' (volatilidad instantánea)",
+                                    value = 0.25,min = 0,max = 1,step = 0.01),
                         sliderInput(inputId = "rs_bono",
-                                    label = "Selecciona un valor para 'rs'",
+                                    label = "Selecciona un valor para 'rs' (valor observado a tiempo 's')",
                                     value = 0.05,min = 0.01,max = 0.99,step = 0.01)
                       ),
                       
@@ -181,10 +187,10 @@ server <- function(input,output){
     rs = input$rs
     
     # Parámetros
-    a = input$a ; b = input$b
+    a = input$a ; b = input$b ; sigma = input$sigma
     
     # Graficamos la función en cuestión:
-    plot.rt(t,0,rs,a,b)
+    plot.rt(t,0,rs,a,b,sigma)
     
   })
   

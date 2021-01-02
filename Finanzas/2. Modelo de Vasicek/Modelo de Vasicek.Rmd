@@ -107,7 +107,8 @@ Donde $X$, que modela el precio del riesgo de mercado, será incluida pues $r$ n
 
 ### ¿Qué es y cuál es el objetivo del modelo?
 
-Lo que busca el Modelo de Vasicek es modelar una **tasa spot** $r_t$ neutral al riesgo basándose en la valuación de Bonos y más en particular en la dinámica que estos tienen con base en la siguiente ecuación diferencial estocástica \footnotemark. 
+El Modelo de Vasicek fue introducido por  Oldřich Vašíček en 1997\footnote{\href{https://en.wikipedia.org/wiki/Vasicek_model}{Wikipedia - Vasicek model}}
+ y lo que busca es encontrar una **tasa spot** $r_t$ neutral al riesgo basándose en la valuación de Bonos y más en particular en la dinámica que estos tienen con base en la siguiente ecuación diferencial estocástica\footnotemark{}. 
 
 \begin{color_block}{olive}{Modelo de Vasicek}
 
@@ -115,40 +116,155 @@ $$
 \partial r_t = (a-br_t)\partial t + \sigma dW_t
 $$
 
-Donde $a$, $b$ y $\sigma$ son constantes estrictamente positivas y $W_t$ es un movimiento Browniano estándar bajo la medida martingala spot.
+Donde $a$, $b$ y $\sigma$ son constantes estrictamente positivas y $W_t$ es un movimiento Browniano estándar bajo la medida martingala spot. 
 
 \end{color_block}
 
 Se sabe que los Bonos cuponados se pueden descomponer en Bonos cupón cero, de tal manera que el modelo se centra principalmente en este tipo de instrumentos financieros para posteriormente realizar una generalización. Para efectos de esta presentación, nos centraremos en mostrar resultados y estudiar el caso para Bonos no cuponados.
 
+
 \footnotetext{Existen más parametrizaciones del modelo, por ejemplo $\partial r_t = \kappa (\theta-r_t)\partial t + \beta dW_t$.}
+
+
+### ¿Qué representan los parámetros?
+
+De la ecuación diferencial estocástica planteada por Vasicek
+
+- $a/b$ representa el \textbf{valor medio a largo plazo}
+
+- $b$ representa la \textbf{velocidad de reversión}, esto es, qué tan rápido se \textit{reagrupan} alrededor de $a/b$.
+
+- $\sigma$ representa la \textbf{volatilidad instantánea}, mide la amplitud de la aleatoriedad de entrada al sistema. 
+
+- $\sigma^2/(2b)$ representa la \textbf{varianza a largo plazo}, con esta varianza se \textit{reagrupan} alrededor de $a/b$.
 
 ## Proposiciones
 
 
 \begin{color_block}{violet}{1. Solución para $r_t$.}
 
-brl
+La solución a la ecuación diferencial estocástica planteada por Vasicek está dada por
+
+\vspace{-0.1cm}
+
+$$
+r_t = r_s e^{-b(t-s)} + \frac{a}{b} \left(1-e^{-b(t-s)}\right) + \sigma \int_s^t e^{-b(t-u)} dW_u .
+$$
+
+Para cualquier $s<t$ la distribución condicional de $r_t$ con respecto al $\sigma$-álgebra $\mathcal{F}_s$ es Gaussiana, con esperanza condicional basada en la medida martingala neutral al riesgo $\mathbb{P}$
+
+\vspace{-0.1cm}
+
+$$
+\mathbb{E}_\mathbb{P}\left[r_t|\mathcal{F}_s\right] = r_s e^{-b(t-s)} + \frac{a}{b} \left(1-e^{-b(t-s)}\right)
+$$
+
+y varianza condicional
+
+\vspace{-0.1cm}
+
+$$
+Var_\mathbb{P}\left(r_t|\mathcal{F}_s\right) = \frac{\sigma^2}{2b}\left(1-e^{-2b(t-s)}\right)
+$$
 
 \end{color_block}
 
+\vspace{-0.1cm}
 
 \begin{color_proof}{red}{Demostración}
 
-La prueba de esta proposición se encuentra en el libro \href{FALTA}{Martingale Methods in Financial Modelling - Marek Musiela \& Marek Rutkowski - Lemma 10.1.2}.
+La prueba de esta proposición se encuentra en el libro \href{https://tinyurl.com/ycsmhcer}{Martingale Methods in Financial Modelling - Marek Musiela \& Marek Rutkowski - Lemma 10.1.2}.
 
 \end{color_proof}
 
 ### Proposiciones
 
+Derivado de los resultados anteriores, no es muy complicado notar que 
+
+$$
+\underset{t\rightarrow\infty}{lim} \mathbb{E}_\mathbb{P}\left[r_t|\mathcal{F}_s\right] = \frac{a}{b}
+$$
+
+y también
+
+$$
+\underset{t\rightarrow\infty}{lim} Var_\mathbb{P}\left(r_t|\mathcal{F}_s\right) = \frac{\sigma^2}{2b}
+$$
+
+Que nos permite ver el porqué de la interpretación de los parámetros.
+
+### Proposiciones
+
 \begin{color_block}{blue}{2. Solución para la valuación de un Bono cupón cero.}
 
-brl
+El precio a tiempo $t$ un Bono cupón cero con (con valor facial igual a 1) bajo el modelo de Vasicek es
+
+$$
+B(t,T) = e^{m(t,T) - n(t,T)r_t} 
+$$
+
+Donde
+
+\begin{itemize}
+
+\item  $\displaystyle n(t,T) = \frac{1}{b} \left(1-e^{-b(T-t)}\right)$
+
+\item  $\displaystyle m(t,T) = \frac{\sigma^2}{2} \int_t^T n^2(u,T)du -a\int_t^T n(u,T)du$
+
+\end{itemize}
+
+\vspace{0.1cm}
+
+Más aún, la función de volatilidad de un bono es $b(\cdot,T):[0,T]\rightarrow\mathbb{R}$, en específico, $b(t,T)=\sigma n(t,T)$ y así, la dinámica del precio del bono bajo $\mathbb{P}$ es
+
+$$
+\partial B(t,T) = B(t,T)(r_t \partial t - \sigma n(t,T) \partial W_t)
+$$
 
 \end{color_block}
 
+\vspace{-0.15cm}
+
 \begin{color_proof}{cyan}{Demostración}
 
-je
+La prueba de esta proposición se encuentra en el libro \href{https://tinyurl.com/ycsmhcer}{Martingale Methods in Financial Modelling - Marek Musiela \& Marek Rutkowski - Proposition 10.1.2 y Proposition 10.1.3}
 
 \end{color_proof}
+
+## Implementación
+
+Una vez conocidos los resultados, procedemos a conocer cómo funcionan y principalmente a ver si podemos diversificar las fuentes de información y homologar la teoría desarrollada en las fuentes citadas. Para esto, consideraremos un ejemplo realizado por un autor llamado \href{https://www.r-bloggers.com/author/lee/}{Lee}, el cual nos presenta una implementación en código R del modelo de Vasicek en su artículo \href{https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/}{"Fun with the Vasicek Interest Rate Model"}\footnote{En su artículo, Lee está usando una parametrización alternativa del modelo de Vasicek, bajo nuestra notación, tenemos que $a=\kappa\theta$, $b=\kappa$, $\sigma=\beta$.}.
+
+Tomaremos un ejemplo muy particular el cual es para la valuación de un Bono\footnote{Tomamos este ejemplo pues la implementación de la valuación del Bono trae intrínsecamente la de la tasa spot.}, aquí, el autor se toma los parámetros como $T = 1$, $a = (0.1)(0.3)$, $b = 0.3$, $\sigma = 0.03$, $s = 0$ y $r_s = 0.03$. De aquí, se obtienen los siguientes resultados
+
+```{r,out.width='50%',fig.align='center'}
+knitr::include_graphics("Lee.JPG")
+```
+
+### Implementación
+
+Ahora bien, nosotros **NO** usaremos la implementación realizada por \href{https://www.r-bloggers.com/author/lee/}{Lee}, pues de hecho él tiene fórmulas tanto con otras parametrizaciones como un poco más desarrolladas en algunos puntos, sin embargo hicimos **nuestra implementación**\footnotemark del cálculo exacto de la valuación del Bono, basados en los resultados expuestos en este trabajo.  
+
+\footnotetext{brl}
+
+\href{https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993}{Aplicación en R Shiny.}
+
+
+# Bibliografía
+
+Podrán ver todas las fuentes de información con la que se construyó esta presentación dando clic en los siguientes enlaces.
+
+- \href{https://drive.google.com/file/d/16lkTntZXmnh8Ev1d2kFH3FL8ofVIs2NB/view?usp=sharing}{Etheridge A. - A Course in Financial Calculus}
+
+- \href{https://drive.google.com/file/d/12H5o8Lp3uiJYbJfMKayJylxwxDO3yPBB/view?usp=sharing}{Marek Musiela \& Marek Rutkowski - Martingale Methods in Financial Modelling}
+
+- \href{https://drive.google.com/file/d/1y1jcAM3kJfRdU_uJ82xdeacvkmYdRW4u/view?usp=sharing}{Paul Wilmott - Paul Wilmott Introduces Quantitative Finance}
+
+- \href{https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/}{Lee - Fun with the Vasicek Interest Rate Model}
+
+###
+
+```{r,fig.align='center',out.width='50%'}
+knitr::include_graphics("yoda.jpg")
+```
+

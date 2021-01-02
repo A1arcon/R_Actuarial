@@ -5,8 +5,8 @@ account: edgar-gerardo-alarcn-gnzalez
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3437583
-bundleId: 4048533
+bundleId: 4049965
 url: https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/
-when: 1609522998.68296
+when: 1609572792.0497
 asMultiple: FALSE
 asStatic: FALSE
