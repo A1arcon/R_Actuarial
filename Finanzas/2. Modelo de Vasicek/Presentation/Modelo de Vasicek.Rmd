@@ -330,6 +330,13 @@ Una vez que ya hemos verificado con un ejemplo que nuestra implementación es co
   \href{https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993}{Aplicación en R Shiny.}
 \end{center}       
 
+# Epílogo
+
+## ¿Qué es lo que sigue?
+
+En el libro 
+
+## Conclusiones
 
 # Bibliografía
 
@@ -342,8 +349,6 @@ Podrán ver todas las fuentes de información con la que se construyó esta pres
 - \href{https://drive.google.com/file/d/1y1jcAM3kJfRdU_uJ82xdeacvkmYdRW4u/view?usp=sharing}{Paul Wilmott - Paul Wilmott Introduces Quantitative Finance}
 
 - \href{https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/}{Lee - Fun with the Vasicek Interest Rate Model}
-
-###
 
 ```{r,fig.align='center',out.width='50%'}
 knitr::include_graphics("yoda.jpg")
