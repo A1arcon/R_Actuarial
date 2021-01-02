@@ -83,7 +83,7 @@ plot.bono<-function(tf,a,b,sigma,s = 0,rs = 0.05){
   
   curve(
     Bono(x, tf, a, b, sigma,s,rs),
-    main = "Valor del Bono por Vasicek",
+    main = "Valor del Bono por Vasicek (s=0)",
     ylab = TeX("$B(t,T)$"),
     xlab = "t",
     ylim = c(0,fmax),
@@ -170,7 +170,36 @@ ui <- fluidPage(
                       mainPanel(
                         plotOutput(outputId = "gráfica2")
                       )
-             ) # Fin sección 2
+             ), # Fin sección 2
+             
+             # Sección 3 ----
+             tabPanel("Tasa y Bono",
+                      
+                      headerPanel('Modelo de Vasicek'),
+                      
+                      sidebarPanel(
+                        sliderInput(inputId = "tf_3",
+                                    label = "Umbral máximo de tiempo.",
+                                    value = 5,min = 1,max = 10,step = 1),
+                        sliderInput(inputId = "a_3",
+                                    label = "Selecciona un valor para 'a'",
+                                    value = 0.25,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "b_3",
+                                    label = "Selecciona un valor para 'b' (velocidad de reversión)",
+                                    value = 0.5,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "sigma_3",
+                                    label = "Selecciona un valor para 'sigma' (volatilidad instantánea)",
+                                    value = 0.25,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "rs_3",
+                                    label = "Selecciona un valor para 'rs' (valor observado a tiempo 's')",
+                                    value = 0.05,min = 0.01,max = 0.99,step = 0.01)
+                      ),
+                      
+                      mainPanel(
+                        plotOutput(outputId = "gráfica3"),
+                        plotOutput(outputId = "gráfica4")
+                      )
+             ) # Fin sección 3
         
   )# nav bar
   
@@ -204,6 +233,38 @@ server <- function(input,output){
     
     # Parámetros
     a = input$a_bono ; b = input$b_bono ; sigma = input$sigma_bono
+    
+    # Graficamos la función en cuestión:
+    plot.bono(tf,a,b,sigma,0,rs)
+    
+  })
+  
+  output$`gráfica3` <- renderPlot({
+    
+    # Tiempo máximo
+    t = input$tf_3
+    
+    # Tasa spot a tiempo 's'
+    rs = input$rs_3
+    
+    # Parámetros
+    a = input$a_3 ; b = input$b_3 ; sigma = input$sigma_3
+    
+    # Graficamos la función en cuestión:
+    plot.rt(t,0,rs,a,b,sigma)
+    
+  })
+  
+  output$`gráfica4` <- renderPlot({
+    
+    # Tiempo máximo
+    tf = input$tf_3
+    
+    # Tasa spot a tiempo 's'
+    rs = input$rs_3
+    
+    # Parámetros
+    a = input$a_3 ; b = input$b_3 ; sigma = input$sigma_3
     
     # Graficamos la función en cuestión:
     plot.bono(tf,a,b,sigma,0,rs)

@@ -146,8 +146,9 @@ De la ecuación diferencial estocástica planteada por Vasicek
 
 - $\sigma^2/(2b)$ representa la \textbf{varianza a largo plazo}, con esta varianza se \textit{reagrupan} alrededor de $a/b$.
 
-## Proposiciones (Para la tasa spot)
+## Proposiciones
 
+### Proposiciones (Para la tasa spot)
 
 \begin{color_block}{violet}{1. Solución para $r_t$.}
 
