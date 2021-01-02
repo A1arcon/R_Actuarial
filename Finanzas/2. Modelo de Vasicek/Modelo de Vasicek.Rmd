@@ -231,7 +231,9 @@ La prueba de esta proposición se encuentra en el libro \href{https://tinyurl.co
 
 \end{color_proof}
 
-## Implementación
+## Implementación 
+
+### Implementación (Lee)
 
 Una vez conocidos los resultados, procedemos a conocer cómo funcionan y principalmente a ver si podemos diversificar las fuentes de información y homologar la teoría desarrollada en las fuentes citadas. Para esto, consideraremos un ejemplo realizado por un autor llamado \href{https://www.r-bloggers.com/author/lee/}{Lee}, el cual nos presenta una implementación en código R del modelo de Vasicek en su artículo \href{https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/}{"Fun with the Vasicek Interest Rate Model"}\footnote{En su artículo, Lee está usando una parametrización alternativa del modelo de Vasicek, bajo nuestra notación, tenemos que $a=\kappa\theta$, $b=\kappa$, $\sigma=\beta$.}.
 
@@ -241,13 +243,92 @@ Tomaremos un ejemplo muy particular el cual es para la valuación de un Bono\foo
 knitr::include_graphics("Lee.JPG")
 ```
 
-### Implementación
+### Implementación (Edgar)
 
-Ahora bien, nosotros **NO** usaremos la implementación realizada por \href{https://www.r-bloggers.com/author/lee/}{Lee}, pues de hecho él tiene fórmulas tanto con otras parametrizaciones como un poco más desarrolladas en algunos puntos, sin embargo hicimos **nuestra implementación**\footnotemark del cálculo exacto de la valuación del Bono, basados en los resultados expuestos en este trabajo.  
+Ahora bien, nosotros **NO** usaremos la implementación realizada por \href{https://www.r-bloggers.com/author/lee/}{Lee}, pues de hecho él tiene fórmulas tanto con otras parametrizaciones como un poco más desarrolladas en algunos puntos. Sin embargo hicimos **nuestra implementación**\footnotemark{} del cálculo exacto de la valuación del Bono, basados en los resultados expuestos en este trabajo.  
 
-\footnotetext{brl}
+```{r}
+# Valuación del Bono ------------------------------------------------------
 
-\href{https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993}{Aplicación en R Shiny.}
+# Tenemos un ejemplo aquí de la valuación de un Bono con Vasicek
+
+# https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/
+
+n <- function(t, tf, b) {
+  1 / b * (1 - exp(-b * (tf - t)))
+}
+
+n2 <- function(t, tf, b) {
+  (1 / b * (1 - exp(-b * (tf - t)))) ^ 2
+}
+
+
+m <- function(t, tf, sigma, a, b) {
+  
+  int1 = integrate(
+    n2,
+    lower = t,
+    upper = tf,
+    tf = tf,
+    b = b
+  )$value
+  
+  int2 = integrate(
+    n,
+    lower = t,
+    upper = tf,
+    tf = tf,
+    b = b
+  )$value
+  sigma ^ 2 / 2 * int1 - a * int2
+  
+}
+
+Bono <- function(t,tf,a,b,sigma,s = 0,rs = 0.05) {
+  # Función para obtener la esperanza de rt.
+  rt <- function(t, s, rs, a, b) {
+    rs * exp(-b * (t - s)) + a / b * (1 - exp(-b * (t - s)))
+  }
+  
+  aux <- function(t, tf, a, b, sigma, s, rs) {
+    exp(m(t, tf, sigma, a, b) - n(t, tf, b) * rt(t, s, rs, a, b))
+  }
+  
+  sapply(t,aux,tf = tf,a = a,b = b,sigma = sigma,s = s,rs = rs)
+  
+}
+Valor=Bono(t = 0,tf = 1,a = 0.1*0.3,b = 0.3,sigma = 0.03,s = 0,rs = 0.03)
+```
+
+
+La ejecución de nuestra función se ve la siguiente manera
+
+\vspace{0.4cm}
+
+```{r,echo=TRUE,eval=FALSE}
+Bono(t = 0, tf = 1, a = 0.1*0.3, b = 0.3,
+     sigma = 0.03, s = 0, rs = 0.03)
+```
+
+Lo cual nos da como resultado
+
+$$
+B(0,1) = `r Valor`
+$$
+
+Lo cual coincide con los resultados propuestos por Lee.
+
+\footnotetext{El código lo podrán encontrar dando clic ya sea que gusten ver  el  \href{https://tinyurl.com/y98lwtp8}{\texttt{script.R}} o bien, la \href{https://tinyurl.com/yde89rys}{\texttt{presentación.Rmd}}.}
+
+### Implementación (Shiny)
+
+Una vez que ya hemos verificado con un ejemplo que nuestra implementación es correcta, hemos desarrollado una pequeña aplicación en \href{https://rstudio.com/products/shiny/}{RStudio-Shiny} para poder manipular las funciones creadas con base en la teoría expuesta. Para poder acceder a esta aplicación basta con dar clic sobre la siguiente imágen.
+
+\begin{center}
+  \href{https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993}{\includegraphics[scale=0.5]{Shiny.png}}\\
+  
+  \href{https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993}{Aplicación en R Shiny.}
+\end{center}       
 
 
 # Bibliografía
