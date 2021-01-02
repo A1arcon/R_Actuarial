@@ -326,7 +326,7 @@ $$
 
 Lo cual coincide con los resultados propuestos por Lee.
 
-\footnotetext{El código lo podrán encontrar dando clic ya sea que gusten ver  el  \href{https://tinyurl.com/y98lwtp8}{\texttt{script.R}} o bien, la \href{https://tinyurl.com/yde89rys}{\texttt{presentación.Rmd}}.}
+\footnotetext{El código lo podrán encontrar dando clic ya sea que gusten ver  el  \href{https://tinyurl.com/y98lwtp8}{\texttt{script.R}} o bien, la \href{https://tinyurl.com/y9kxsp6c}{\texttt{presentación.Rmd}}.}
 
 ### Implementación (Shiny)
 
