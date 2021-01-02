@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 El objetivo de este trabajo es explicar el contexto general y la razón de existir del Modelo de Vasicek, así como mostrar sus resultados teóricos más importantes. Explorar la información obtenida con diversas fuentes de información, comparar y ver su comportamiento basados en una implementación computacional. 
 
-Los temas más importantes a revisar, los podrán observar en la barra al costado izquierdo de este documento.
+Los temas más importantes a revisar, los podrán observar en la barra al costado izquierdo de este  documento.
 
 ## Antecedentes
 
@@ -370,7 +370,10 @@ Podrán ver todas las fuentes de información completas con la que se construyó
 
 - \href{https://www.r-bloggers.com/2010/04/fun-with-the-vasicek-interest-rate-model/}{Lee - Fun with the Vasicek Interest Rate Model}
 
-```{r,fig.align='center',out.width='50%'}
-knitr::include_graphics("yoda.jpg")
-```
+###
+
+
+\begin{center}
+  \href{https://github.com/A1arcon/R_Actuarial}{\includegraphics[scale=0.5]{yoda.jpg}}
+\end{center}       
 
