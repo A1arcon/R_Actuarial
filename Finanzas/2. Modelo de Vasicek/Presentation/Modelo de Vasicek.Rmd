@@ -111,6 +111,25 @@ $$
 
 Donde $X$, que modela el precio del riesgo de mercado, será incluida pues $r$ no se negocia.
 
+### Antecedentes (Proceso de Ornstein-Uhlenbeck)
+
+El modelo que vamos a estudiar viene dado por una ecuación diferencial estocástica que está relacionada con la siguiente definición 
+
+\begin{color_block}{pink}{Proceso de Ornstein-Uhlenbeck}
+
+Es un proceso estocástico $x_t$ definido por
+
+$$
+\partial x_t = -\theta x_t \partial t + \sigma \partial W_t
+$$
+
+Donde $\theta>0$ y $\sigma>0$ son parámetros y $W_t$ denota un proceso de Wiener.
+
+\end{color_block}
+
+Este proceso cumple una propiedad llamada **"mean reversion"**, la cual es una propiedad financiera que indica una media móvil a lo largo del tiempo.
+
+
 # El Modelo
 
 ### ¿Qué es y cuál es el objetivo del modelo?
@@ -185,6 +204,24 @@ $$
 La prueba de esta proposición se encuentra en el libro \href{https://tinyurl.com/ycsmhcer}{Martingale Methods in Financial Modelling - Marek Musiela \& Marek Rutkowski - Lemma 10.1.2}.
 
 \end{color_proof}
+
+### Proposiciones (Para la tasa spot)
+
+Sin embargo, y aunque no entraremos en detalle sí hacemos las siguientes aclaraciones que vienen en la demostración de la proposición anterior.
+
+Tomando $Y_t=r_t e^{b(t-s)}$ con $t\geq s$ entonces usando la definición del modelo y de derivar con respecto de $\partial t$ se tiene que.
+
+$$
+\partial Y_t = e^{b(t-s)} (a\partial t + \sigma \partial W_t) 
+$$
+
+De donde se llega más fácilmente al resultado deseado. Ahora, otro punto importante qué comentar  es que, un resultado, aparentemente conocido, es que la integral de Itô de $\int_s^t g(u)dW_u$ es una variable aleatoria independiente de la $\sigma$-álgebra $\mathcal{F}_s$ y que tiene una distribución $Normal\left(0,\int_s^t g^2(u)du\right)$ que en este caso se tiene entonces un resultado final de que
+
+$$
+r_{t|s}\sim Normal\left(r_s e^{-b(t-s)}+\frac{a}{b}\left[1-e^{-b(t-s)}\right],\frac{\sigma^2}{2b}\left[1-e^{2b(t-s)}\right]\right)
+$$
+
+De aquí es muy clara la propiedad de **"mean reversion"**.
 
 ### Proposiciones (Para la tasa spot)
 
@@ -328,6 +365,20 @@ $$
 Lo cual coincide con los resultados propuestos por Lee.
 
 \footnotetext{El código lo podrán encontrar dando clic ya sea que gusten ver  el  \href{https://tinyurl.com/y98lwtp8}{\texttt{script.R}} o bien, la \href{https://tinyurl.com/y9kxsp6c}{\texttt{presentación.Rmd}}.}
+
+### Implementación (Edgar)
+
+Ahora, vamos a proponer una metodología para que dada una muestra $\{r_t\}_{t\geq s\geq0}$ podamos estimar los parámetros $a$ y $b$. Esto lo hacemos con base en la idea de residuales y apoyados de que conocemos la media teórica que debería tener $r_t$. 
+
+\begin{color_block}{blue}{Esto significa que buscamos hacer la siguiente minimización}
+
+$$
+\underset{a,b}{min} \left[ \sum_{\forall t}\left(\mathbb{E}_\mathbb{P}\left[r_t|\mathcal{F}_s\right]-r_t\right)^2 \right]
+$$
+
+\end{color_block}
+
+**Nota:** Nosotros debemos pensar que $r_t$ está dada y que no conocemos de dónde proviene su naturaleza. Es importante hacer énfasis en esto última pues, de esta aproximación tristemente solo podemos estimar $a$ y $b$; esto pues, la media condicional depende de estos parámetros y faltaría encontrar un estimador para $\sigma$. Recordemos que $t$, $T$, $s$ y $r_s$ tiene sentido pensarlos como parámetros conocidos.
 
 ### Implementación (Shiny)
 

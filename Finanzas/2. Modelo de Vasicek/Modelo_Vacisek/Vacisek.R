@@ -105,6 +105,76 @@ plot.bono<-function(tf,a,b,sigma,s = 0,rs = 0.05){
   
 }
 
+# Simulación --------------------------------------------------------------
+
+plot.sim <- function(n,tf,s,a,b,sigma,rs,plot=TRUE,estim=TRUE){
+  
+  # Quiero que esto siempre lo haga ~~~~~~~~~~~~~~~~~~~~~~
+  
+  # Tiempos dados el tiempo de maduración y el número de simulaciones
+  t <- s:(s+tf*n)/n
+  # Simulación de las tasas.
+  normal <- function(t){
+    rnorm(1,sd = sigma/sqrt(2+b)*sqrt(1-exp(-2*b*(t-s))))
+  }
+  rt<-rs*exp(-b*(t-s))+
+    a/b*(1-exp(-b*(t-s)))+
+    sigma*sapply(t,normal)
+  
+  # Función para obtener la esperanza de rt.
+  E.rt.Fs <- function(t,s,rs,a,b){
+    rs*exp(-b*(t-s))+ a/b * (1-exp(-b*(t-s))) 
+  }
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+  if(plot){
+    # Usamos la función de graficar tasas.
+    
+    # Hacemos el gráfico
+    curve(E.rt.Fs(x,s,rs,a,b),from = 0,to = tf,
+          ylim = c(0,1),col="blue",lwd=2,
+          ylab = TeX("$r_t$ y $E(r_t|F_s)$"),
+          xlim = c(-1,tf),
+          xlab = "t",
+          yaxt = 'n',
+          main = "Simulaciones Vs. Real por Vasicek (s=0)")
+    axis(2, at=seq(0,1,by=.2), labels=paste(100*seq(0,1,by=.2), "%") )
+    abline(h = c(a/b,rs),col=c("red","purple"),lwd=2,lty=2)
+    abline(h = 0, v = 0)
+    abline(h = a/b+c(sigma/sqrt(2*b),-sigma/sqrt(2*b)),col="goldenrod",lwd=2,lty=3)
+    legend("topleft", legend=c(TeX("$r_t$"), TeX("$a/b$"),TeX("$r_s$"),"LTSD","Sim"),
+           col=c("blue", "red", "purple","goldenrod","darkgreen"), cex=0.8, lty=c(1,2,2,3,1),
+           text.font=4, bg='lightblue')
+    
+    # Las graficamos como una serie de tiempo.
+    lines(rt~t,lwd=2,col=scales::alpha("darkgreen", 0.5))
+  }
+  
+  if(estim){
+    # Para estimar los parámetros 'a' y 'b'
+    f.estim <- function(x){
+      
+      a = x[1]
+      b = x[2]
+      
+      # Función para obtener la esperanza de rt.
+      E.rt.Fs <- function(t,s,rs,a,b){
+        rs*exp(-b*(t-s))+ a/b * (1-exp(-b*(t-s))) 
+      }
+      
+      # Queremos minimizar los residuales
+      S=sum((E.rt.Fs(t,s,rs,a,b)-rt)^2)
+      return(S)
+      
+    }
+    
+    # Minimizamos los residuales y regresamos los parámetros
+    brl = optim(par = c(1,2),fn = f.estim)$par
+    names(brl)<-c("a","b")
+    return(brl)
+  }  
+  
+}
 
 # Shiny App ---------------------------------------------------------------
 library(shiny)
@@ -199,7 +269,40 @@ ui <- fluidPage(
                         plotOutput(outputId = "gráfica3"),
                         plotOutput(outputId = "gráfica4")
                       )
-             ) # Fin sección 3
+             ), # Fin sección 3
+
+             # Sección 4 ----
+             tabPanel("Simulaciones y Ajuste",
+                      
+                      headerPanel('Modelo de Vasicek'),
+                      
+                      sidebarPanel(
+                        sliderInput(inputId = "n_4",
+                                    label = "Número de simulaciones.",
+                                    value = 50,min = 10,max = 500,step = 10),
+                        sliderInput(inputId = "tf_4",
+                                    label = "Umbral máximo de tiempo.",
+                                    value = 5,min = 1,max = 10,step = 1),
+                        sliderInput(inputId = "a_4",
+                                    label = "Selecciona un valor para 'a'",
+                                    value = 0.25,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "b_4",
+                                    label = "Selecciona un valor para 'b' (velocidad de reversión)",
+                                    value = 0.5,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "sigma_4",
+                                    label = "Selecciona un valor para 'sigma' (volatilidad instantánea)",
+                                    value = 0.25,min = 0,max = 1,step = 0.01),
+                        sliderInput(inputId = "rs_4",
+                                    label = "Selecciona un valor para 'rs' (valor observado a tiempo 's')",
+                                    value = 0.05,min = 0.01,max = 0.99,step = 0.01)
+                      ),
+                      
+                      mainPanel(
+                        plotOutput(outputId = "sims"),
+                        tableOutput(outputId = "tabla")
+                      )
+             ) # Fin sección 4
+             
         
   )# nav bar
   
@@ -270,6 +373,41 @@ server <- function(input,output){
     plot.bono(tf,a,b,sigma,0,rs)
     
   })
+  
+  output$sims <- renderPlot({
+    
+    n = input$n_4
+    tf = input$tf_4
+    s = 0
+    a = input$a_4
+    b = input$b_4
+    sigma = input$sigma_4
+    rs= input$rs_4
+    
+    # Hacemos nada más el gráfico
+    set.seed(20)
+    plot.sim(n,tf,s,a,b,sigma,rs,TRUE,FALSE)
+    
+  })
+  
+  output$tabla <- renderTable({
+    
+    n = input$n_4
+    tf = input$tf_4
+    s = 0
+    a = input$a_4
+    b = input$b_4
+    sigma = input$sigma_4
+    rs= input$rs_4
+    
+    # Hacemos nada más el gráfico
+    set.seed(20)
+    bawr<-t(data.frame(plot.sim(n,tf,s,a,b,sigma,rs,FALSE,TRUE)))
+    colnames(bawr)<-c("a","b")
+    rownames(bawr)<-"Estimaciones"
+    bawr
+    
+  },align = 'c',rownames = TRUE)
   
 }
 
