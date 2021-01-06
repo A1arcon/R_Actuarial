@@ -53,7 +53,7 @@ El candidato A obtiene n votos y B obtiene m con n > m. ¿Cuál es la probabilid
 
 Para ponerlos en contexto, se siguiere ver el siguiente [video](https://www.youtube.com/watch?v=7uzx6D_0V7M) (clic). En este código vamos a verificar vía simulaciones que en efecto esta paradoja es cierta y las probabilidades exactas se comportan de acuerdo al comportamiento estocástico del experimento.
 
-## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 2/1/2021)
+## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 5/1/2021)
 
 1. [**Tiempo continuo** - 1](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/1.%20Tiempo%20continuo%20-%201) (Documento en [Overleaf](https://www.overleaf.com/read/zntgzskstfyh))
 
