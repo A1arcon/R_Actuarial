@@ -1,0 +1,986 @@
+---
+output:  
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"
+---
+
+\includepdf[pages={-}]{Portada.pdf}
+
+```{r setup, include=FALSE}
+# Vamos a poner las configuraciones de los chunk en este caso
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE,message = FALSE,
+                      out.width='85%',fig.align='center',
+                      error=FALSE,quietly=TRUE)
+# Librerías para LaTeX
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r}
+# Vamos a cargar los datos necesarios para trabajar con el proyecto
+setwd("~/Actuaría/Maestría/3er. Semestre/Estadística Espacial/Proyecto2/Proyecto 2")
+library(sf)
+library(tmap)
+library(sp)
+library(spdep)
+library(maptools)
+library(RColorBrewer)
+library(tripack)
+library(spatialreg)
+library(glmmfields)
+library(ggplot2)
+library(dplyr)
+```
+
+\tableofcontents
+
+\newpage
+
+# 1. Resumen del Proyecto
+
+El proyecto tiene como objetivo **estimar el riesgo relativo** de muerte de cuna para los años 1974-1978 y 1979-1984 para el estado de California del Norte por condado. Para esto, comenzaremos dando una introducción de qué es la muerte de cuna y algunos otros datos derivados de esta enfermedad. Posteriormente vamos a mostrar un análisis descriptivo de los datos con los que contamos para realizar un modelo estadístico que pueda estimar el riesgo relativo por condado. Luego, realizamos un modelo lineal generalizado que no contempla el efecto espacial con la finalidad de mostrar que es necesario acudir a esta rama de la estadística. Una vez expuesto el punto anterior, realizamos un par de modelos espaciales del tipo SAR y CAR, para finalmente buscar el mejor modelo por periodo y culminar respondiendo a tres preguntas importantes derivadas de este análisis.
+
+# 2. Introducción
+
+Los datos para este proyecto corresponden a un estudio sobre el riesgo relativo de muerte de cuna (Sudden Infant Death Syndrome) hecho en Carolina del Norte, EUA y publicado en 1989. Históricamente, este tipo de muertes podrían no tener una causa aparente y ocurre generalmente durante el sueño de un bebé, menor de un año de edad, que a primera instancia luce saludable. La denominación de este síndrome viene dada porque en la mayoría de los casos los infantes fallecen en sus cunas \cite{mayoclinic}.
+
+Aunque la causa de este padecimiento sea desconocida, parece que el también conocido como síndrome de muerte infantil podría asociarse con anomalías en la porción del cerebro del bebé que controla la respiración y la vuelta al estado de vigilia. Durante varios años, ha habido descubrimientos sobre algunos de los factores que podrían aumentar el riesgo de los menores a esta enfermedad. 
+
+Entre algunos de los factores que pueden aumentar el riesgo de este síndrome se sabe que pueden afectar: defectos cerebrales, bajo peso al nacer, infección respiratoria, dormir boca abajo o de costado, dormir sobre una superficie blanda, compartir una cama, calor excesivo, sexo, edad, raza, antecedentes familiares, fumador pasivo, ser prematuro, entre otros.
+
+Para propósitos de este proyecto, vamos a buscar la existencia de alguna relación espacial con el riesgo de este síndrome, basándonos en la información antes mencionada.
+
+
+# 3. Análisis Exploratorio
+
+El objetivo de esta sección es conocer los datos con los que vamos a desarrollar la modelación del Riesgo Relativo. Así como conocer las variables auxiliares derivadas de nuestra información que nos ayudarán a esta tarea.
+
+## 3.1 Descripción de los datos
+
+Contamos con los siguientes datos.
+
+- \texttt{CNTY\_ID}, \texttt{AREA}, \texttt{PERIMETER}, \texttt{CNTY\_}, \texttt{NAME}, \texttt{FIPS}, \texttt{FIPSNO} y \texttt{CRESS\_ID} son identificadores de los condados.
+
+- \texttt{BIR74}, \texttt{SID74}, \texttt{NWBIR74}, \texttt{BIR79}, \texttt{SID79} y \texttt{NWBIR79} son los números de nacimientos totales, numero de muertes de cuna y nacimientos de niños “no blancos” para los años 1974-78 y 1979-1984 respectivamente.
+
+- \texttt{east}, \texttt{north}, \texttt{x}, \texttt{y}, \texttt{lon} y \texttt{lat} son las coordenadas en diferentes proyecciones geográficas.
+
+- \texttt{L\_id}, \texttt{M\_id} y \texttt{geometry} son características geométricas de los condados en el SIG (Sistema de Información Geográfica).
+
+Como aclaración, basados en las variables anteriores, vamos a definir el **Riesgo Relativo** para el condado $i$ como
+
+$$
+RR_i := \frac{\frac{SID_i}{BIR_i}}{\frac{\sum SID_i}{\sum BIR_i}} = \frac{SID_i}{BIR_i\frac{\sum SID_i}{\sum BIR_i}}  := \frac{SID_i}{E_i}
+$$
+
+Donde $E_i$ represetna la cantidad de muertos "esperada" en el condado $i$. Otra manera de pensarlo, es que, el riesgo relativo es tal que
+
+$$
+SID_i = RR_i E_i 
+$$
+
+
+## 3.2 Mapas Descriptivos
+
+```{r}
+nc <- st_read("sids.shp",quiet=TRUE)
+nc$both <- factor(paste(nc$L_id, nc$M_id, sep=":"))
+nc<-arrange(nc,CRESS_ID)
+dfaux1 <- data.frame(CRESS_ID=nc$CRESS_ID[1:25],Nombre=nc$NAME[1:25],
+                     BIR74=nc$BIR74[1:25],SID74=nc$SID74[1:25],
+                     BIR79=nc$BIR79[1:25],SID79=nc$SID79[1:25])
+dfaux2 <- data.frame(CRESS_ID=nc$CRESS_ID[26:50],Nombre=nc$NAME[26:50],
+                     BIR74=nc$BIR74[26:50],SID74=nc$SID74[26:50],
+                     BIR79=nc$BIR79[26:50],SID79=nc$SID79[26:50])
+dfaux3 <- data.frame(CRESS_ID=nc$CRESS_ID[51:75],Nombre=nc$NAME[51:75],
+                     BIR74=nc$BIR74[51:75],SID74=nc$SID74[51:75],
+                     BIR79=nc$BIR79[51:75],SID79=nc$SID79[51:75])
+dfaux4 <- data.frame(CRESS_ID=nc$CRESS_ID[76:100],Nombre=nc$NAME[76:100],
+                     BIR74=nc$BIR74[76:100],SID74=nc$SID74[76:100],
+                     BIR79=nc$BIR79[76:100],SID79=nc$SID79[76:100])
+```
+
+Comenzamos mostrando un mapa del estado de California del Norte (Figura \ref{fig:f1}). Este gráfico lo estaremos mostrando en repetidas ocasiones buscando explicar con estilo mapa de calor interacciones con diferentes resultados obtenidos y postulados en este proyecto. En las tablas al final del documento (Anexo A y B) podremos ver los nombres de los condados con base en el número expuesto.
+
+\begin{figure}
+
+```{r f1, echo=FALSE}
+# Graficamos California del Norte con el ID alfabético por condado
+plot(st_geometry(nc), axes=FALSE, main = "Mapa de condados de California del Norte")
+text(st_coordinates(st_centroid(st_geometry(nc), of_largest_polygon=TRUE)), label=nc$CRESS_ID, cex=0.5)
+```
+\vspace{-3cm}
+\caption{Estado de California del Norte con ID.\label{fig:f1}}
+\textit{Nota:} La enumeración del mapa viene dada por la variable \texttt{CRESS\_ID} la cual consiste en un ordenamiento alfabético de los nombres de los condados en este estado. Esta enumeración fue propuesta en \cite{cress}.
+\end{figure}
+
+Recordemos que contamos con condados, de tal manera que más adelante realicemos un modelo espacial del tipo discreto definiendo una estructura de vecinos (Figura \ref{fig:f2}).
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f2, echo=FALSE}
+#Graficamos la relación de Vecinos (nivel 1)
+nc.condados<-readShapeSpatial("sids.shp",ID="CRESS_ID")
+sids.vecinos <- poly2nb(nc.condados)
+plot(sids.vecinos,coordinates(nc.condados),col="blue",pch=".")
+plot(nc.condados,add=T, border="darkgrey")
+text(st_coordinates(st_centroid(st_geometry(nc), of_largest_polygon=TRUE)), label=nc$CRESS_ID, cex=0.85)
+title(main = "Relación de vecinos por condado")
+```
+\vspace{-3cm}
+\caption{Vecinos de condados con ID.\label{fig:f2}}
+\textit{Nota:} Esta relación de vecinos se obtuvo con base en la función \texttt{readShapeSpatial()} en R. Aunque no coincide por la propuesta en \cite{cress}.
+\end{figure}
+
+Hasta este punto, los gráficos que hemos mostrado dependen únicamente de aspectos espaciales. Ahora bien, realizaremos nuestro primer gráfico que realmente depende de los datos de interés por periodo, en \cite{cress} se propone una pequeña guía descriptiva de los datos. Una de las herramientas que se utilizan es una prueba de hipótesis derivada por el autor del mismo nombre **Choynowski**. Categorizando con cierto criterio a los condados como rangos "altos" y "bajos" al potencial de muerte de cuna (vistos de forma independiente), lo que busca esta prueba es esencialmente contrastar la siguiente hipótesis
+
+$$
+H_0: \text{El condado en cuestión NO pertenece al grupo asignado.}
+$$
+
+Esta prueba la realizaremos para los periodos que estamos trabajando (1974-1978 y 1979-1984), con la finalidad de observar si existen zonas geográficas compuestas por conglomerados de condados que posean una tendencia visible. Este tipo de gráficos están relacionados con los llamados **Mapas de Probabilidad** (Figura \ref{fig:f3}). En este mapa, podemos observar que existen condados como lo son el 78 ($`r  nc$NAME[78]`$) y el 24 ($`r  nc$NAME[24]`$)  que para ambos periodos pertenecen al mismo grupo gracias a la interpretación de su *p-value*, más aún, se puede ver a partir de esto que existen zonas hechas por conglomerados de condados que parecen pertenecer a un mismo grupo.
+
+\begin{figure}
+\vspace{-5.5cm}
+```{r f3, echo=FALSE,out.width='150%',fig.align='right'}
+#Mapa de probabilidades 74
+ch <- choynowski(nc$SID74, nc$BIR74)
+nc$ch_pmap_low <- ifelse(ch$type, ch$pmap, NA)
+nc$ch_pmap_high <- ifelse(!ch$type, ch$pmap, NA)
+prbs <- c(0,0.01,.05,1)
+nc$high74 = cut(nc$ch_pmap_high, prbs)
+nc$low74 = cut(nc$ch_pmap_low,prbs )
+
+#Mapa de probabilidades 79
+ch <- choynowski(nc$SID79, nc$BIR79)
+nc$ch_pmap_low <- ifelse(ch$type, ch$pmap, NA)
+nc$ch_pmap_high <- ifelse(!ch$type, ch$pmap, NA)
+prbs <- c(0,0.01,.05,1)
+nc$high79 = cut(nc$ch_pmap_high, prbs)
+nc$low79 = cut(nc$ch_pmap_low,prbs )
+
+#is_tmap <- FALSE
+#if (require(tmap, quietly=TRUE)) is_tmap <- TRUE
+#is_tmap
+
+tm_shape(nc) + tm_fill(c("low74", "high74","low79", "high79"), palette="YlOrRd", title="p-values") +
+  tm_layout(main.title = "Choynowski", main.title.position = "center") + 
+  tm_facets(free.scales=FALSE) + tm_layout(panel.labels=c("Grupo Bajo (1974-1978)", "Grupo Alto (1974-1978)","Grupo Bajo (1979-1984)", "Grupo Alto (1979-1984)")) +
+  tm_text("CRESS_ID", size = 0.6)
+
+
+# En la gráfica podemos ver el p-value de H0
+#en la gráfica "low" H0: el condado es bajo
+#en la gráfica "high" H0: el condado pertenece a alto
+#Hay condados cuya tasa de mortalidad por SID es inusialmente alta
+#o inusualmente baja
+
+#la Rho es un indice de desviación de igualdad
+```
+\vspace{-2.5cm}
+\caption{Prueba de Choynowski para los periodos de estudio.\label{fig:f3}}
+\textit{Nota:} Esto se obtuvo derivado de \cite{roger}, donde se usa la función \texttt{choynowski()} en R y también se propone una implementación de código en el apartado descriptivo de \cite{cress}.
+\end{figure}
+
+```{r}
+#Muertes esperadas por condado para 74 y 79
+global_rate74 <- sum(nc$SID74)/sum(nc$BIR74)
+global_rate79 <- sum(nc$SID79)/sum(nc$BIR79)
+nc$Expected74 <- global_rate74 * nc$BIR74
+nc$Expected79 <- global_rate79 * nc$BIR79
+```
+
+Ahora bien, vale la pena en este punto realizar los cálculos de los riesgos relativos para cada uno de los periodos y aplicar una prueba no paramétrica para contrastar la siguiente hipótesis nula de que los riesgos relativos **de forma general pensado que los condados son intercambiables y sin contemplar posición del mismo** siguen una distribución estadísticamente equivalente.
+
+$$
+H_0: F_{RR^{(74)}} = F_{RR^{(79)}}
+$$
+
+Esto se hará con la prueba de bondad de ajuste de Kolmogorov-Smirnov (que en código de R corresponde a \texttt{ks.test()}). 
+
+```{r}
+nc$rr74 <- (nc$SID74/nc$BIR74)/(sum(nc$SID74)/sum(nc$BIR74))
+nc$rr79 <- (nc$SID79/nc$BIR79)/(sum(nc$SID79)/sum(nc$BIR79))
+brl<-ks.test((nc$rr74), (nc$rr79))$p.value
+```
+
+
+El resultado de esta prueba nos arroja un $p-value=`r round(brl,3)`>0.05$ y por lo tanto NO rechazamos $H_0$. Algo que hasta cierto punto es sorprendente pues bajo las hipótesis mencionadas, el riesgo relativo tomando de forma indistinta cualquier condado conserva su distribución entre periodos. Esta prueba de bondad de ajuste se usará más adelante en la sección 7 donde usaremos simulaciones para observar el comportamiento de los modelos propuestos en las secciones de la 4 a la 6.
+
+Una vez calculados los riesgos relativos en cada periodo, mostramos en el mapa un gráfico de intensidad por condado (Figura \ref{fig:f4}).
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f4, echo=FALSE}
+brks <- c(0:4,Inf)
+tm_shape(nc) + 
+  tm_layout(main.title = "Riesgos Relativos por condado", 
+            main.title.position = "center",
+            panel.labels=c("1974-1978", "1979-1984")) + 
+  tm_fill(c("rr74","rr79"), 
+          breaks = brks,title="RR", 
+          midpoint=1, palette="Spectral") + 
+  tm_layout(legend.outside=TRUE) +
+  tm_text("CRESS_ID", size = 0.8)
+```
+\vspace{-0.5cm}
+\caption{Riesgos Relativos en cada condado por periodo.\label{fig:f4}}
+\end{figure}
+
+Gracias a la Figura \ref{fig:f4},  volvemos a ver la presencia de efecto espacial, debido al comportamiento que tienen la variable medida en la geografía del estado. En este mapa se puede observar que los vecinos parecen guardar una relación con respecto al RR. Por último en esta sección y aprovechando el cálculo de los riesgos relativos por periodo, vamos a mostrar un mapa donde observaremos el **cociente de riesgos relativos** en cada condado (Figura \ref{fig:f5}). Formalmente y con la finalidad de observar el impacto en magnitud de cada RR, el cálculo que proponemos para este cociente está dado  para el estado $i$ como
+
+$$
+\text{CRR}_i= \frac{RR_i^{(74)}+0.5}{RR_i^{(79)}+0.5}
+$$
+
+De tal manera que cuando $\text{CRR}_i>1$ es porque el riesgo relativo disminuyó en el estado $i$ **de un periodo a otro**, mientras que cuando $\text{CRR}_i=1$ es porque se mantuvo y finalmente si $\text{CRR}_i<1$ es porque el RR aumentó.
+
+\begin{figure}
+\vspace{-3cm}
+```{r f5, echo=FALSE}
+nc$or <- ifelse((nc$rr74 ==0 & nc$rr79 ==0), 1, (nc$rr74+0.5)/(nc$rr79+0.5)) 
+brks <- c(0, 0.25, 0.75, 1.25, 2, Inf)
+tm_shape(nc) + 
+  tm_layout(main.title = "Cociente de riesgos relativos", main.title.position = "center") + 
+  tm_fill("or", breaks = brks, midpoint=1, palette="RdBu",title="CRR", ) + tm_layout(legend.outside=TRUE) +
+  tm_text("CRESS_ID", size = 0.8)
+```
+\vspace{-3cm}
+\caption{Cociente de Riesgos Relativos por condado\label{fig:f5}}
+\end{figure}
+
+De la Figura \ref{fig:f5} podemos concluir que hay condados como el 4 ($`r  nc$NAME[4]`$), 79 ($`r  nc$NAME[79]`$), 35 ($`r  nc$NAME[35]`$) y 94 ($`r  nc$NAME[94]`$) que aumentan su RR disminuyó, por otro lado condados como el 3 ($`r  nc$NAME[3]`$) y  37 ($`r  nc$NAME[37]`$) aumentó, mientras que los que se ven en blanco, parece que se mantuvieron.
+
+Una vez habiendo revisado una posible existencia de relación espacial de los datos, vamos a continuar justificando la incorporación de la metodología espacial primeramente con un argumento más clásico que nos oriente en esta dirección.
+
+# 4. Análisis sin Efecto Espacial
+
+En esta sección vamos a intentar omitir el uso de la estadística espacial, de tal manera que observaremos cómo este análisis nos presionará a la implementación de esta metodología.
+
+## 4.1 Forma del Modelo Lineal Generalizado
+
+Inspirados en \cite{roger}, los modelos que se van a implementar aquí asumirán que las muertes de cuna dadas en el condado $i$ son tales que $SID_i\sim Poisson(\mu_i)$, $BIR_i$ son los nacimientos en el condado y $X_i$ sus covariables. De esta manera nosotros modelamos
+
+$$
+log(\hat{\mu_i}) = log(BIR_i) + \underline{\beta} X_i \Leftrightarrow log\left(\frac{\hat{\mu_i}}{BIR_i}\right)  = \underline{\beta} X_i 
+$$
+
+Esto significa que estaremos metiendo la variable $BIR$ como *offset* del modelo. De tal manera que la sintaxis del mismo en código de R viene dada de forma genérica como
+
+$$
+\texttt{glm(SID}\sim \texttt{offset(log(BIR)) + X, family = "poisson")}
+$$
+
+A continuación vamos a estudiar el comportamiento de algunos candidatos de modelos lineales que puedan explicar el **Riesgo Relativo**.
+
+## 4.2 Implementación de algunos modelos no espaciales
+
+Con la finalidad de usar variables que no estén relacionadas directamente con la **posición espacial** vamos a implementar los modelos A y B como vienen a continuación.
+
+A. Vamos a proponer un modelo que incluya las variables \texttt{AREA}, \texttt{PERIMETER} y \texttt{NWBIR} para cada uno de los periodos.
+
+```{r}
+fit_aux <- glm(SID74 ~ offset(log(BIR74))+AREA+PERIMETER+NWBIR74, data=nc, family="poisson")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit_aux
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary %>%  coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(exp(aux[,1]) %>%  round(digitos),
+             aux[,c(2,4)] %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+f.aux <- function(x){paste0("(",x[1],",",x[2],")")}
+aux[,2] <-  apply(exp(confint(fit.aux)) %>% round(digitos),1,FUN = f.aux)
+colnames(aux)<-c("exp(coef)","CI(95%)","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo NO espacial A para el periodo del 74"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit_aux <- glm(SID79 ~ offset(log(BIR79))+AREA+PERIMETER+NWBIR79, data=nc, family="poisson")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit_aux
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary %>%  coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(exp(aux[,1]) %>%  round(digitos),
+             aux[,c(2,4)] %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+f.aux <- function(x){paste0("(",x[1],",",x[2],")")}
+aux[,2] <-  apply(exp(confint(fit.aux)) %>% round(digitos),1,FUN = f.aux)
+colnames(aux)<-c("exp(coef)","CI(95%)","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo NO espacial A para el periodo del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+B. Vamos a proponer un modelo que incluya únicamente la variable \texttt{NWBIR} para cada uno de los periodos.
+
+```{r}
+fit_aux <- glm(SID74 ~ offset(log(BIR74))+NWBIR74, data=nc, family="poisson")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit_aux
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary %>%  coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(exp(aux[,1]) %>%  round(digitos),
+             aux[,c(2,4)] %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+f.aux <- function(x){paste0("(",x[1],",",x[2],")")}
+aux[,2] <-  apply(exp(confint(fit.aux)) %>% round(digitos),1,FUN = f.aux)
+colnames(aux)<-c("exp(coef)","CI(95%)","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo NO espacial B para el periodo del 74"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit_aux <- glm(SID79 ~ offset(log(BIR79))+NWBIR79, data=nc, family="poisson")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit_aux
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary %>%  coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(exp(aux[,1]) %>%  round(digitos),
+             aux[,c(2,4)] %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+f.aux <- function(x){paste0("(",x[1],",",x[2],")")}
+aux[,2] <-  apply(exp(confint(fit.aux)) %>% round(digitos),1,FUN = f.aux)
+colnames(aux)<-c("exp(coef)","CI(95%)","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo NO espacial B para el periodo del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+En general, podemos ver que  realmente las covariables no parecen ser significativas, observando que en particular el coeficiente de \texttt{NWBIR79} es estimado como muy cernao a cero. De tal manera que parece que, al menos con los datos que se nos presentan, no podemos explicar la media de las muertes por el síndrome de cuna. De tal manera que nuestro posible mejor candidato es el modelo tal que únicamente incluye al intercepto $(\beta_0)$. En otras palabras, nuestro "**modelo 1**" será tal que
+
+$$
+log(\hat{\mu_i}) = log(BIR_i) + \beta_0 \Leftrightarrow \frac{\hat{\mu_i}}{BIR_i} = e^{\beta_0} \Leftrightarrow \hat{\mu_i} = BIR_i e^{\beta_0}
+$$
+
+```{r}
+fit74_1 <- glm(SID74 ~ offset(log(BIR74)), data=nc, family="poisson")
+nc$rr74fitns <- fit74_1$fitted.values/nc$Expected74
+nc$res74ns <- (nc$rr74 - nc$rr74fitns)
+fit79_1 <- glm(SID79 ~ offset(log(BIR79)), data=nc, family="poisson")
+nc$rr79fitns <- fit79_1$fitted.values/nc$Expected79
+nc$res79ns <- (nc$rr79 - nc$rr79fitns)
+```
+
+
+Algo que, aunque el coeficiente $\beta_0$ es de hecho significativo, quizás no sea del todo conveniente ya que en el fondo estamos diciendo que para cada estado $i$
+
+$$
+\widehat{RR}_i=\frac{\frac{\hat{\mu}_i}{BIR_i}}{\frac{{\sum\hat{\mu}_i}}{\sum BIR_i}} = \frac{e^{\beta_0}}{\frac{\sum BIR_i e^{\beta_0}}{\sum BIR_i}} = 1
+$$
+
+De tal manera que el mapa de los residuales para el riesgo relativo coincide prácticamente con el que obtenemos en la Figura \ref{fig:f4}. Algo que como ya se había comentado, parece tener presente un efecto espacial sobre los datos. 
+
+## 4.3 Necesidad de un modelo espacial
+
+Con todo esto veamos una prueba estadística que nos permitirá contrastar la hipótesis sobre el comportamiento espacial de los datos, pero primero, construiremos herramientas para poder aplicar avanzar en este sentido. Comenzamos mostrando la matriz de pesos (Figura \ref{fig:f6}) de los vecinos destacando que con base en nuestros datos, tenemos una estructura donde todos los condados cuentan con un vecino.
+
+\begin{figure}
+
+```{r f6, echo=FALSE}
+#  Esto nos permitirá calcular vecinadaes
+ncs <- as(nc, "Spatial")
+w <- poly2nb(ncs, row.names=ncs$FIPSNO)
+#summary(w)
+
+# creamos la matriz cuadrada de pesos 
+wm <- nb2mat(w, style='B',zero.policy=TRUE)
+#dim(wm)
+image(wm,asp=1,main="Matriz cuadrada de pesos")
+
+# Convertimos la matriz en lista de pesos 
+rwm <- mat2listw(wm, style='W')
+```
+\vspace{-1.5cm}
+\caption{Matriz de pesos de los vecinos.\label{fig:f6}}
+\textit{Nota:} Esta matriz se obtuvo a partir de las funciones \texttt{poly2nb} y \texttt{nb2mat()} en R.
+\end{figure}
+
+Una vez que ya tenemos esta matriz, lo que haremos es contrastar la hipótesis
+
+$$
+H_0: \text{Los datos NO presentan una correlación espacial.}
+$$
+
+Esta prueba se le conoce por su autor del mismo nombre **Moran** y se le aplicará a los **residuales del Modelo 1**. Los resultados para cada periodo los vemos en la Tabla 5. *Nota:* La función en R para aplicar esta prueba es \texttt{Moran.I()}. 
+
+```{r}
+## Calculamos el indice de Moran para los residuos
+library(ape)
+# H0: Independencia (no correlacionados)
+mora <- data.frame(
+  pvalue74=Moran.I(nc$res74ns, weight = wm,na.rm = TRUE)$p.value,
+  pvalue79=Moran.I(nc$res79ns, weight = wm,na.rm = TRUE)$p.value)
+# Cantidad de dígitos
+digitos <- 3
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- data.frame(c("1974-1978","1979-1984"),
+                  apply(mora,1,round,digits=digitos),
+                  apply(mora,1,interpreta))
+colnames(aux)<-c("Periodo","p-value","Signif.")
+rownames(aux) <- NULL
+kable(aux, "latex", caption = paste0("Resultados de la prueba de Moran por periodo."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+De donde se concluye que ambos periodos en efecto tienen correlación espacial y por lo tanto debemos aplicar algún modelo correspondiente. Antes de comenzar una sección, vamos a introducir una nueva variable que llamaremos \texttt{both} construída como una combinación de las variables \texttt{L\_id} y \texttt{M\_id} lo cual nos da como resultado lo que vemos en la Figura \ref{fig:f7}.
+
+\begin{figure}
+\vspace{-3cm}
+```{r f7, echo=FALSE}
+tm_shape(nc) +
+  tm_fill("both", breaks = brks, title = "both", midpoint=0) +
+  tm_layout(legend.outside=TRUE) +
+  tm_layout(main.title = "Mapa por zonas", main.title.position = "center") + 
+  tm_polygons(col="both", border.col="white") +
+  tm_text("CRESS_ID", size = 0.6)  
+```
+\vspace{-2.5cm}
+\caption{Mapa por zonas \texttt{both}.\label{fig:f7}}
+\textit{Nota:} La variable \texttt{both} se creó con base en la función \texttt{paste()} en R de las variables \texttt{L\_id} y \texttt{M\_id}.
+\end{figure}
+
+
+# 5. Modelo SAR
+
+En esta sección haremos la implementación de modelos **SAR** para la modelación del riesgo relativo.
+
+## 5.1 Forma del Modelo SAR
+
+En un estilo de *pseudo-código* la manera en que estaremos haciendo la implementación del modelo será la siguiente incluyendo la esctructura de vecinos que construimos anteriormente.
+
+$$
+\texttt{lagsarlm(RR}\sim \texttt{BIR+X, listw = vecinos)}
+$$
+
+Donde \texttt{X} son las covariables que introduciremos los modelos.
+
+## 5.2 Implementación de algunos modelos espaciales SAR
+
+- Como un primer acercamiento, meteremos al modelo solo la variable \texttt{BIR} para ambos periodos (Tablas 6 y 7).
+
+```{r}
+fit74_2<-lagsarlm(rr74 ~ BIR74, data=nc,
+                  listw = nb2listw(sids.vecinos, style="W"), method="eigen", quiet=TRUE)
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit74_2
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo (2) espacial para el periodo del 74"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit79_2<-lagsarlm(rr79~ BIR79, data=nc,
+                  listw = nb2listw(sids.vecinos, style="W"), method="eigen", quiet=TRUE)
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit79_2
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo (2) espacial para el periodo del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Con la finalidad de dar potencia a la variable \texttt{BIR} y a la covariable \texttt{both} que construimos anteriormente, procedemos quitando el intercepto del modelo.
+
+- Con respecto al modelo anterior, quitamos el intercepto y la variable \texttt{both} (Tabla 8).
+
+```{r}
+fit74_3<-lagsarlm(rr74 ~ BIR74 + both - 1, data=nc,
+                  nb2listw(sids.vecinos, style="W"), method="eigen", quiet=TRUE)
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit74_3
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+#kable(t(aux), "latex", caption = paste0("Modelo (3) espacial para el periodo del 74"), booktabs = T,align='c') %>%
+#  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit79_3<-lagsarlm(rr79 ~ BIR79 + both - 1, data=nc,
+                  nb2listw(sids.vecinos, style="W"), method="eigen", quiet=TRUE)
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux1 <- fit79_3
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux1 <- fit.aux1 %>%  summary
+aux1 <- aux1$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux1 <- cbind(aux1[,1] %>% as.numeric() %>% round(digitos),
+             aux1[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux1[,4],interpreta))
+colnames(aux1)<-c("coef","p-value","Signif.")
+kable(list(aux,aux1), "latex", caption = paste0("Modelo (3) espacial para los periodos del 74 y del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Más adelante haremos una comparación entre todos los modelos para seleccionar la mejor propuesta.
+
+# 6. Modelo CAR
+
+En esta sección haremos la implementación de modelos **CAR** para la modelación del riesgo relativo.
+
+## 6.1 Forma del Modelo CAR
+
+En un estilo de *pseudo-código* la manera en que estaremos haciendo la implementación del modelo será la siguiente incluyendo la esctructura de vecinos que construimos anteriormente.
+
+$$
+\texttt{spautolm(RR}\sim \texttt{BIR+X, listw = vecinos, weights = BIR, family = "{}CAR")}
+$$
+
+Donde \texttt{X} son las covariables que introduciremos los modelos.
+
+## 6.2 Implementación de algunos modelos espaciales CAR
+
+- Como un primer acercamiento, meteremos al modelo solo la variable \texttt{BIR} para ambos periodos (Tablas 9 y 10)
+
+```{r}
+fit74_4 <- spautolm(rr74 ~ BIR74 , data=nc, nb2listw(sids.vecinos, style="W"), weights=BIR74, family="CAR")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit74_4
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo (4) espacial para el periodo del 74"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit79_4 <- spautolm(rr79 ~ BIR79 , data=nc, nb2listw(sids.vecinos, style="W"), weights=BIR74, family="CAR")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit79_4
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+kable(aux, "latex", caption = paste0("Modelo (4) espacial para el periodo del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+Con la finalidad de dar potencia a la variable \texttt{BIR} y a la covariable \texttt{both} que construimos anteriormente, procedemos quitando el intercepto del modelo.
+
+- Con respecto al modelo anterior, quitamos el intercepto y la variable \texttt{both} (Tabla 11).
+
+```{r}
+fit74_5 <- spautolm(rr74 ~ BIR74 + both - 1 , data=nc, nb2listw(sids.vecinos, style="W"), weights=BIR74, family="CAR")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux <- fit74_5
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux <- fit.aux %>%  summary
+aux <- aux$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- cbind(aux[,1] %>% as.numeric() %>% round(digitos),
+             aux[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux[,4],interpreta))
+colnames(aux)<-c("coef","p-value","Signif.")
+#kable(t(aux), "latex", caption = paste0("Modelo (5) espacial para el periodo del 74"), booktabs = T,align='c') %>%
+#  kable_styling(latex_options = c("striped", "hold_position"))
+```
+```{r}
+fit79_5 <- spautolm(rr79 ~ BIR79 + both - 1 , data=nc, nb2listw(sids.vecinos, style="W"), weights=BIR74, family="CAR")
+```
+```{r,echo=F}
+# Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+fit.aux1 <- fit79_5
+# Cantidad de dígitos
+digitos <- 3
+# Este será el data frame que vamos a interpretar
+aux1 <- fit.aux1 %>%  summary
+aux1 <- aux1$Coef
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux1 <- cbind(aux1[,1] %>% as.numeric() %>% round(digitos),
+             aux1[,4] %>% as.numeric() %>%  round(digitos),
+             sapply(aux1[,4],interpreta))
+colnames(aux1)<-c("coef","p-value","Signif.")
+kable(list(aux,aux1), "latex", caption = paste0("Modelo (5) espacial para los periodos del 74 y del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Más adelante haremos una comparación entre todos los modelos para seleccionar la mejor propuesta .
+
+# 7. Selección del Mejor Modelo
+
+## 7.1 Comparativa de Modelos
+
+Para seleccionar el modelo, nos vamos a fijar en las estadísticas de la devianza, el AIC y el BIC. Esto lo podemos ver en la Tabla 12 para ambos periodos. De donde concluiremos, basados en el comportamiento de los datos que los modelos seleccionados serán el 4 y el 5 para los periodos del 74 y 79 respectivamente. Procedemos a ver un mapa de los residuales de estos modelos (Figura \ref{fig:f8}) y también de los valores ajustados (Figura \ref{fig:f9}).
+
+```{r}
+
+Devianzas=c(deviance(fit74_1),
+            deviance(fit74_2),
+            deviance(fit74_3),
+            deviance(fit74_4),
+            deviance(fit74_5))
+
+AICs<-c(AIC(fit74_1),
+        AIC(fit74_2),
+        AIC(fit74_3),
+        AIC(fit74_4),
+        AIC(fit74_5))
+
+BICs<-c(BIC(fit74_1),
+        BIC(fit74_2),
+        BIC(fit74_3),
+        BIC(fit74_4),
+        BIC(fit74_5))
+
+comparativa74<-data.frame(Devianzas=c(Devianzas,NA,NA),
+                          AIC=AICs,BIC=BICs)
+rownames(comparativa74)<-paste("Modelo",1:5)
+
+Devianzas=c(deviance(fit79_1),
+            deviance(fit79_2),
+            deviance(fit79_3),
+            deviance(fit79_4),
+            deviance(fit79_5))
+
+AICs<-c(AIC(fit79_1),
+        AIC(fit79_2),
+        AIC(fit79_3),
+        AIC(fit79_4),
+        AIC(fit79_5))
+
+BICs<-c(BIC(fit79_1),
+        BIC(fit79_2),
+        BIC(fit79_3),
+        BIC(fit79_4),
+        BIC(fit79_5))
+
+comparativa79<-data.frame(Devianzas=c(Devianzas,NA,NA),
+                          AIC=AICs,BIC=BICs)
+rownames(comparativa79)<-paste("Modelo",1:5)
+
+kable(list(comparativa74,comparativa79), "latex", caption = paste0("Comparativa de los modelos para los periodos del 74 y del 79"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+\begin{figure}
+\vspace{0cm}
+```{r f8, echo=FALSE}
+#Veamos los residuales estadarizados
+nc$res74 <- fit74_4$fit$residuals
+nc$res79 <- fit79_5$fit$residuals
+brks <- c(-Inf, -4:4, Inf)
+tm_shape(nc) + 
+  tm_fill(c("res74", "res79"), title = "Res.", palette = "RdBu",
+          auto.palette.mapping=FALSE, breaks = brks) +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Residuales de los modelos seleccionados", main.title.size = 1 ,
+            legend.position = c("right", "top"),
+            legend.title.size = 0.8,
+            panel.labels=c("Modelo 4 (1974 - 1978)",
+                           "Modelo 5 (1979 - 1983)"),
+            legend.outside=TRUE)+
+  tm_text("CRESS_ID", size = 0.6)
+```
+\vspace{0cm}
+\caption{Residuales de los modelos seleccionados con base en la Tabla 12.\label{fig:f8}}
+\end{figure}
+
+\begin{figure}
+\vspace{0cm}
+```{r f9, echo=FALSE}
+#Veamos los ajustados
+nc$ganador74 <- fitted(fit74_4)
+nc$ganador79 <- fitted(fit79_5)
+brks <- c(seq(0,7,0.5))
+tm_shape(nc) + 
+  tm_fill(c("rr74", "ganador74"), title = "rr", palette = "Reds",
+          auto.palette.mapping=FALSE, breaks = brks) +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Ajuste del Modelo (4) CAR periodo 74", main.title.size = 1 ,
+            legend.position = c("right", "top"), legend.title.size = 0.8,
+            panel.labels=c("Real", "Ajustada"), legend.outside=TRUE)+
+  tm_text("CRESS_ID", size = 0.6)
+
+brks <- c(seq(0,5,0.5))
+tm_shape(nc) + 
+  tm_fill(c("rr79", "ganador79"), title = "rr", palette = "Reds",
+          auto.palette.mapping=FALSE, breaks = brks) +
+  tm_borders(alpha = 0.1) +
+  tm_layout(main.title = "Ajuste del Modelo (5) CAR periodo 79", main.title.size = 1 ,
+            legend.position = c("right", "top"), legend.title.size = 0.8,
+            panel.labels=c("Real", "Ajustada"), legend.outside=TRUE) +
+  tm_text("CRESS_ID", size = 0.6)
+```
+\vspace{0cm}
+\caption{Valores ajustados de los modelos seleccionados con base en la Tabla 12.\label{fig:f9}}
+\end{figure}
+
+De las Figuras \ref{fig:f8} y \ref{fig:f9} vemos que el modelo para el periodo del 74 parece explicar el efecto espacial, mientras que para el periodo del 79 aún necesita de más variables para lograr lo mismo. Esto se puede verificar con la prueba de Moran realizada en la Tabla 13.
+
+```{r}
+## Calculamos el indice de Moran para los residuos
+library(ape)
+# H0: Independencia (no correlacionados)
+mora <- data.frame(
+  pvalue74=Moran.I(fit74_4$fit$residuals, 
+                   weight = wm,na.rm = TRUE)$p.value,
+  pvalue79=Moran.I(fit79_5$fit$residuals,
+                   weight = wm,na.rm = TRUE)$p.value)
+# Cantidad de dígitos
+digitos <- 3
+# Vamos a interpretar los p-values
+interpreta <- function(x){
+  ifelse(x<0.001,"***",
+         ifelse(x<0.01,"**",
+                ifelse(x<0.05,"*",
+                       ifelse(x<0.1,".",""))))}
+# Juntamos todo en un data.frame
+aux <- data.frame(c("1974-1978","1979-1984"),
+                  apply(mora,1,round,digits=digitos),
+                  apply(mora,1,interpreta))
+colnames(aux)<-c("Periodo","p-value","Signif.")
+rownames(aux) <- NULL
+kable(aux, "latex", caption = paste0("Resultados de la prueba de Moran sobre los residuales de los modelos seleccionados por periodo."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+## 7.2 Simulaciones
+
+```{r}
+load(file = "Simulaciones.RData")
+pvalues = c()
+for(i in 1:100){
+  
+  pvalues[i]<-ks.test(Simulaciones$s79[i,],Simulaciones$s74[i,])$p.value
+  
+}
+#ks.test(Simulaciones$s79[1,],Simulaciones$s74[1,])
+#View(Simulaciones$s74)
+
+Resultados <- data.frame(ID=1:100,
+                         p.value=pvalues,
+                         Desición=ifelse(pvalues>0.05,
+                                         "No hubo cambio",
+                                         "Hubo Cambio"))
+```
+
+
+Con base en el modelo obtenido para ambos periodos y con la finalidad de dar respuesta a una de las preguntas de la siguinte sección, procedemos a hacer simulaciones de los riesgos relativos con base en los modelos obtenidos. La idea consiste en utilizar estos modelos para asignar a los parámetros de los modelos (los coeficientes $\underline{\beta}$) una distribución Normal con media el valor estimado y varianza el error estándar que tiene el modelo con la finalidad de obtener simulaciones de los Riesgos Relativos (variable respuesta) generando así una muestra $\underline{RR}_i$ para cada uno de los condados y cada uno de los periodos. 
+
+Este procedimiento se realizó internamente en el código y posteriormente se realizó una prueba de bondad de ajuste similar a la realizada en la sección 3.2 para contrastar la hipótesis nula de tener distribuciones estadísticamente equivalentes pero esta vez con la oportunidad de hacerlo por condado y por construcción del modelo, incluyendo también el efecto aleatorio.
+
+$$
+H_0: F_{\underline{RR}_i^{(74)}} = F_{\underline{RR}_i^{(79)}}
+$$
+En este caso concluiremos basándonos en los *p-values* obtenidos de este procedimiento para interpretar "si la hipótesis nula no se rechaza entonces no hubo diferencias significativas de entre los riesgos relativos de cada periodo". Los resultados obtenidos se encuentran de forma resumida en la tabla 14
+
+```{r}
+aux<-Resultados$Desición %>% table() %>% t()
+kable(aux, "latex", caption = paste0("Cantidad de condados donde hubo un cambio de un periodo a otro basados en los modelos."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+no_cambiaron <-Resultados$ID[Resultados$Desición=="No hubo cambio"]
+nom_no_camb <- nc$NAME[no_cambiaron]
+```
+
+Y de hecho los estados que no cambiaron fueron el $`r  no_cambiaron[1]`$ ($`r  nom_no_camb[1]`$) y el $`r  no_cambiaron[2]`$ ($`r  nom_no_camb[2]`$). Debemos tener en mente que este resultado se piensa de tal manera que ya contemplamos a todos los estados. Es decir, si por ejemplo un condado tiene muchas muertes por síndrome de cuna en el primer periodo y en el siguiente le tiene aún más muertes, en comparativa con el resto de los condados éste mantuvo su posición.
+
+# 8. Conclusiones y respuestas concretas
+
+En esta sección daremos solución en concreto con base en los resultados que hemos establecido a lo largo del proyecto de las incógnitas que fueron planteadas para la elaboración del mismo.
+
+## 8.1 Pregunta 1
+
+**¿Existen diferencias significativas de entre los riesgos relativos de cada periodo?**
+
+Teniendo una tasa de cambio del $98\%$ de acuerdo a lo realizado en la sección 7.2, podemos decir que sí hubo cambio entre los periodos. Muy a pesar de que en la sección 3.2 parecía que no habría cambios, sin embargo, vimos que el efecto espacial afectó esta decisión.
+
+## 8.2 Pregunta 2
+
+**¿Hay alguna zona del estado donde los riesgos y las diferencias entre periodos sean mas altas o bajas?**
+
+Con base en la sección 3.2 - Figura \ref{fig:f5} vemos que en general sí hay cambio entre los periodos, nuevamente, las zonas que están diferente de color blanco, consideramos que han sufrido un cambio representativo de un periodo a otro.
+
+## 8.3 Pregunta 3
+
+**¿Cuál fue el mejor modelo ajustado y cual fue el criterio de comparación entre modelos para llegar a esa conclusión?**
+
+Esto se aclara en la sección 7.1, pero en concreto, son modelos derivados de la metodología estadística-espacial CAR.
+
+# 9. Bibliografía
+
+
+\begin{thebibliography}{9}
+
+\bibitem{mayoclinic}
+\href{https://www.mayoclinic.org/es-es/diseases-conditions/sudden-infant-death-syndrome/symptoms-causes/syc-20352800#:~:text=El%20s%C3%ADndrome%20de%20muerte%20infantil,beb%C3%A9s%20mueren%20en%20sus%20cunas.}{Mayoclinic.org, Sudden Infant Death Syndrome.}
+
+\bibitem{cress}
+\href{https://rongxie.files.wordpress.com/2011/01/statistics-for-spatial-data-revised-version-1993.pdf}{Noel A. C. Cressie, Statistics for Spatial Data. John Wiley \& Sons, INC.}
+
+\bibitem{roger}
+\href{https://cran.r-project.org/web/packages/spdep/vignettes/sids.html}{Roger Bivand, Introduction to the North Carolina SIDS data set (re-revised).}
+
+\bibitem{cran}
+\href{https://cran.r-project.org/web/packages/spatialreg/vignettes/sids_models.html}{Autor desconocido, Repositorio de CRAN.}
+
+\end{thebibliography}
+
+\textit{Nota:} Toda la bibliografía viene dada con un hipervínculo que los llevará a la publicación original por internet (Actualizado al 14/Enero/2021).
+
+\newpage
+
+\begin{landscape}
+
+```{r A1}
+kable(list(dfaux1,dfaux2), "latex", caption = paste0("Anexo A - Datos de los Estados"),
+      booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+```{r A2}
+kable(list(dfaux3,dfaux4), "latex", caption = paste0("Anexo B - Datos de los Estados"),
+      booktabs = TRUE) %>%
+  kable_styling(latex_options = c("striped"))
+```
+
+\end{landscape}
