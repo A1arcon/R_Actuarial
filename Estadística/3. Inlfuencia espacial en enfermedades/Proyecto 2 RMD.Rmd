@@ -20,7 +20,7 @@ library(kableExtra)
 
 ```{r}
 # Vamos a cargar los datos necesarios para trabajar con el proyecto
-setwd("~/Actuaría/Maestría/3er. Semestre/Estadística Espacial/Proyecto2/Proyecto 2")
+setwd("~/Actuaría/GitHub/R_Actuarial/Estadística/3. Inlfuencia espacial en enfermedades")
 library(sf)
 library(tmap)
 library(sp)
@@ -87,19 +87,19 @@ $$
 ```{r}
 nc <- st_read("sids.shp",quiet=TRUE)
 nc$both <- factor(paste(nc$L_id, nc$M_id, sep=":"))
-nc<-arrange(nc,CRESS_ID)
-dfaux1 <- data.frame(CRESS_ID=nc$CRESS_ID[1:25],Nombre=nc$NAME[1:25],
-                     BIR74=nc$BIR74[1:25],SID74=nc$SID74[1:25],
-                     BIR79=nc$BIR79[1:25],SID79=nc$SID79[1:25])
-dfaux2 <- data.frame(CRESS_ID=nc$CRESS_ID[26:50],Nombre=nc$NAME[26:50],
-                     BIR74=nc$BIR74[26:50],SID74=nc$SID74[26:50],
-                     BIR79=nc$BIR79[26:50],SID79=nc$SID79[26:50])
-dfaux3 <- data.frame(CRESS_ID=nc$CRESS_ID[51:75],Nombre=nc$NAME[51:75],
-                     BIR74=nc$BIR74[51:75],SID74=nc$SID74[51:75],
-                     BIR79=nc$BIR79[51:75],SID79=nc$SID79[51:75])
-dfaux4 <- data.frame(CRESS_ID=nc$CRESS_ID[76:100],Nombre=nc$NAME[76:100],
-                     BIR74=nc$BIR74[76:100],SID74=nc$SID74[76:100],
-                     BIR79=nc$BIR79[76:100],SID79=nc$SID79[76:100])
+NC<-arrange(nc,CRESS_ID)
+dfaux1 <- data.frame(CRESS_ID=NC$CRESS_ID[1:25],  Nombre=NC$NAME[1:25],
+                        BIR74=NC$BIR74[1:25],      SID74=NC$SID74[1:25],
+                        BIR79=NC$BIR79[1:25],      SID79=NC$SID79[1:25])
+dfaux2 <- data.frame(CRESS_ID=NC$CRESS_ID[26:50], Nombre=NC$NAME[26:50],
+                        BIR74=NC$BIR74[26:50],     SID74=NC$SID74[26:50],
+                        BIR79=NC$BIR79[26:50],     SID79=NC$SID79[26:50])
+dfaux3 <- data.frame(CRESS_ID=NC$CRESS_ID[51:75], Nombre=NC$NAME[51:75],
+                        BIR74=NC$BIR74[51:75],     SID74=NC$SID74[51:75],
+                        BIR79=NC$BIR79[51:75],     SID79=NC$SID79[51:75])
+dfaux4 <- data.frame(CRESS_ID=NC$CRESS_ID[76:100],Nombre=NC$NAME[76:100],
+                        BIR74=NC$BIR74[76:100],    SID74=NC$SID74[76:100],
+                        BIR79=NC$BIR79[76:100],    SID79=NC$SID79[76:100])
 ```
 
 Comenzamos mostrando un mapa del estado de California del Norte (Figura \ref{fig:f1}). Este gráfico lo estaremos mostrando en repetidas ocasiones buscando explicar con estilo mapa de calor interacciones con diferentes resultados obtenidos y postulados en este proyecto. En las tablas al final del documento (Anexo A y B) podremos ver los nombres de los condados con base en el número expuesto.
@@ -140,7 +140,7 @@ $$
 H_0: \text{El condado en cuestión NO pertenece al grupo asignado.}
 $$
 
-Esta prueba la realizaremos para los periodos que estamos trabajando (1974-1978 y 1979-1984), con la finalidad de observar si existen zonas geográficas compuestas por conglomerados de condados que posean una tendencia visible. Este tipo de gráficos están relacionados con los llamados **Mapas de Probabilidad** (Figura \ref{fig:f3}). En este mapa, podemos observar que existen condados como lo son el 78 ($`r  nc$NAME[78]`$) y el 24 ($`r  nc$NAME[24]`$)  que para ambos periodos pertenecen al mismo grupo gracias a la interpretación de su *p-value*, más aún, se puede ver a partir de esto que existen zonas hechas por conglomerados de condados que parecen pertenecer a un mismo grupo.
+Esta prueba la realizaremos para los periodos que estamos trabajando (1974-1978 y 1979-1984), con la finalidad de observar si existen zonas geográficas compuestas por conglomerados de condados que posean una tendencia visible. Este tipo de gráficos están relacionados con los llamados **Mapas de Probabilidad** (Figura \ref{fig:f3}). En este mapa, podemos observar que existen condados como lo son el 78 ($`r  NC$NAME[78]`$) y el 24 ($`r  NC$NAME[24]`$)  que para ambos periodos pertenecen al mismo grupo gracias a la interpretación de su *p-value*, más aún, se puede ver a partir de esto que existen zonas hechas por conglomerados de condados que parecen pertenecer a un mismo grupo.
 
 \begin{figure}
 \vspace{-5.5cm}
@@ -251,7 +251,7 @@ tm_shape(nc) +
 \caption{Cociente de Riesgos Relativos por condado\label{fig:f5}}
 \end{figure}
 
-De la Figura \ref{fig:f5} podemos concluir que hay condados como el 4 ($`r  nc$NAME[4]`$), 79 ($`r  nc$NAME[79]`$), 35 ($`r  nc$NAME[35]`$) y 94 ($`r  nc$NAME[94]`$) que aumentan su RR disminuyó, por otro lado condados como el 3 ($`r  nc$NAME[3]`$) y  37 ($`r  nc$NAME[37]`$) aumentó, mientras que los que se ven en blanco, parece que se mantuvieron.
+De la Figura \ref{fig:f5} podemos concluir que hay condados como el 4 ($`r  NC$NAME[4]`$), 79 ($`r  NC$NAME[79]`$), 35 ($`r  NC$NAME[35]`$) y 94 ($`r  NC$NAME[94]`$) que aumentan su RR disminuyó, por otro lado condados como el 3 ($`r  NC$NAME[3]`$) y  37 ($`r  NC$NAME[37]`$) aumentó, mientras que los que se ven en blanco, parece que se mantuvieron.
 
 Una vez habiendo revisado una posible existencia de relación espacial de los datos, vamos a continuar justificando la incorporación de la metodología espacial primeramente con un argumento más clásico que nos oriente en esta dirección.
 
@@ -855,7 +855,7 @@ tm_shape(nc) +
 \caption{Valores ajustados de los modelos seleccionados con base en la Tabla 12.\label{fig:f9}}
 \end{figure}
 
-De las Figuras \ref{fig:f8} y \ref{fig:f9} vemos que el modelo para el periodo del 74 parece explicar el efecto espacial, mientras que para el periodo del 79 aún necesita de más variables para lograr lo mismo. Esto se puede verificar con la prueba de Moran realizada en la Tabla 13.
+De las Figuras \ref{fig:f8} y \ref{fig:f9} vemos que el modelo para el periodo del 74 NO parece explicar el efecto espacial por lo que quizás necesitaríamos más variables para hacerlo, mientras que para el periodo del 79 logramos hacer que el modelo absorba el efecto espacial y esto se ve con los residuales tomando un comportamiento que parece "más" aleatorio. Esto se puede verificar con la prueba de Moran realizada en la Tabla 13.
 
 ```{r}
 ## Calculamos el indice de Moran para los residuos
@@ -897,6 +897,7 @@ for(i in 1:100){
 #ks.test(Simulaciones$s79[1,],Simulaciones$s74[1,])
 #View(Simulaciones$s74)
 
+# OJO, Las simulaciones sí van ordenadas.
 Resultados <- data.frame(ID=1:100,
                          p.value=pvalues,
                          Desición=ifelse(pvalues>0.05,
@@ -919,7 +920,7 @@ aux<-Resultados$Desición %>% table() %>% t()
 kable(aux, "latex", caption = paste0("Cantidad de condados donde hubo un cambio de un periodo a otro basados en los modelos."), booktabs = T,align='c') %>%
   kable_styling(latex_options = c("striped", "hold_position"))
 no_cambiaron <-Resultados$ID[Resultados$Desición=="No hubo cambio"]
-nom_no_camb <- nc$NAME[no_cambiaron]
+nom_no_camb <- NC$NAME[no_cambiaron]
 ```
 
 Y de hecho los estados que no cambiaron fueron el $`r  no_cambiaron[1]`$ ($`r  nom_no_camb[1]`$) y el $`r  no_cambiaron[2]`$ ($`r  nom_no_camb[2]`$). Debemos tener en mente que este resultado se piensa de tal manera que ya contemplamos a todos los estados. Es decir, si por ejemplo un condado tiene muchas muertes por síndrome de cuna en el primer periodo y en el siguiente le tiene aún más muertes, en comparativa con el resto de los condados éste mantuvo su posición.

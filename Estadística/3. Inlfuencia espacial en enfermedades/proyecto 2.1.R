@@ -304,6 +304,7 @@ tm_shape(nc) +
 # #t(betas_sim[1,]*X[X$ID==1,-1])
 # for(i in 1:100) {
 #   for (j in 1:n) {
+#     #Aquí, implícitamente estamos ordenando por CRESS_ID
 #     simula[i, j] = sum(X[X$ID == i, -1] * betas_sim[j, ])
 #   }
 # }
