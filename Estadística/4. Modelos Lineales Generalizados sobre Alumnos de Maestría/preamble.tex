@@ -1,0 +1,37 @@
+% ------------------------------------------------------------------------
+% Para los colores en el texto -------------------------------------------------
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=red,
+	anchorcolor = blue
+}
+\urlstyle{same}
+% ------------------------------------------------------------------------
+% Paqueterías extra y funciones creadas.
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\newcommand{\derivada}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\usepackage{pdfpages} % Para poner pdf's en Markdown
+\setcounter{tocdepth}{3} % Para el índice con profundidad 3
+\usepackage[titles]{tocloft} %1. Para que no se vean los puntos en el índice
+\renewcommand{\cftdot}{} %2. Para que no se vean los puntos en el índice
+\usepackage{multicol}
+\usepackage{amsmath,mathrsfs,amssymb,amsthm,commath,thmtools,enumerate}
+\usepackage{tgtermes} %Letra monita.
+\pagenumbering{gobble} %Para quitar el número de página.
+\usepackage{caption}
+\captionsetup[table]{name=Tabla}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{Proyecto}
+\fancyhead[C]{Modelos Lineales Generalizados}
+\fancyhead[R]{Alarcón González Edgar Gerardo}
+\newcommand{\Xvec}{\mathbf{X}}
+\newcommand{\betavec}{\mathbf{\beta}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Esp}[1]{\E\left[#1\right]}

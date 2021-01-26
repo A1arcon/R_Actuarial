@@ -1,0 +1,1070 @@
+---
+output:  
+  pdf_document:
+    highlight: kate
+    includes:
+      in_header: "preamble.tex"
+---
+
+\includepdf[pages={-}]{Portada.pdf}
+
+```{r setup, include=FALSE}
+# Vamos a poner las configuraciones de los chunk en este caso
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE,message = FALSE,
+                      out.width='85%',fig.align='center',
+                      error=FALSE,quietly=TRUE)
+# Librerías para LaTeX
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r,echo=FALSE}
+# Usamos las librerías
+library(dplyr)
+library(lubridate)
+library(psych)
+library(VGAM)
+
+# Fijamos el diectorio de trabajo.
+setwd("~/Actuaría/Maestría/3er. Semestre/GLM/Proyecto")
+
+# Procesamos un poco la información.
+datos <- read.csv("edgar.csv",na.strings = "",encoding = "UTF-8")
+colnames(datos)<-c("Semestre",      # Semestre en que ingresó a la maestría.
+                   "Sexo",          # Sexoe.
+                   "Fecha_Examen",  # Fecha en que presetó su examen para titularse.
+                   "Egresado",      # Terminó el 100% de los créditos.
+                   "Posponer",      # Ha ingresado a la maestría pero se decide posponer la inscripción este número de semstres.
+                   "Edad",          # Edad de ingreso a la maestría.
+                   "Carrera",       # Licenciatura que realizó.
+                   "Universidad",   # Universidad de la que proviene.
+                   "Promedio",      # Promedio de la Universidad.
+                   "Tiempo",        # Tiempo en que realizó la licenciatura.
+                   "Álgebra",       # Calificación en el examen de álgebra para el ingreso a la maestría.
+                   "Cálculo",       # Calificación en el examen de cálculo para el ingreso a la maestría.
+                   "Veces")         # Número de veces que presentaron el examen de admisión.
+# Acomodamos los datos para dejar al final la respuesta
+datos <- datos %>% dplyr::select(Semestre:Fecha_Examen,Posponer:Veces,Egresado)
+# Realizamos un poco de Cohersión para identificar las variables categóricas y traducirlas
+```
+
+\tableofcontents
+
+\newpage
+
+
+# 1. Introducción
+
+Los datos que se trabajan en este documento son datos de alumnos/aspirantes que entraron a la "Maestría en Ciencias Matemáticas" por parte del programa "Maestría y Doctorado en Ciencias Matemáticas y de la Especialización en Estadística Aplicada" de la Unidad de Posgrado de la Universidad Nacional Autónoma de México (UNAM). Como parte de la labor administrativa, es de interés que los alumnos/aspirentes logren el objetivo de titularse, esto debido al alto nivel académico que se maneja y reporta a instituciones como el Consejo Nacional de Ciencia y Tecnología (CONACyT).
+
+Por tal motivo, la elección correcta de los aspirantes resulta ser un aspecto fundamental para prgoresar con dicho rendimiento y desempeño académico. De tal manera que se ha recopilado información estadística de algunos de los aspirantes a entrar a la maestría de los semestres 2015-1 al 2019-2 con el **objetivo** de buscar alguna relación que favorezca la posibilidad de graduarse del grado académico al que se aspira. Todo esto se realizará utilizando los conceptos más fundamentales de Modelos Lineales Generalizados (MLG). El software que estaremos trabajando será R.
+
+# 2. Descripción y declaración de las variables
+
+Teniendo bajo contexto que los datos vienen de 301 alumnos/aspirantes a la maestría en ciencias matemáticas. Debido al formato de fechas y la manera en que los datos fueron entregados, se decidió hacer un pequeño pre-procesamiento de los mismos en Excel.
+
+```{r,eval=FALSE}
+datos <- read.csv("edgar.csv",na.strings = "",encoding = "UTF-8")
+```
+
+Aunque existen individuos con datos faltantes, las mediciones realizadas fueron las siguientes\footnotemark.
+
+1. \texttt{Semestre}: Semestre en que ingresó a la maestría. Esta variable se expresa en forma de fecha dentro de los datos originales, sin embargo, nosotros la vamos a considerar como variable categórica y será decodificada de tal manera que esta se pueda leer como el semestre escolar. Por ejemplo, el dato \texttt{04/ago/2014} será codificado como \texttt{2015-1}. Hay un total de 10 semestres diferentes.
+
+```{r}
+# Semestre
+datos$Semestre <- datos$Semestre %>% factor
+levels(datos$Semestre) <- c("2019-2","2016-1","2016-2","2015-2","2018-2",
+                            "2017-2","2015-1","2019-1","2018-1","2017-1")
+```
+
+
+2. \texttt{Sexo}: Sexo/Género (biológico) del individuo. En los datos originales, esta variable se encontraba como "\texttt{M}" y "\texttt{F}", serán codificadas como "\texttt{Hombre}" y "\texttt{Mujer}" respectivamente.
+
+```{r}
+# Sexo
+datos$Sexo <- datos$Sexo %>% factor
+levels(datos$Sexo) <- c("Mujer","Hombre")
+```
+
+3. \texttt{Fecha\_Examen}: Fecha en que presentó su examen de titulación de la maestría. Esta variable es interesante, será considerada como lo que es, una variable de tipo Fecha que en el caso de R en el fondo la piensa como si fuera del tipo numérico. Esto lo hacemos así por la gran cantidad de fechas diferentes entre individuos. **Más importante aún** es que con esta variable obtendremos otra llamada \texttt{Graduado}, que es con la que veremos si el alumno llegó a la meta final de titularse de la maestría.
+
+```{r}
+# Fecha_Examen
+datos$Fecha_Examen <- datos$Fecha_Examen %>% as.Date(format="%d/%m/%Y")
+```
+
+4. \texttt{Posponer}: Ha ingresado a la maestría pero se decide posponer la inscripción este número de semestres. Aunque podríamos pensarla como variable categórica, se ha decidido mantenerla como numérica, al existir de alguna manera una medida de orden en esta variable, en lo personal, hace sentido pensar un coeficiente en un modelo lineal generalizado que apoye la magnitud de la naturaleza de la variable.
+
+5. \texttt{Edad}: Edad de ingreso a la maestría. Se tomará del tipo numérico de igual manera por la gran diversidad de edades que hay y el sentido de interpretabilidad que se le puede dar a su coeficiente en un modelo lineal generalizado.
+
+\footnotetext{Se muestra el código de las variables que requirieron codificación para R. Las que no presentan código es porque los datos fueron leídos de la forma deseada para su posterior uso.}
+
+\newpage
+
+6. \texttt{Carrera}: Licenciatura que realizó. Esta variable es considerada como categórica, sin embargo, observamos la existencia de una gran diversidad carreras de las cuales provienen los aspirantes (Figura \ref{fig:f1}).
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f1, echo=FALSE}
+datos$Carrera <- datos$Carrera %>% tolower() %>%  as.factor()
+par(mar=c(4,12,4,4))
+barplot(summary(datos$Carrera),
+        horiz = TRUE,cex.names = 0.7,las=1,
+        col=viridis::viridis(12),
+        main="Carreras",
+        xlab="Número de Aspirantes")
+par(mar=c(5, 4, 4, 2) + 0.1)
+```
+\vspace{-0cm}
+\caption{Carreras origen de los aspirantes.\label{fig:f1}}
+\end{figure}
+
+Debido a esto, se decidió re-categorizar la variable, de tal manera que estaremos haciendo implícitamente un suavizamiento sobre la misma. Este procedimiento consistirá en que las carreras que tengan un bajo número de personas entrarán a la categoría "\texttt{Otras}", mientras que las demás conservarán su nombre original. Al final, terminamos con 5 categorías diferentes \texttt{Actuaría}, \texttt{Física}, \texttt{Matemáticas}, \texttt{Matemáticas Aplicadas} y \texttt{Otras}.
+
+```{r,echo=FALSE}
+levels(datos$Carrera)<-c("Actuaría","Otras","Otras","Otras","Otras","Física","Otras","Otras","Otras","Otras","Matemáticas","Mat. Aplicadas")
+```
+
+7. \texttt{Universidad}: Universidad de la que proviene. Esta variable al igual que la anterior, presenta una gran diversidad y también es categórica (Figura \ref{fig:f2}).
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f2, echo=FALSE}
+aux=table(datos$Universidad)
+names(aux) = NULL
+barplot(aux,col=rainbow(100),main="Universidades",
+        cex.names = 0.7,las=1,horiz = TRUE,
+        xlab="Número de Aspirantes")
+```
+\vspace{-0cm}
+\caption{Universidades origen de los aspirantes.\label{fig:f2}}
+\end{figure}
+
+Sin embargo, observamos que existe una "Universidad" que tiene muchos más aspirantes que el resto (\texttt{FC UNAM}). De tal manera que el suavizamiento que haremos sobre esta variable será que pertenezcan a esta "Universidad" o pertenezcan a alguna otra.
+
+```{r}
+datos$Universidad <- datos$Universidad %>% factor()
+levels(datos$Universidad) <- ifelse(datos$Universidad=="FC UNAM","FC UNAM","Otra")
+```
+
+8. \texttt{Promedio}: Promedio escolar como estudiante de la Licenciatura. Esta variable se considerará del tipo numérico.
+
+9. \texttt{Tiempo}: Tiempo en que realizó la licenciatura. Esta variable se considerará del tipo numérico, similar a la variable \texttt{Posponer} podría pensarse como categoría, pero la dejaremos de tipo numérico con la finalidad de dar interpretación con base en magnitud a su coeficiente en el MLG.
+
+10. \texttt{Álgebra}: Calificación en el examen de álgebra (lineal) para el ingreso a la maestría. Esta variable se considerará del tipo numérico.
+
+11. \texttt{Cálculo}: Calificación en el examen de cálculo para el ingreso a la maestría. Esta variable se considerará del tipo numérico.
+
+12. \texttt{Veces}: Número de veces que presentó el examen de admisión. Esta variable se considerará del tipo numérico, similar a la variable \texttt{Posponer} podría pensarse como categoría, pero la dejaremos de tipo numérico con la finalidad de dar interpretación con base en magnitud a su coeficiente en el MLG.
+
+13. \texttt{Egresado} (Respuesta 1):  Terminó el 100% de los créditos de maestría. Esta es una variable de respuesta binaria, algo que ya nos da una idea de qué tipo de modelos podemos aplicar. Originalmente, esta variable viene expresada como 1's y 0's, lo cuál será codificado a "Sí"'s y "No"'s respectivamente.
+
+```{r}
+datos$Egresado <- datos$Egresado %>% factor()
+levels(datos$Egresado) <- c("No","Sí")
+```
+
+14. \texttt{Graduado} (Respuesta 2): Se logró (o no) el objetivo final de graduarse de la maestría. Al igual que la otra variable respuesta, esta es del tipo binario y será construida a partir de la variable \texttt{Fecha\_Examen}, la forma en cómo será construida será tomando como graduado a aquellos que tengan diferente de vacío la variable en cuestión y como no graduado en otro caso. Esto se resumirá a un "Sí" o "No" respectivamente.
+
+```{r}
+datos$Graduado <- ifelse(is.na(datos$Fecha_Examen),"No","Sí") %>% factor()
+```
+
+Apoyándonos de estas variables principalmente comenzamos realizando un análisis estadístico de las mismas.
+
+
+# 3. Análisis Descriptivo de los Datos
+
+Antes de intentar ajustar algún modelo en particular, vamos a comenzar realizando un breve análisis descriptivo de los datos, esta sección la dividiremos en dos partes importantes. En la primera parte analizaremos algunas de las variables de forma individual con el objetivo de entender su comportamiento y posteriormente en la segunda veremos el comportamiento en conjunto de algunas de las variables con el objetivo de ver si hay autocorrelación o existe alguna posible relación con la respuesta o alguna otra variable categórica.
+
+## 3.1 Por variable
+
+En particular haremos gráficas de frecuencia de las variables categóricas.
+
+- **Sexo** (Figura \ref{fig:f3}). En este gráfico, podemos observar que existe un sesgo importante en favor del número de hombres que entran a la maestría. Hay una cantidad considerablemente mayor de este Sexo siendo entre 4 ó 5 veces mayor que la cantidad de mujeres.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f3, echo=FALSE}
+# Sexo
+barplot(summary(datos$Sexo),
+        horiz = TRUE,cex.names = 0.7,las=1,
+        col=c("pink","blue","yellow"),
+        main="Sexo/Género",
+        xlab="Número de Aspirantes")
+```
+\vspace{-0cm}
+\caption{Gráfico de barras por sexo de los aspirantes.\label{fig:f3}}
+\end{figure}
+
+- **Universidad** (Figura \ref{fig:f4}). Una vez habiendo agrupado, vemos que el sesgo de la cantidad de alumnos que ingresa a la maestría por parte de la facultad de ciencias continúa siendo importante, pero al menos logramos que sea comparable y que la variable fuese mucho más fácil de interpretar y manipular.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f4, echo=FALSE}
+barplot(summary(datos$Universidad),col=c("gold","red","blue"),main="Universidades",
+        cex.names = 0.7,las=1,horiz = TRUE,
+        xlab="Número de Aspirantes")
+```
+\vspace{-0cm}
+\caption{Gráfico de barras de la universidad* de los aspirantes.\label{fig:f4}}
+\end{figure}
+
+- **Egresado** (Figura \ref{fig:f5}). Esta variable es importante pues de hecho será una de las respuestas que nosotros consideraremos. Vemos que de nuevo existe un sesgo muy importante con los alumnos que en efecto son egresados de la maestría. Esto quiere decir que en la realidad, al menos con los datos que estamos trabajando, hay una probabilidad muy alta de que un alumno, una vez dentro de la maestría, en efecto logre ser egresado. En la **Tabla 1** podemos la cantidad exacta de datos que tenemos. Esto último es importante pues podemos notar que nuestros datos no están balanceados, lo cual puede causar ineficiencias al modelo.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f5, echo=FALSE}
+# Egresado
+barplot(summary(datos$Egresado),
+        horiz = TRUE,cex.names = 0.7,las=1,
+        col=viridis::viridis(3),
+        main="Egresado",
+        xlab="Número de Aspirantes")
+```
+\vspace{-0cm}
+\caption{Gráfico de barras de los aspirantes Egresados.\label{fig:f5}}
+\end{figure}
+
+```{r,echo=FALSE}
+aux<-data.frame(
+Frecuencia=summary(datos$Egresado) %>% as.vector(),
+Porcentaje=((summary(datos$Egresado) %>% as.vector())/length(datos$Egresado)) %>% round(3)
+) 
+rownames(aux) <- c("No","Sí","NA's")
+kable(aux, "latex", caption = paste0("Frecuencia de 'Egresados'"), booktabs = T,align='c') %>%
+kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+- **Graduado** (Figura \ref{fig:f11}). Esta variable es importante pues de hecho será una de las respuestas que nosotros consideraremos. El comportamiento de esta variable es muy interesante ya que, a diferencia de los egresados, aquí sí hay un balance entre graduados y no graduados. Esto quiere decir que en la realidad, al menos con los datos que estamos trabajando, es casi **equiprobable** que, una vez dentro de la maestría, en efecto logre ser graduado. En la **Tabla 2** podemos la cantidad exacta de datos que tenemos. Esto último es importante pues podemos notar que nuestros datos están balanceados, con una ligera ventaja para los que sí se graduaron. 
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f11, echo=FALSE}
+# Egresado
+barplot(summary(datos$Graduado),
+        horiz = TRUE,cex.names = 0.7,las=1,
+        col=viridis::viridis(2),
+        main="Graduado",
+        xlab="Número de Aspirantes")
+```
+\vspace{-0cm}
+\caption{Gráfico de barras de los aspirantes Graduados.\label{fig:f11}}
+\end{figure}
+
+```{r,echo=FALSE}
+aux<-data.frame(
+Frecuencia=summary(datos$Graduado) %>% as.vector(),
+Porcentaje=((summary(datos$Graduado) %>% as.vector())/length(datos$Graduado)) %>% round(3)
+) 
+rownames(aux) <- c("No","Sí")
+kable(aux, "latex", caption = paste0("Frecuencia de 'Graduados'"), booktabs = T,align='c') %>%
+kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+## 3.2 Por conjunto de variables
+
+```{r,echo=F}
+attach(datos)
+```
+
+
+Para esta sección sí tenemos una diversidad de gráficos interesante, incluso incluiremos algunos gráficos marginales que se pudieron incluir en la primera sección, pero para no ser reduntantes con eso las tenemos en este apartado.
+
+- **Resultados de examen de cálculo y álgebra (lineal)**: Uno de los requisitos más importantes para poder ingresar a la maestría es obtener una calificación satisfactoria en los exámenes de admisión los cuales consisten en las dos áreas de las matemáticas ya mencionadas y que son de las más básicas e importantes en esta rama del conocimiento. Debido a su importancia, vamos a dedicar esta sección a ver su comportamiento contra algunas de las variables categóricas con las que contamos.
+
+  - **Sexo** (Figura \ref{fig:f6}). En este gráfico, vemos que, parece haber una sutil relación entre la calificación obtenida en el examen y el sexo del aspirante. En particular, parece que un aspirante hombre suele obtener mejores resultados que una mujer. Esta idea recordemos que es condicionada a los datos que tenemos y más aún, que tenemos una muestra muy sesgada en la cantidad de hombres y mujeres.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f6, echo=FALSE}
+par(mfrow=c(1,2))
+# Álgebra
+boxplot(Álgebra~Sexo,col=c("pink","skyblue"),xlab="",las=2,ylab="Calificaciones",main="Álgebra")
+# Cálculo
+boxplot(Cálculo~Sexo,col=c("pink","skyblue"),xlab="",las=2,ylab="",main="Cálculo")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de calificaciones de examen por sexo de los aspirantes.\label{fig:f6}}
+\end{figure}
+
+  - **Universidad** (Figura \ref{fig:f7}). Este gráfico es muy interesante. Lo que nos muestra es que las calificaciones obtenidas en los exámenes de ingreso parecen tener un comportamiento muy similar entre la Facultad de Ciencias (UNAM) y las demás universidades de origen. Sin embargo, aunque muy leve, se ve que los alumnos de la Facultad de Ciencias tienden a tener una ligera superioridad en los exámenes de álgebra y una casi indistinguible en los de cálculo. Nuevamente, debemos contemplar que hay muchos más alumnos provenientes de la Facultad de Ciencias, entonces, este boxplot puede llegar a representarlos correctamente pero no del todo a las demás univesidades.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f7, echo=FALSE}
+par(mfrow=c(1,2))
+# Álgebra
+boxplot(Álgebra~Universidad,col=c("gold","darkblue"),xlab="",las=2,ylab="Calificaciones",main="Álgebra")
+# Cálculo
+boxplot(Cálculo~Universidad,col=c("gold","darkblue"),xlab="",las=2,ylab="",main="Cálculo")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de calificaciones de examen por Universidad de los aspirantes.\label{fig:f7}}
+\end{figure}
+
+  - **Egresado** (Figura \ref{fig:f8}). En este gráfico la diferencia es más evidente. Parece ser que una buena forma de explicar si un alumno egresará o no de la maestría, es con base en la calificación obtenida en los exámenes de ingreso. Esta diferencia se ve muy clara en el exámen de álgebra (lineal), donde vemos que poco más de la mitad de los alumnos que sí egresaron, obtuvieron una calificación mayor o igual a 7 en este exámen, mientras que para los que no egresaron, poco más de 6 de calificación, y principalmente se nota que cuando un alumno obtiene una calificación muy grave en este examen es bastante probable que no egrese de la maestría. Por otro lado, el examen de cálculo es un poco más indistinguible aunque aún se ve muy fuerte la diferencia, parece ser que calificaciones menores a 6.5 son un fuerte indicio de que el aspirante no logrará egresar de la maestría.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f8, echo=FALSE}
+par(mfrow=c(1,2))
+# Álgebra
+boxplot(Álgebra~Egresado,col=c("lightcoral","lightgreen"),xlab="Egresado",las=2,ylab="Calificaciones",main="Álgebra")
+# Cálculo
+boxplot(Cálculo~Egresado,col=c("lightcoral","lightgreen"),xlab="Egresado",las=2,ylab="",main="Cálculo")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de calificaciones de examen por condición de Egreso de los aspirantes.\label{fig:f8}}
+\end{figure}
+
+Debido a lo visto y mencionado en la Figura \ref{fig:f8}, continuamos realizando un promedio entre las calificaciones de los exámenes de ingreso y comparándolo también con el promedio obtenido en la carrera.
+
+```{r}
+datos <- datos %>% mutate(Promedio_Ex=(Álgebra+Cálculo)/2)
+```
+
+Ahora, vamos a ver un gráfico por estatus de egreso de los alumnos en la Figura \ref{fig:f9}. Aquí, observamos que en efecto la calificación de los alumnos en los exámenes continúa dando una forma de contrastar si un alumno egresará o no de la maestría. Pero algo aún más importante es que esto se ve reflejado de forma aún más evidente por el promedio obtenido en la carrera. 
+
+Todo esto nos da una conclusión muy fuerte y es que en efecto, realizar las evaluaciones para evaluar si un aspirante logrará ser egresado es relevante, pero algo igual o quizás más importante es el promedio obtenido en la carrera, herramienta que nos dará buenos indicios de si el aspirante logrará egresar
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f9, echo=FALSE}
+attach(datos)
+par(mfrow=c(1,2))
+boxplot(Promedio_Ex~Egresado,col=c("lightcoral","lightgreen"),
+        xlab="Egresado",las=2,ylab="Calificaciones",
+        main="Promedio Exámenes")
+boxplot(Promedio~Egresado,col=c("lightcoral","lightgreen"),
+        xlab="Egresado",las=2,ylab="Calificaciones",main="Promedio Carrera")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de promedio de calificaciones por condición de Egreso de los aspirantes.\label{fig:f9}}
+\end{figure}
+
+  - **Graduado** (Figura \ref{fig:f12}). En este gráfico la diferencia es más evidente aún que con el de los egresados. Parece ser que una buena forma de explicar si un alumno egresará o no de la maestría, es con base en la calificación obtenida en los exámenes de ingreso. Esta diferencia se ve muy clara en el examen de álgebra (lineal), donde vemos que poco más de la mitad de los alumnos que sí se graduaron, obtuvieron una calificación mayor o igual a 7 en este examen, mientras que para los que no se graduaron, poco más de 6 de calificación, y principalmente se nota que cuando un alumno obtiene una calificación muy grave en este examen es bastante probable que no se gradúe de la maestría. Por otro lado, el examen de cálculo a comparación de los egresados, resulta ser una variable aún mejor para distinguir a los individuos aunque teniendo una interpretación similar a la del examen de lineal.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f12, echo=FALSE}
+par(mfrow=c(1,2))
+# Álgebra
+boxplot(Álgebra~Graduado,col=c("lightcoral","lightgreen"),xlab="Graduado",las=2,ylab="Calificaciones",main="Álgebra")
+# Cálculo
+boxplot(Cálculo~Graduado,col=c("lightcoral","lightgreen"),xlab="Graduado",las=2,ylab="",main="Cálculo")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de calificaciones de examen por condición de Graduado de los aspirantes.\label{fig:f12}}
+\end{figure}
+
+Debido a lo visto y mencionado en la Figura \ref{fig:f12}, continuamos realizando un promedio entre las calificaciones de los exámenes de ingreso y comparándolo también con el promedio obtenido en la carrera.
+
+Ahora, vamos a ver un gráfico por estatus de egreso de los alumnos en la Figura \ref{fig:f13}. Aquí, observamos que en efecto la calificación de los alumnos en los exámenes continúa dando una forma de contrastar si un alumno se graduará o no de la maestría. Pero algo aún más importante es que esto se ve reflejado de forma ahora muy similar con el promedio obtenido en la carrera. **Resulta entonces que para graduarse de la maestría sí influye (más que en el egreso) la calificación obtenida en el examen**. Esto al menos de una forma descriptiba
+
+Todo esto nos da una conclusión muy fuerte y es que en efecto, realizar los exámenes para evaluar si un aspirante logrará graduarse es relevante, pero algo igual o quizás más importante es el promedio obtenido en la carrera ya que esto influye tanto en el egreso como en la graduación, herramienta que nos dará buenos indicios de si el aspirante logrará la meta final. En el gráfico que realizaremos en la siguiente sección veremos el comportamiento grupal de las variables numéricas y tomando a consideración el estatus de graduación del alumno.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f13, echo=FALSE}
+attach(datos)
+par(mfrow=c(1,2))
+boxplot(Promedio_Ex~Graduado,col=c("lightcoral","lightgreen"),
+        xlab="Graduado",las=2,ylab="Calificaciones",
+        main="Promedio Exámenes")
+boxplot(Promedio~Graduado,col=c("lightcoral","lightgreen"),
+        xlab="Graduado",las=2,ylab="Calificaciones",main="Promedio Carrera")
+par(mfrow=c(1,1))
+```
+\vspace{-0cm}
+\caption{Boxplot de promedio de calificaciones por condición de Graduado de los aspirantes.\label{fig:f13}}
+\end{figure}
+
+
+- **Variables numéricas por estatus de graduación** (Figura \ref{fig:f10}). Este gráfico nos da la gran oportunidad de estudiar a fondo el comportamiento de de las variables de tipo numérico y su relación lineal. En particular podemos notar lo que intuitivamente es también lógico. 
+
+Por un lado tenemos la relación lineal más fuerte, que es entre la variable \texttt{Edad} y \texttt{Tiempo}, algo que tiene sentido, de alguna manera estamos viendo que a mayor edad tenga el aspirante, es porque también tardó más tiempo en terminar la carrera. Nótese que el histograma de \texttt{Edad}, nos dice que la mayoría de los aspirantes tienen entre 20 y 25 años; además, casi todos tardan entre 3 a 5 años en terminar la carrera. 
+La siguiente relación lineal fuerte e interesante que se aprecia se da con la variable \texttt{Promedio}. Notamos que, para las variables \texttt{Edad} y \texttt{Tiempo}, el promedio de la licenciatura guarda una relación lineal negativa. Esto se puede traducir a que los estudiantes más jóvenes en entrar a la maestría tienden a tener mayores calificaciones y terminar más rápido la carrera. Algo que también se ve reflejado en los exámenes de admisión, pues con estos se guarda una considerable relación lineal positiva, lo cual favorece en que los estudiantes con buen promedio de la carrera, evidentemente tienden a tener mejores calificaciones en los exámenes de ingreso.
+
+La última relación interesante que mencionaremos se da precisamente entre las calificaciones de los exámenes de ingreso, donde podemos apreciar que tienen una relación lineal positiva, por lo que, los alumnos que usualmente tienen buena calificación en un examen, en el otro también la tendrán. En cuanto a la relación con la variable respuesta, vemos que no es del todo distinguible algún patrón o comportamiento, salvo quizás, en la parte de calificaciones como el promedio y los exámenes de admisión, pues se obvserva ligeramente que los de valores altos parece que logran graduarse (triángulos amarillos) mientras que los que tienen bajos estos valores parecen no graduarse (triángulos verdes). 
+
+Hay que tener cuidado en que, las interpretaciones dadas anteriormente están en términos de una relación lineal que estén guardando las variables, esto nos puede servir también para ver si hay indicios de multicolinealidad entre las variables explicativas del modelo. Vale la pena mencionar, que en el la Figura \ref{fig:f10}, en la parte diagonal inferior de dicho gráfico, podemos ver a los individuos graficados variable contra variable en cuestión. Al mismo tiempo, podemos ver una pequeña regresión lineal con intervalo de confianza, que nos permite ver más a profundidad la posible relación lineal entre estas variables. 
+
+De estos últimos gráficos, podemos concluir que, aunque existe relación entre las variables explicativas, parece ser que tenemos buenas herramientas para poder utilizar un modelo lineal generalizado. Esto lo estaremos realizando en la siguiente sección.
+
+\begin{figure}
+\vspace{-0.5cm}
+```{r f10, echo=FALSE,out.width='97.5%'}
+colores <- c("darkgreen","gold")
+pairs.panels(datos[,c("Edad","Tiempo","Promedio","Álgebra","Cálculo")], 
+             method = "pearson", # correlation method
+             hist.col = viridis::viridis(12),
+             bg=colores[datos$Graduado],
+             pch=(25:24)[datos$Graduado],
+             lm = TRUE,
+             ci = TRUE,
+             main="Relación entre las variables continuas",
+             densty = TRUE,  # show density plots
+             ellipses = TRUE # show correlation ellipses
+)
+```
+\vspace{-0cm}
+\caption{Boxplot de calificaciones de examen por condición de Egreso de los aspirantes.\label{fig:f10}}
+\end{figure}
+
+# 4. Modelos
+
+Dado que contamos con dos variables respuesta dicotómicas, podemos descartar modelar sus medias con una distribución continua, con la poisson, con una binomial negativa y binomial con parámetro $n\neq 1$. Por lo que, dentro de los modelos lineales generalizados, tenemos dos principales y clásicas propuestas para intentar obtener un modelo. Esto es, usando básicamente la distribución Bernoulli, o bien, Binomial($n=1,p$) y dos ligas muy populares derivadas de esta propuesta, la liga logística y la probit.
+
+Antes de comenzar, recordemos que en un modelo lineal generalizado, básicamente estamos modelando la media de la respuesta del individuo $i$, es decir $\Esp{Y}=\mu_i$ a través de la transformación $g(\cdot)$ (función liga) como la combinación lineal de las covariables del individuo ($\underline{x}_i$) con los coeficientes ($\beta$). Esto es
+
+$$
+g(\mu_i) =  \beta^T\underline{x}_i \Leftrightarrow \mu_i = g^{-1}\left(\beta^T\underline{x}_i\right)
+$$
+
+Y que entonces los coeficientes tendrán interpretación de impacto sobre la media del individuo $i$ con base en dejar el resto de las variables fijas y a través de la inversa de la función liga $g^{-1}(\cdot)$. Por cuestiones entonces de interpretabilidad, nosotros estaremos mostrando los coeficientes transformados en todos nuestros resultados.
+
+Un último detalle a comentar previo a realizar propuestas de modelos es que, recordemos que del análisis exploratorio de los datos, nos enfrentamos a una dificultad interesante y es que los datos no están balanceados. En otras palabras, derivado de que tenemos muchos datos faltantes y más aún, pocos individuos con respuesta de estatus de egreso como "No" entonces tendremos que tener cuidado al momento de sacar o meter variables. Esto tiene un impacto grande ya que, de no tener cuidado, podríamos quedarnos con un modelo cuya variable respuesta consista únicamente en individuos que tengan como respuesta "Sí", tal es el caso de la variable \texttt{Fecha\_Examen} que no cuenta con individuos diferentes de "NA" tales que su estatus de Egresado sea "No".
+
+```{r}
+table(Egresado[!is.na(Fecha_Examen)])
+```
+
+Por consiguiente y derivado de este problema, lo que haremos será proponer 8 modelos diferentes para cada una de las ligas que utilizaremos. Estos modelos nacen del análisis exploratorio, los requisitos del contexto del problema y sentido común. La manera en que vamos a proponer las covariables será la siguiente.
+
+- Modelo 0: $\texttt{Respuesta}\sim\texttt{Sexo}$. Derivado del análisis descriptivo, este modelo lo proponemos únicamente para destacar que el género de un estudiante **NO** influye en el hecho de si egresará o no de la maestría. Esto es algo que, aunque inicialmente parece influenciar para entrar o no a la mae||stría, condicionado a que ya se entró, esto no genera influencia significativa.
+
+- Modelo 1: $\texttt{Respuesta}\sim\texttt{Edad+Tiempo}$. Este modelo lo creamos para ver si aspectos como el tiempo natural de un alumno tiene algún impacto en su respuesta al estatus de Egreso. Es decir, este modelo buscaba explorar la posibilidad de la edad o bien el tiempo que tardaron en realizar su carrera influenciaba de alguna manera o tenía un impacto en la respuesta.
+
+- Modelo 2: $\texttt{Respuesta}\sim\texttt{Promedio+Cálculo+Álgebra}$. Este modelo fue propuesto para evaluar en aspectos académicos con los que contamos a los individuos en términos de la respuesta. El objetivo es ver si lo que los alumnos presentan académicamente son herramientas suficientes como para lograr el objetivo de egresar de la maestría.
+
+- Modelo 3: $\texttt{Respuesta}\sim\texttt{Universidad+Carrera}$. Este modelo busca encontrar una influencia sobre los aspectos escolares previos a la maestría. Esto es, si de alguna manera las *alma máter* tienen un impacto sobre si el alumno logrará egresar.
+
+- Modelo 4: $\texttt{Respuesta}\sim\texttt{Veces+Posponer}$. Aquí estamos buscando la posible relación entre si los alumno que ha tenido una anomalía con el ingreso a la maestría y el hecho de graduarse de la misma. Esto puede ser de interés pues de existir alguna relación, el comité podría considerar otorgar esta clase de oportunidades a los aspirantes.
+
+- Modelo 5: $\texttt{Respuesta}\sim\texttt{Semestre}$. En particular este modelo se usó para explorar la posible relación de egreso con la fecha en que el alumno entró a la maestría. Esta relación suena un poco vaga en sí misma, pues salvo que por el hecho de que haya habido una generación tal que los profesores dieron particularmente bien o mal las clases o alguna situación de otra naturaleza, entonces se podría explicar la respuesta.
+
+- Modelo 6: $\texttt{Respuesta}\sim\texttt{Promedio+Promedio\_Ex}$. Este es uno de los más interesantes, pues de hecho estamos usando las variables explicativas que se usan en posgrado para dar pie a un aspirante a entrar a la maestría. De tal manera que resulta de interés fundamental, ya que esto es lo que da entrada a un alumno a la maestría y claro, el objetivo final es que los alumnos que ingresen logren culminar sus estudios, teniendo así un impacto sobre la respuesta.
+
+- Modelo 7: $\texttt{Respuesta}\sim\texttt{Promedio}$. Este último modelo lo seleccionamos de la parte de estadística descriptiva, ya que vemos que hay una diferencia notoria entre los alumnos que logran egresar con el promedio obtenido en la carrera. Es un modelo que además, guarda parsimonía con respecto al modelo anterior.
+
+*Nota*: Más modelos fueron utilizados, tratando dehacer combinaciones de estas variables, sin embargo, los resultados obtenidos dada la información con la que contamos no fueron del todo relevantes, así que, se expondrá lo que más logra explicar las variables y hace sentido tomar a consideración.
+
+**Lo anterior lo realizaremos primero para ambas variables respuesta**
+
+```{r,echo=FALSE}
+attach(datos)
+tabla_fit<-function(fit){
+  
+  # Esta función asume la existencia de la función inv.liga() que es la inversa de la función liga que se está trabajando.
+  
+  # Esto para modelos lineales, crea un data.frame con Coef, CI y nivel de confianza. OJO Aquí los coeficientes están exponenciados.
+  fit.aux <- fit
+  # Cantidad de dígitos
+  digitos <- 3
+  # Este será el data frame que vamos a interpretar
+  aux <- fit.aux %>%  summary %>%  coef
+  # Vamos a interpretar los p-values
+  interpreta <- function(x){
+    ifelse(x<0.001,"***",
+           ifelse(x<0.01,"**",
+                  ifelse(x<0.05,"*",
+                         ifelse(x<0.1,".",""))))}
+  # Juntamos todo en un data.frame
+  aux <- cbind(inv.liga(aux[,1]) %>%  round(digitos),
+               aux[,c(2,4)] %>%  round(digitos),
+               sapply(aux[,4],interpreta))
+  f.aux <- function(x){paste0("(",x[1],",",x[2],")")}
+  aux[,2] <-  apply(inv.liga(confint(fit.aux)) %>% round(digitos),1,FUN = f.aux)
+  colnames(aux)<-c("inv.liga(coef)","CI(95%)","p-value","Signif.")
+  return(aux)
+}
+
+modelos <- list()
+```
+
+
+## 4.1 Para los Egresados
+
+### 4.1.1 Regresión Logistica / Logit
+
+Comenzamos con el modelo más usual y clásico que podemos aplicar a este tipo de comportamientos de variable respuesta. Para esto, recordemos que la inversa de la función liga es
+
+$$
+g^{-1}(x) = \frac{1}{1+e^{-x}}
+$$
+
+Que en código viene dada por
+
+```{r,echo=TRUE}
+inv.liga <- function(x){
+  plogis(x)
+}
+```
+
+
+- Modelo 0 (Logit) - Tabla 3
+
+```{r}
+fit0logit<-glm(Egresado~Sexo,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit0logit <- fit0logit
+kable(tabla_fit(fit0logit), "latex", caption = paste0("Modelo 0 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+De este modelo, podemos ver que el Sexo no parece tener una influencia sobre la variable respuesta. Algo que suena lógico pues no debería ser algo que impida o motive a un alumno en terminar sus estudios.
+
+- Modelo 1 (Logit) - Tabla 4
+
+```{r}
+fit1logit<-glm(Egresado~Edad+Tiempo,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit1logit <- fit1logit
+kable(tabla_fit(fit1logit), "latex", caption = paste0("Modelo 1 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Vemos que la edad tiene una influencia pequeña sobre la variable respuesta, al menos tomándola en conjunto con el tiempo en que logró culminar su carrera. Esto quizás hace sentido ya que, como en muchas ocasiones, la edad puede ser un factor que puede motivar a culminar algún proyecto, o en pocas palabras, a terminar lo comenzado.
+
+- Modelo 2 (Logit) - Tabla 5
+
+```{r}
+fit2logit<-glm(Egresado~Promedio+Cálculo+Álgebra,family = binomial(link = "logit"))
+```
+
+```{r,echo=FALSE}
+modelos$fit2logit <- fit2logit
+kable(tabla_fit(fit2logit), "latex", caption = paste0("Modelo 2 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Podemos observar que lo visto en la estadística descriptiva parece cobrar fuerza aquí. Ya que el promedio de la carrera parece ser una variable que en efecto explica bastante bien la respuesta. Lo interesante es que, al menos por separado, la calificación de los exámenes de admisión no parecen tener una influencia significativa.
+
+- Modelo 3 (Logit) - Tabla 6
+
+```{r}
+fit3logit<-glm(Egresado~Universidad+Carrera,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit3logit <- fit3logit
+kable(tabla_fit(fit3logit), "latex", caption = paste0("Modelo 3 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Parece que las variables que representan los antecedentes académicos de los estudiantes en términos de la Carrera y lugar de estudios previo, tampoco muestra una influencia sobre la respuesta. Algo interesante, ya que en este sentido, podemos decir al menos que no es suficiente fijarnos en eso para que digamos que un alumno será egresado.
+
+- Modelo 4 (Logit) - Tabla 7
+
+```{r}
+fit4logit<-glm(Egresado~Veces+Posponer,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit4logit <- fit4logit
+kable(tabla_fit(fit4logit), "latex", caption = paste0("Modelo 4 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+En este modelo, tampoco vemos que exista influencia al menos con respecto a estas variables. Esto debe ser algo que el comité académico debería pensar como que es una acción neutral al hecho de que los estudiantes logren el objetivo de egresar.
+
+- Modelo 5 (Logit) - Tabla 8
+
+```{r}
+fit5logit<-glm(Egresado~Semestre,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit5logit <- fit5logit
+kable(tabla_fit(fit5logit), "latex", caption = paste0("Modelo 5 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Como ya lo habíamos pensado desde el previo, vemos que la influencia del semestre no parece afectar a la respuesta.
+
+- Modelo 6 (Logit) - Tabla 9
+
+```{r}
+fit6logit<-glm(Egresado~Promedio+Promedio_Ex,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit6logit <- fit6logit
+kable(tabla_fit(fit6logit), "latex", caption = paste0("Modelo 6 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Desde el previo habíamos pensado que este modelo debería ser importante a considerar por el comité, sorprendentemente vemos que el promedio de los exámenes generales parece no importar en conjunto con el promedio de la carrera. Esto es importante, ya que pareciera ser que, de los filtros para el ingreso a la maestría, el único que realmente influye en el hecho de que los alumnos logren ser egresados es precisamente el promedio de la carrera.
+
+- Modelo 7 (Logit) - Tabla 10
+
+```{r}
+fit7logit<-glm(Egresado~Promedio,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+modelos$fit7logit <- fit7logit
+kable(tabla_fit(fit7logit), "latex", caption = paste0("Modelo 7 para la liga Logit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Llegamos a este último modelo, donde podemos ver que la variable promedio resulta ser muy significativa para evaluar si las personas lograrán egresar de la maestría. Esto lo podemos interpretar como que, cuando un alumno tiene el interés desde la carrera por aprender más, se lo lleva hasta la maestría donde también logrará sus objetivos con una probabilidad alta.
+
+### 4.1.2 Regresión Probit
+
+Recordemos que la inversa de la función liga es
+
+$$
+  g^{-1}(x) = \Phi(x)
+$$
+  
+  Que en código viene dada por
+
+```{r,echo=TRUE}
+inv.liga <- function(x){
+  pnorm(x)
+}
+```
+
+
+- Modelo 0 (Probit) - Tabla 11
+
+```{r}
+fit0probit<-glm(Egresado~Sexo,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit0probit <- fit0probit
+kable(tabla_fit(fit0probit), "latex", caption = paste0("Modelo 0 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Así como con la liga anterior, de este modelo, podemos ver que el Sexo no parece tener una influencia sobre la variable respuesta. Algo que suena lógico pues no debería ser algo que impida o motive a un alumno en terminar sus estudios.
+
+- Modelo 1 (Probit) - Tabla 12
+
+```{r}
+fit1probit<-glm(Egresado~Edad+Tiempo,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit1probit <- fit1probit
+kable(tabla_fit(fit1probit), "latex", caption = paste0("Modelo 1 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+También aquí vemos que la edad tiene una influencia pequeña sobre la variable respuesta, al menos tomándola en conjunto con el tiempo en que logró culminar su carrera. Esto quizás hace sentido ya que, como en muchas ocasiones, la edad puede ser un factor que puede motivar a culminar algún proyecto, o en pocas palabras, a terminar lo comenzado.
+
+- Modelo 2 (Probit) - Tabla 13
+
+```{r}
+fit2probit<-glm(Egresado~Promedio+Cálculo+Álgebra,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit2probit <- fit2probit
+kable(tabla_fit(fit2probit), "latex", caption = paste0("Modelo 2 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Nuevamente, podemos observar que lo visto en la estadística decriptiva parece cobrar fuerza aquí. Ya que el promedio parece ser una variable que en efecto explica bastante bien la respuesta. Lo interesante es que, al menos por separado, la calificación de los exámenes de admisión no parecen tener una influencia significativa.
+
+
+- Modelo 3 (Probit) - Tabla 14
+
+```{r}
+fit3probit<-glm(Egresado~Universidad+Carrera,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit3probit <- fit3probit
+kable(tabla_fit(fit3probit), "latex", caption = paste0("Modelo 3 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+También aquí parece que las variables que representan los antecedentes académicos de los estudiantes en términos de la Carrera y lugar de estudios previo, tampoco muestra una influencia sobre la respuesta. Algo interesante, ya que en este sentido, podemos decir al menos que no es suficiente fijarnos en eso para que digamos que un alumno será egresado.
+
+- Modelo 4 (Probit) - Tabla 15
+
+```{r}
+fit4probit<-glm(Egresado~Veces+Posponer,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit4probit <- fit4probit
+kable(tabla_fit(fit4probit), "latex", caption = paste0("Modelo 4 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Una vez más, en este modelo, tampoco vemos que exista influencia al menos con respecto a estas variables. Esto debe ser algo que el comité académico debería pensar como que es una acción neutral al hecho de que los estudiantes logren el objetivo de egresar.
+
+
+- Modelo 5 (Probit) - Tabla 16
+
+```{r}
+fit5probit<-glm(Egresado~Semestre,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit5probit <- fit5probit
+kable(tabla_fit(fit5probit), "latex", caption = paste0("Modelo 5 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Podemos ver nuevamente que como ya lo habíamos pensado desde el previo, vemos que la influencia del semestre no parece afectar a la respuesta.
+
+- Modelo 6 (Probit) - Tabla 17
+
+```{r}
+fit6probit<-glm(Egresado~Promedio+Promedio_Ex,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit6probit <- fit6probit
+kable(tabla_fit(fit6probit), "latex", caption = paste0("Modelo 6 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Así como con la liga anterior, ya desde el previo habíamos pensado que este modelo debería ser importante a considerar por el comité, sorprendentemente vemos que el promedio de los exámenes generales parece no importar en conjunto con el promedio de la carrera. Esto es importante, ya que pareciera ser que, de los filtros para el ingreso a la maestría, el único que realmente influye en el hecho de que los alumnos logren ser egresados es precisamente el promedio de la carrera.
+
+- Modelo 7 (Probit) - Tabla 18
+
+```{r}
+fit7probit<-glm(Egresado~Promedio,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+modelos$fit7probit <- fit7probit
+kable(tabla_fit(fit7probit), "latex", caption = paste0("Modelo 7 para la liga Probit de los Egresados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+Así, vemos de nuevo que llegamos a este último modelo, donde podemos ver que la variable promedio resulta ser muy significativa para evaluar si las personas lograrán egresar de la maestría. Esto lo podemos interpretar como que, cuando un alumno tiene el interés desde la carrera por aprender más, se lo lleva hasta la maestría donde también logrará sus objetivos con una probabilidad alta.
+
+## 4.2 Para los Graduados
+
+Para esta sección lo que haremos será quitar de los datos a aquellos alumnos que ingresaron en el semestre más actual, es decir, los que están en el semestre \texttt{2019-2} de tal manera que esos de hecho vamos a predecirlos una vez seleccionando el mejor modelo. La razón por la que hacemos esto es porque no sería justo incluir un modelo que los contemple pues **a la fecha de este trabajo** resulta complicado que ya se hayan graduado, pero siendo exigentes, sí pudieron ya haber culminado sus créditos, es decir, que egresaron.
+
+```{r}
+test  <- datos[datos$Semestre=="2019-2",]
+datos <- datos[!datos$Semestre=="2019-2",]
+```
+
+
+```{r,echo=FALSE}
+fits <- list()
+```
+
+
+### 4.2.1 Regresión Logistica / Logit
+
+Continuamos regresando con el modelo más usual y clásico que podemos aplicar a este tipo de comportamientos de variable respuesta.
+
+```{r,echo=FALSE}
+inv.liga <- function(x){
+  plogis(x)
+}
+```
+
+
+- Modelo 0 (Logit) - Tabla 19
+
+```{r}
+fit0logit<-glm(Graduado~Sexo,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit0logit <- fit0logit
+kable(tabla_fit(fit0logit), "latex", caption = paste0("Modelo 0 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+De este modelo, podemos ver que el Sexo no parece tener una influencia sobre la variable respuesta. Algo que suena lógico pues no debería ser algo que impida o motive a un alumno en terminar sus estudios. **Notemos que a diferencia de la respuesta anterior, vemos aquí que ni si quiera el intercepto resulta significativo**.
+
+- Modelo 1 (Logit) - Tabla 20
+
+```{r}
+fit1logit<-glm(Graduado~Edad+Tiempo,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit1logit <- fit1logit
+kable(tabla_fit(fit1logit), "latex", caption = paste0("Modelo 1 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Vemos que la edad tiene una influencia un poco más grande sobre la variable respuesta, al menos tomándola en conjunto con el tiempo en que logró culminar su carrera. Esto quizás hace sentido ya que, como en muchas ocasiones, la edad puede ser un factor que puede motivar a culminar algún proyecto, o en pocas palabras, a terminar lo comenzado.
+
+- Modelo 2 (Logit) - Tabla 21
+
+```{r}
+fit2logit<-glm(Graduado~Promedio+Cálculo+Álgebra,family = binomial(link = "logit"))
+```
+
+```{r,echo=FALSE}
+fits$fit2logit <- fit2logit
+kable(tabla_fit(fit2logit), "latex", caption = paste0("Modelo 2 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Podemos observar que lo visto en la estadística decriptiva parece cobrar fuerza aquí. Ya que el promedio parece ser una variable que en efecto explica bastante bien la respuesta. Lo interesante es que, **ahora el examen de cálculo resulta significativo** algo MUY interesante, ya que para los egresados parece que el examen de Álgebra (lineal) era importante, pero ahora resulta que para los graduados el más significativo el de cálculo. **Esto le da importancia y sentido a realizar ambos exámenes**.
+
+- Modelo 3 (Logit) - Tabla 22
+
+```{r mod3}
+fit3logit<-glm(Graduado~Universidad+Carrera,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit3logit <- fit3logit
+kable(tabla_fit(fit3logit), "latex", caption = paste0("Modelo 3 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Parece que las variables que representan los antecedentes académicos de los estudiantes en términos de la Carrera y lugar de estudios previo, tampoco muestra una influencia sobre la respuesta **salvo en la carrera de matemáticas** la cuál es significatica, algo sumamente interesante, parece que de hecho hay un aumento a favor de graduarse si se viene de esta carrera.
+
+- Modelo 4 (Logit) - Tabla 23
+
+```{r mod4}
+fit4logit<-glm(Graduado~Veces+Posponer,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit4logit <- fit4logit
+kable(tabla_fit(fit4logit), "latex", caption = paste0("Modelo 4 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Este modelo vaya que es interesante, pues estamos viendo que el hecho de posponer la entrada a la maestría es un factor que influye a que los alumnos **NO** se titulen de manera significativa, algo muy importante a considerar por parte del comité.
+
+- Modelo 5 (Logit) - Tabla 24
+
+```{r mod5}
+fit5logit<-glm(Graduado~Semestre,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit5logit <- fit5logit
+kable(tabla_fit(fit5logit), "latex", caption = paste0("Modelo 5 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Como ya lo habíamos pensado desde el previo, vemos que la influencia del semestre no parece afectar a la respuesta.
+
+- Modelo 6 (Logit) - Tabla 25
+
+```{r mod6}
+fit6logit<-glm(Graduado~Promedio+Promedio_Ex,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit6logit <- fit6logit
+kable(tabla_fit(fit6logit), "latex", caption = paste0("Modelo 6 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Desde el previo habíamos pensado que este modelo debería ser importante a considerar por el comité, sorprendentemente vemos que el promedio de los exámenes generales parece ser significativo **para la graduación del alumno** en conjunto con el promedio de la carrera. Esto es importante, ya que pareciera ser que, de los filtros para el ingreso a la maestría, el único que realmente influye en el hecho de que los alumnos logren ser egresados es precisamente el promedio de la carrera. **Pero para que los alumnos alcancen la meta final de titulación parece importar significativamente el promedio de los exámenes de admisión**.
+
+- Modelo 7 (Logit) - Tabla 26
+
+```{r}
+fit7logit<-glm(Graduado~Promedio,family = binomial(link = "logit"))
+```
+```{r,echo=FALSE}
+fits$fit7logit <- fit7logit
+kable(tabla_fit(fit7logit), "latex", caption = paste0("Modelo 7 para la liga Logit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Llegamos a este último modelo, donde podemos ver que la variable promedio resulta ser muy significativa para evaluar si las personas lograrán graduarse de la maestría. Esto lo podemos interpretar como que, cuando un alumno tiene el interés desde la carrera por aprender más, se lo lleva hasta la maestría donde también logrará sus objetivos con una probabilidad alta.
+
+### 4.1.2 Regresión Probit
+
+```{r,echo=FALSE}
+inv.liga <- function(x){
+  pnorm(x)
+}
+```
+
+
+- Modelo 0 (Probit) - Tabla 27
+
+```{r}
+fit0probit<-glm(Graduado~Sexo,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit0probit <- fit0probit
+kable(tabla_fit(fit0probit), "latex", caption = paste0("Modelo 0 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Así como con la liga anterior, de este modelo, podemos ver que el Sexo no parece tener una influencia sobre la variable respuesta. Algo que suena lógico pues no debería ser algo que impida o motive a un alumno en terminar sus estudios.  **Notemos que a diferencia de la respuesta anterior, vemos aquí que ni si quiera el intercepto resulta significativo**
+
+- Modelo 1 (Probit) - Tabla 28
+
+```{r}
+fit1probit<-glm(Graduado~Edad+Tiempo,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit1probit <- fit1probit
+kable(tabla_fit(fit1probit), "latex", caption = paste0("Modelo 1 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+También aquí vemos que la edad tiene una influencia ya muy buena influencia sobre la variable respuesta, al menos tomándola en conjunto con el tiempo en que logró culminar su carrera. Esto quizás hace sentido ya que, como en muchas ocasiones, la edad puede ser un factor que puede motivar a culminar algún proyecto, o en pocas palabras, a terminar lo comenzado.
+
+- Modelo 2 (Probit) - Tabla 29
+
+```{r}
+fit2probit<-glm(Graduado~Promedio+Cálculo+Álgebra,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit2probit <- fit2probit
+kable(tabla_fit(fit2probit), "latex", caption = paste0("Modelo 2 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Nuevamente, podemos observar que lo visto en la estadística descriptiva parece cobrar fuerza aquí. Ya que el promedio de la carrera parece ser una variable que en efecto explica bastante bien la respuesta. Lo interesante es que, **ahora el examen de cálculo resulta significativo** algo MUY interesante, ya que para los egresados parece que el examen de Álgebra (lineal) era importante, pero ahora resulta que para los graduados el más significativo el de cálculo. **Esto le da importancia y sentido a realizar ambos exámenes**.
+
+
+- Modelo 3 (Probit) - Tabla 30
+
+```{r mod3p}
+fit3probit<-glm(Graduado~Universidad+Carrera,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit3probit <- fit3probit
+kable(tabla_fit(fit3probit), "latex", caption = paste0("Modelo 3 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+También aquí parece que las variables que representan los antecedentes académicos de los estudiantes en términos de la Carrera y lugar de estudios previo, tampoco muestra una influencia sobre la respuesta **salvo en la carrera de matemáticas** la cuál es significatica, algo sumamente interesante, parece que de hecho hay un aumento a favor de graduarse si se viene de esta carrera.
+
+- Modelo 4 (Probit) - Tabla 31
+
+```{r mod4p}
+fit4probit<-glm(Graduado~Veces+Posponer,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit4probit <- fit4probit
+kable(tabla_fit(fit4probit), "latex", caption = paste0("Modelo 4 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Este modelo vaya que es interesante, pues estamos viendo que el hecho de posponer la entrada a la maestría es un factor que influye a que los alumnos **NO** se titulen de manera significativa, algo muy importante a considerar por parte del comité.
+
+
+- Modelo 5 (Probit) - Tabla 32
+
+```{r}
+fit5probit<-glm(Graduado~Semestre,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit5probit <- fit5probit
+kable(tabla_fit(fit5probit), "latex", caption = paste0("Modelo 5 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Podemos ver nuevamente que como ya lo habíamos pensado desde el previo, vemos que la influencia del semestre no parece afectar a la respuesta.
+
+- Modelo 6 (Probit) - Tabla 33
+
+```{r mod6p}
+fit6probit<-glm(Graduado~Promedio+Promedio_Ex,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit6probit <- fit6probit
+kable(tabla_fit(fit6probit), "latex", caption = paste0("Modelo 6 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Nuevamente, comentamos que desde el previo habíamos pensado que este modelo debería ser importante a considerar por el comité, sorprendentemente vemos que el promedio de los exámenes generales parece ser significativo **para la graduación del alumno** en conjunto con el promedio de la carrera. Esto es importante, ya que pareciera ser que, de los filtros para el ingreso a la maestría, el único que realmente influye en el hecho de que los alumnos logren ser egresados es precisamente el promedio de la carrera. **Pero para que los alumnos alcancen la meta final de titulación parece importar significativamente el promedio de los exámenes de admisión**.
+
+- Modelo 7 (Probit) - Tabla 34
+
+```{r}
+fit7probit<-glm(Graduado~Promedio,family = binomial(link = "probit"))
+```
+```{r,echo=FALSE}
+fits$fit7probit <- fit7probit
+kable(tabla_fit(fit7probit), "latex", caption = paste0("Modelo 7 para la liga Probit de los Graduados"), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Así, vemos de nuevo que llegamos a este último modelo, donde podemos ver que la variable promedio resulta ser muy significativa para evaluar si las personas lograrán graduarse de la maestría. Esto lo podemos interpretar como que, cuando un alumno tiene el interés desde la carrera por aprender más, se lo lleva hasta la maestría donde también logrará sus objetivos con una probabilidad alta.
+
+# 5. Selección de Modelo
+
+## 5.1 Comparativas de Modelo
+
+```{r,echo=FALSE}
+df.AICs.BICs<-function(modelos){
+  # modelos := Una lista con los modelos a los que les queremos obtener los AICs y BICs
+  df<-data.frame(
+  AICs=sapply(modelos,AIC),
+  BICs=sapply(modelos,BIC)
+  )
+  return(df)
+}
+```
+
+
+### 5.1.1 Para los egresos
+
+Para poder seleccionar un modelo final, consideraremos las estadísticas AIC y BIC para lograr comparar los modelos, esto lo hacemos en la Tabla 35.
+
+```{r,echo=FALSE}
+kable(df.AICs.BICs(modelos), "latex", caption = paste0("Comparación de modelos con AICs y BICs."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Donde podemos seleccionar dos candidatos a modelo final, ambos pertenecientes a la liga Probit, los modelos 1 y 7. Los cuales son seleccionados, uno por menor nivel en las estadísticas en cuestión y otro por mayor representabilidad, sentido lógico y significancia respectivamente.
+
+### 5.1.2 Para los graduados
+
+Para poder seleccionar un modelo final, consideraremos nuevamente las estadísticas AIC y BIC para lograr comparar los modelos, esto lo hacemos en la Tabla 36.
+
+```{r,echo=FALSE}
+kable(df.AICs.BICs(fits), "latex", caption = paste0("Comparación de modelos con AICs y BICs."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+Aquí hay que tener mucho cuidado para proponer el modelo, ya que vamos a seleccionar dos candidatos a modelo final, ambos pertenecientes a la liga Probit, los modelos 1 y 6. Los cuales son seleccionados, uno por menor nivel en las estadísticas en cuestión y otro por mayor representabilidad, sentido lógico y significancia respectivamente. Aunque podríamos ver que hay otras propuestas de modelos con base únicamente en el AIC y BIC, pero si nos remitimos a lo que estos representarían podría carecer de sentido.
+
+
+## 5.2 Interpretación del modelo final
+
+### 5.2.1 Para los egresados
+
+- Modelo 1 (Probit) - Tabla 12: En términos de los coeficientes, parece que la edad y el tiempo son efectos que a medida que aumentan perjudican la posibilidad de que el alumno no logre egresar de la maestría. Esto se conclye ya que su estimación bajo la inversa de la liga probit es menor a 0.5.  Este puede que sea un ejemplo donde considerar el AIC y BIC únicamente no sea siempre del todo apropiedo, hay que también buscar un contexto al problema y parece que este es el caso para este modelo, por lo tanto, aunque es un modelo seleccionado, posiblemente el mejor sea el que comentaremos a continuación.
+
+- Modelo 7 (Probit) - Tabla 18: Este es el modelo que más sentido puede tener, y es que parece que el promedio es algo que influye altamente en que si los alumnos lograrán el objetivo de egresar, a medida que el promedio crece vemos que las probabilidades de que el alumno egrese aumentan, de tal manera que podemos decir que este es el efecto más importante que debemos considerar para poder predecir si el alumno logrará el objetivo.
+
+### 5.2.2 Para los graduados
+
+- Modelo 1 (Probit) - Tabla 28: En términos de los coeficientes, parece que la edad (principalmente) y el tiempo son efectos que a medida que aumentan perjudican la posibilidad de que el alumno no logre graduarse de la maestría. Esto se conclye ya que su estimación bajo la inversa de la liga probit es menor a 0.5.  Este puede que sea otro ejemplo donde considerar el AIC y BIC únicamente no sea siempre del todo apropiedo, hay que también buscar un contexto al problema y parece que este es el caso para este modelo, por lo tanto, aunque es un modelo seleccionado, posiblemente el mejor sea el que comentaremos a continuación.
+
+- Modelo 6 (Probit) - Tabla 34: Este es el modelo que más sentido puede tener, y es que parece que el promedio **en conjunto con el promedio de los exámenes de admisión** es algo que influye altamente en que si los alumnos lograrán el objetivo de egresar, a medida que los promedios crecen vemos que las probabilidades de que el alumno se gradúe aumentan, de tal manera que podemos decir que estos son los efectos más importantes que debemos considerar para poder predecir si el alumno logrará el objetivo final.
+
+# 6. Predicciones
+
+En particular las predicciones como ya lo habíamos comentado las haremos sobre los graduados. Estas predicciones las veremos en la tabla de a continuación y se harán con el Modelo 6 del tipo Probit como se seleccionó anteriormente.
+
+```{r}
+test$Graduado <- predict(object = fits$fit6probit,
+                         newdata = test[,c("Promedio_Ex","Promedio")]) %>% 
+                 inv.liga() %>% 
+                 round(3)
+```
+
+Donde mostramos en la Tabla 37 las probabilidades de graduación estimadas, junto con otras medidas interesantes de los individuos
+
+
+```{r,echo=FALSE}
+aux <- test %>% dplyr::select(Posponer,Edad,Carrera,
+                              Universidad,Tiempo,Veces,
+                              Promedio_Ex,Promedio,Graduado)
+kable(aux, "latex", caption = paste0("Predicción de los alumnos graduados para el semestre 2019-2 utilizando el Modelo 6 - Probit."), booktabs = T,align='c') %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
+
+
+
+# 7. Conclusiones
+
+De todos los modelos estudiados, podemos ver desde la parte descriptiva, que el efecto más poderoso que tenemos para ver si un alumno/aspitante logrará egresar de la maestría es el promedio obtenido en la carrera. **Mientras que para que el alumno logre graduarse, hay que enfocarnos tanto en los exámenes de admisión como en el promedio de la carrera**. Esto tiene mucho sentido y más en la dirección que apunta el modelo final propuesto, a medida que el/los promedio(s) crece podemos pensar que este alumno tiene aspiraciones de complementar su formación académica y por lo tanto logrará los objetivos más importantes de entrar a la maestría con una probabilidad mayor a los que no.
+
+Esto en general nos dice que los métodos propuestos por el comité son esencialmente correctos y buenos filtros para aquellos alumnos que sí están interesados en extender sus conocimientos y grado académico. Quizás una buena sugerencia, sería considerar más a fondo, con base en el modelo y la estadística descriptiva el promedio de los aspirantes para así tener aún más egresados.
