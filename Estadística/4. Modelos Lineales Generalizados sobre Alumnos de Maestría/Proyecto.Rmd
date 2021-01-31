@@ -27,8 +27,7 @@ library(psych)
 library(VGAM)
 
 # Fijamos el diectorio de trabajo.
-setwd("~/Actuaría/Maestría/3er. Semestre/GLM/Proyecto")
-
+setwd("~/Actuaría/GitHub/R_Actuarial/Estadística/4. Modelos Lineales Generalizados sobre Alumnos de Maestría")
 # Procesamos un poco la información.
 datos <- read.csv("edgar.csv",na.strings = "",encoding = "UTF-8")
 colnames(datos)<-c("Semestre",      # Semestre en que ingresó a la maestría.
