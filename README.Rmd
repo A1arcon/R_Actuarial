@@ -143,6 +143,6 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 
 
 ```{r}
-plot(rnorm(10))
+foto("README_files/figure-gfm/AMAT.PNG")
 ```
 

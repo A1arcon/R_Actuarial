@@ -319,4 +319,4 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 > en el botón que dice `Raw`. 4. Seleccionar la opción *save as*
 > (guardar cómo) y el resto es seleccionar dónde lo deseamos guardar.
 
-<img src="README_files/figure-gfm/unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/AMAT.PNG" width="575" style="display: block; margin: auto;" />
