@@ -286,7 +286,7 @@ temas de cálculo, álgebra, análisis; pasando por probabilidad,
 estadística, riesgo, hasta mangas y libros de música. :) Ojalá les
 sirva.
 
-<img src="Libros.jpg" width="50%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/unnamed-chunk-1-1.png" width="50%" style="display: block; margin: auto;" />
 
 ## Esperen más próximamente…
 
