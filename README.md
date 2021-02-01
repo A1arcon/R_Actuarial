@@ -286,8 +286,6 @@ temas de cálculo, álgebra, análisis; pasando por probabilidad,
 estadística, riesgo, hasta mangas y libros de música. :) Ojalá les
 sirva.
 
-<img src="libros.jpg" width="50%" style="display: block; margin: auto;" />
-
 ## Esperen más próximamente…
 
 ### Contacto

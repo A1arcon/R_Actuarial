@@ -112,11 +112,6 @@ En este [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdow
 
 Les comparto todos los libros digitales con los que cuento. Hay desde temas de cálculo, álgebra, análisis; pasando por probabilidad, estadística, riesgo, hasta mangas y libros de música. :) Ojalá les sirva.
 
-```{r,out.width='50%'}
-foto("libros.jpg")
-```
-
-
 ## Esperen más próximamente...
 
 ### Contacto
