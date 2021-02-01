@@ -26,7 +26,7 @@ Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos 
 
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
-```{r,out.width='50%'}
+```{r,out.width='50%',fig.align = 'center'}
 foto("README_files/figure-gfm/AMAT.PNG")
 ```
 
@@ -64,7 +64,7 @@ Este [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/Estad%C3%ADstica
 
 2. [**Predicción de la precipitación en estados al noroeste de México**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/2.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico)
 
-```{r,out.width='50%'}
+```{r,out.width='50%',fig.align = 'center'}
 foto("README_files/figure-gfm/Noroeste_Mex.PNG")
 ```
 
