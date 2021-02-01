@@ -26,6 +26,10 @@ Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos 
 
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
+```{r,out.width='50%'}
+foto("README_files/figure-gfm/AMAT.PNG")
+```
+
 Aquí encontrarán los códigos que fueron utilizados para la elaboración de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
 1. [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0)) [(Video)](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
@@ -141,8 +145,4 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 > 3. En el lado superior derecho de la visualización del archivo, da **click derecho** en el botón que dice `Raw`.
 > 4. Seleccionar la opción *save as* (guardar cómo) y el resto es seleccionar dónde lo deseamos guardar.
 
-
-```{r}
-foto("README_files/figure-gfm/AMAT.PNG")
-```
 
