@@ -26,10 +26,8 @@ Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos 
 
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
-```{r,out.width='50%',htmltools::div(align="center")}
-htmltools::div(align="center")
+```{r,out.width='50%',align="center"}
 foto("README_files/figure-gfm/AMAT.PNG")
-htmltools::div(align="center")
 ```
 
 Aquí encontrarán los códigos que fueron utilizados para la elaboración de las cápsulas en las que participo en el canal de Youtube de AMAT.
