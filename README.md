@@ -131,3 +131,5 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 > 2. Dale click para ver los contenidos dentro de la UI (*Interfaz de Usuario*) de GitHub.
 > 3. En el lado superior derecho de la visualización del archivo, da **click derecho** en el botón que dice `Raw`.
 > 4. Seleccionar la opción *save as* (guardar cómo) y el resto es seleccionar dónde lo deseamos guardar.
+
+
