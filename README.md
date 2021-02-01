@@ -112,6 +112,8 @@ lineales generalizados y datos categóricos.
 2.  [**Predicción de la precipitación en estados al noroeste de
     México**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/2.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico)
 
+<img src="README_files/figure-gfm/Noroeste_Mex.PNG" width="50%" style="display: block; margin: auto;" />
+
 Este
 [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/Estad%C3%ADstica/2.%20Predicci%C3%B3n%20de%20la%20precipitaci%C3%B3n%20en%20estados%20al%20noroeste%20de%20M%C3%A9xico/Proyecto%20RMD.Rmd)
 es un
