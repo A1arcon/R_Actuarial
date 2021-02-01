@@ -26,7 +26,7 @@ STAM de la SoA (Society Of Actuaries).
 
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
-<img src="README_files/figure-gfm/AMAT.PNG" width="50%" style="display: block; margin: auto;" /><div align="center"></div>
+<div align="center"></div><img src="README_files/figure-gfm/AMAT.PNG" width="50%" />
 
 Aquí encontrarán los códigos que fueron utilizados para la elaboración
 de las cápsulas en las que participo en el canal de Youtube de AMAT.
