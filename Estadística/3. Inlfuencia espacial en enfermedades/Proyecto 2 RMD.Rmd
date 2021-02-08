@@ -40,7 +40,7 @@ library(dplyr)
 
 # 1. Resumen del Proyecto
 
-El proyecto tiene como objetivo **estimar el riesgo relativo** de muerte de cuna para los años 1974-1978 y 1979-1984 para el estado de California del Norte por condado. Para esto, comenzaremos dando una introducción de qué es la muerte de cuna y algunos otros datos derivados de esta enfermedad. Posteriormente vamos a mostrar un análisis descriptivo de los datos con los que contamos para realizar un modelo estadístico que pueda estimar el riesgo relativo por condado. Luego, realizamos un modelo lineal generalizado que no contempla el efecto espacial con la finalidad de mostrar que es necesario acudir a esta rama de la estadística. Una vez expuesto el punto anterior, realizamos un par de modelos espaciales del tipo SAR y CAR, para finalmente buscar el mejor modelo por periodo y culminar respondiendo a tres preguntas importantes derivadas de este análisis.
+El proyecto tiene como objetivo **estimar el riesgo relativo** de muerte de cuna para los años 1974-1978 y 1979-1984 para el estado de Carolina del Norte por condado. Para esto, comenzaremos dando una introducción de qué es la muerte de cuna y algunos otros datos derivados de esta enfermedad. Posteriormente vamos a mostrar un análisis descriptivo de los datos con los que contamos para realizar un modelo estadístico que pueda estimar el riesgo relativo por condado. Luego, realizamos un modelo lineal generalizado que no contempla el efecto espacial con la finalidad de mostrar que es necesario acudir a esta rama de la estadística. Una vez expuesto el punto anterior, realizamos un par de modelos espaciales del tipo SAR y CAR, para finalmente buscar el mejor modelo por periodo y culminar respondiendo a tres preguntas importantes derivadas de este análisis.
 
 # 2. Introducción
 
@@ -102,17 +102,17 @@ dfaux4 <- data.frame(CRESS_ID=NC$CRESS_ID[76:100],Nombre=NC$NAME[76:100],
                         BIR79=NC$BIR79[76:100],    SID79=NC$SID79[76:100])
 ```
 
-Comenzamos mostrando un mapa del estado de California del Norte (Figura \ref{fig:f1}). Este gráfico lo estaremos mostrando en repetidas ocasiones buscando explicar con estilo mapa de calor interacciones con diferentes resultados obtenidos y postulados en este proyecto. En las tablas al final del documento (Anexo A y B) podremos ver los nombres de los condados con base en el número expuesto.
+Comenzamos mostrando un mapa del estado de Carolina del Norte (Figura \ref{fig:f1}). Este gráfico lo estaremos mostrando en repetidas ocasiones buscando explicar con estilo mapa de calor interacciones con diferentes resultados obtenidos y postulados en este proyecto. En las tablas al final del documento (Anexo A y B) podremos ver los nombres de los condados con base en el número expuesto.
 
 \begin{figure}
 
 ```{r f1, echo=FALSE}
-# Graficamos California del Norte con el ID alfabético por condado
-plot(st_geometry(nc), axes=FALSE, main = "Mapa de condados de California del Norte")
+# Graficamos Carolina del Norte con el ID alfabético por condado
+plot(st_geometry(nc), axes=FALSE, main = "Mapa de condados de Carolina del Norte")
 text(st_coordinates(st_centroid(st_geometry(nc), of_largest_polygon=TRUE)), label=nc$CRESS_ID, cex=0.5)
 ```
 \vspace{-3cm}
-\caption{Estado de California del Norte con ID.\label{fig:f1}}
+\caption{Estado de Carolina del Norte con ID.\label{fig:f1}}
 \textit{Nota:} La enumeración del mapa viene dada por la variable \texttt{CRESS\_ID} la cual consiste en un ordenamiento alfabético de los nombres de los condados en este estado. Esta enumeración fue propuesta en \cite{cress}.
 \end{figure}
 

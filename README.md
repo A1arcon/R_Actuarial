@@ -135,7 +135,26 @@ instalación correcta de
 [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex).
 ¡No olviden cambiar su directorio de trabajo!
 
-3.  [**Modelos Lineales Generalizados sobre Alumnos de
+3.  [**Inlfuencia espacial en
+    enfermedades**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/3.%20Inlfuencia%20espacial%20en%20enfermedades)
+
+El
+[proyecto](https://github.com/A1arcon/R_Actuarial/blob/main/Estad%C3%ADstica/3.%20Inlfuencia%20espacial%20en%20enfermedades/Proyecto-2-RMD.pdf)
+tiene como objetivo **estimar el riesgo relativo** de muerte de cuna
+para los años 1974-1978 y 1979-1984 para el estado de Carolina del Norte
+por condado. Para esto, comenzaremos dando una introducción de qué es la
+muerte de cuna y algunos otros datos derivados de esta enfermedad.
+Posteriormente vamos a mostrar un análisis descriptivo de los datos con
+los que contamos para realizar un modelo estadístico que pueda estimar
+el riesgo relativo por condado. Luego, realizamos un modelo lineal
+generalizado que no contempla el efecto espacial con la finalidad de
+mostrar que es necesario acudir a esta rama de la estadística. Una vez
+expuesto el punto anterior, realizamos un par de modelos espaciales del
+tipo SAR y CAR, para finalmente buscar el mejor modelo por periodo y
+culminar respondiendo a tres preguntas importantes derivadas de este
+análisis.
+
+4.  [**Modelos Lineales Generalizados sobre Alumnos de
     Maestría**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/4.%20Modelos%20Lineales%20Generalizados%20sobre%20Alumnos%20de%20Maestr%C3%ADa)
 
 Los datos que se trabajan en este

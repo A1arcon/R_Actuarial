@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.12) (preloaded format=pdflatex 2021.1.16)  17 JAN 2021 22:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 21.1) (preloaded format=pdflatex 2021.1.19)  8 FEB 2021 17:31
 entering extended mode
 **./Proyecto-2-RMD.tex
 (Proyecto-2-RMD.tex
@@ -20,40 +20,6 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
-Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
@@ -107,6 +73,49 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
+) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
@@ -125,16 +134,7 @@ Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@posthook=\toks21
 ) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-(C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+) (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
@@ -357,7 +357,7 @@ Package graphics Info: Driver file: pdftex.def on input line 105.
 \Gin@req@height=\dimen161
 \Gin@req@width=\dimen162
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 71.
+Package hyperref Info: Option `colorlinks' set `true' on input line 70.
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2020/12/16 3.52 The Babel package
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.def
@@ -753,7 +753,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \TeXr@lab=\toks47
 )
 LaTeX Font Info:    Trying to load font information for T1+qtm on input line 11
-5.
+4.
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/tex-gyre\t1qtm.fd
 File: t1qtm.fd 2009/09/25 v1.2 font definition file for T1/qtm
 )
@@ -768,32 +768,32 @@ LaTeX Info: Redefining \% on input line 26.
 )
 \openout1 = `Proyecto-2-RMD.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Info: Redefining \microtypecontext on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Info: Redefining \microtypecontext on input line 114.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 115.
+LaTeX Info: Redefining \showhyphens on input line 114.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -821,7 +821,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-Package hyperref Info: Link coloring ON on input line 115.
+Package hyperref Info: Link coloring ON on input line 114.
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
@@ -833,9 +833,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count332
 )
-LaTeX Info: Redefining \ref on input line 115.
-LaTeX Info: Redefining \pageref on input line 115.
-LaTeX Info: Redefining \nameref on input line 115.
+LaTeX Info: Redefining \ref on input line 114.
+LaTeX Info: Redefining \pageref on input line 114.
+LaTeX Info: Redefining \nameref on input line 114.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -870,8 +870,8 @@ LaTeX Info: Redefining \nameref on input line 115.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 115.
-LaTeX Info: Redefining \% on input line 115.
+LaTeX Info: Redefining \. on input line 114.
+LaTeX Info: Redefining \% on input line 114.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: longtable package is loaded.
@@ -888,7 +888,7 @@ sion <1.7>, but at most version <1.5> allowed
 <Portada.pdf, id=3, 614.295pt x 794.97pt>
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf>
-Package pdftex.def Info: Portada.pdf  used on input line 117.
+Package pdftex.def Info: Portada.pdf  used on input line 116.
 (pdftex.def)             Requested size: 469.75604pt x 607.9196pt.
 
 
@@ -896,7 +896,7 @@ pdfTeX warning: pdflatex.exe (file ./Portada.pdf): PDF inclusion: found PDF ver
 sion <1.7>, but at most version <1.5> allowed
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf>
-Package pdftex.def Info: Portada.pdf  used on input line 117.
+Package pdftex.def Info: Portada.pdf  used on input line 116.
 (pdftex.def)             Requested size: 469.75604pt x 607.9196pt.
 
 
@@ -909,23 +909,23 @@ sion <1.7>, but at most version <1.5> allowed
 <Portada.pdf, id=6, page=1, 614.295pt x 794.97pt>
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf, page 1>
-Package pdftex.def Info: Portada.pdf , page1 used on input line 117.
+Package pdftex.def Info: Portada.pdf , page1 used on input line 116.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf, page 1>
-Package pdftex.def Info: Portada.pdf , page1 used on input line 117.
+Package pdftex.def Info: Portada.pdf , page1 used on input line 116.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf, page 1>
-Package pdftex.def Info: Portada.pdf , page1 used on input line 117.
+Package pdftex.def Info: Portada.pdf , page1 used on input line 116.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf, page 1>
-Package pdftex.def Info: Portada.pdf , page1 used on input line 117.
+Package pdftex.def Info: Portada.pdf , page1 used on input line 116.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 File: Portada.pdf Graphic file (type pdf)
 <use Portada.pdf, page 1>
-Package pdftex.def Info: Portada.pdf , page1 used on input line 117.
+Package pdftex.def Info: Portada.pdf , page1 used on input line 116.
 (pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
 [1
 
@@ -985,67 +985,67 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.121 \newpage
+l.120 \newpage
                [2{C:/Users/alarc/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
 ]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-86.
+85.
 (C:\Users\alarc\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.214 
+l.213 
        [3]
 <Proyecto-2-RMD_files/figure-latex/f1-1.pdf, id=104, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f1-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f1-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f1-1.pdf  used on in
-put line 232.
+put line 231.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 <Proyecto-2-RMD_files/figure-latex/f2-1.pdf, id=107, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f2-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f2-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f2-1.pdf  used on in
-put line 245.
+put line 244.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 <Proyecto-2-RMD_files/figure-latex/f3-1.pdf, id=111, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f3-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f3-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f3-1.pdf  used on in
-put line 279.
+put line 278.
 (pdftex.def)             Requested size: 469.78969pt x 325.23901pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.292 \[
+l.291 \[
          [4 <./Proyecto-2-RMD_files/figure-latex/f1-1.pdf>]pdfTeX warning (ext4
 ): destination with the same identifier (name{page.}) has been already used, du
 plicate ignored
 <to be read again> 
                    \relax 
-l.292 \[
+l.291 \[
          [5 <./Proyecto-2-RMD_files/figure-latex/f2-1.pdf> <./Proyecto-2-RMD_fi
 les/figure-latex/f3-1.pdf>]
 <Proyecto-2-RMD_files/figure-latex/f4-1.pdf, id=146, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f4-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f4-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f4-1.pdf  used on in
-put line 313.
+put line 312.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 <Proyecto-2-RMD_files/figure-latex/f5-1.pdf, id=149, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f5-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f5-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f5-1.pdf  used on in
-put line 341.
+put line 340.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.356 
+l.355 
        [6 <./Proyecto-2-RMD_files/figure-latex/f4-1.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1060,37 +1060,37 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.471 
+l.470 
        [7 <./Proyecto-2-RMD_files/figure-latex/f5-1.pdf>]
 <Proyecto-2-RMD_files/figure-latex/f6-1.pdf, id=179, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f6-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f6-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f6-1.pdf  used on in
-put line 503.
+put line 502.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.520 
+l.519 
        [8]
 <Proyecto-2-RMD_files/figure-latex/f7-1.pdf, id=189, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f7-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f7-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f7-1.pdf  used on in
-put line 545.
+put line 544.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.579 \end{itemize}
+l.578 \end{itemize}
                     [9 <./Proyecto-2-RMD_files/figure-latex/f6-1.pdf>]pdfTeX wa
 rning (ext4): destination with the same identifier (name{page.}) has been alrea
 dy used, duplicate ignored
 <to be read again> 
                    \relax 
-l.673 \section{6. Modelo CAR}\label{modelo-car}}
+l.672 \section{6. Modelo CAR}\label{modelo-car}}
                                                  [10 <./Proyecto-2-RMD_files/fi
 gure-latex/f7-1.pdf>]
 
@@ -1103,19 +1103,19 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 File: Proyecto-2-RMD_files/figure-latex/f8-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f8-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f8-1.pdf  used on in
-put line 840.
+put line 839.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 <Proyecto-2-RMD_files/figure-latex/f9-1.pdf, id=218, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f9-1.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f9-1.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f9-1.pdf  used on in
-put line 848.
+put line 847.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 <Proyecto-2-RMD_files/figure-latex/f9-2.pdf, id=219, 469.755pt x 325.215pt>
 File: Proyecto-2-RMD_files/figure-latex/f9-2.pdf Graphic file (type pdf)
 <use Proyecto-2-RMD_files/figure-latex/f9-2.pdf>
 Package pdftex.def Info: Proyecto-2-RMD_files/figure-latex/f9-2.pdf  used on in
-put line 852.
+put line 851.
 (pdftex.def)             Requested size: 399.29364pt x 276.43405pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1124,7 +1124,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.892 
+l.891 
        [11]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1133,34 +1133,34 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.928 
+l.927 
        [12]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.958 
+l.957 
        [13 <./Proyecto-2-RMD_files/figure-latex/f8-1.pdf>]pdfTeX warning (ext4)
 : destination with the same identifier (name{page.}) has been already used, dup
 licate ignored
 <to be read again> 
                    \relax 
-l.958 
+l.957 
        [14 <./Proyecto-2-RMD_files/figure-latex/f9-1.pdf> <./Proyecto-2-RMD_fil
 es/figure-latex/f9-2.pdf>]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.991 \newpage
+l.990 \newpage
                [15]pdfTeX warning (ext4): destination with the same identifier 
 (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1149 \end{landscape}
+l.1148 \end{landscape}
                        [16]pdfTeX warning (ext4): destination with the same ide
 ntifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1149 \end{landscape}
+l.1148 \end{landscape}
                        [17] (Proyecto-2-RMD.aux
 LaTeX Info: Redefining \. on input line 26.
 LaTeX Info: Redefining \% on input line 26.
@@ -1168,7 +1168,7 @@ LaTeX Info: Redefining \% on input line 26.
 Here is how much of TeX's memory you used:
  19012 strings out of 479618
  292939 string characters out of 2865026
- 699066 words of memory out of 3000000
+ 698064 words of memory out of 3000000
  35596 multiletter control sequences out of 15000+200000
  452106 words of font info for 118 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1192,11 +1192,9 @@ larc/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmb.pfb><C:/Use
 rs/alarc/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:
 /Users/alarc/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmri.pf
 b>
-Output written on Proyecto-2-RMD.pdf (17 pages, 695524 bytes).
+Output written on Proyecto-2-RMD.pdf (17 pages, 695488 bytes).
 PDF statistics:
  429 PDF objects out of 1000 (max. 8388607)
  79 named destinations out of 1000 (max. 500000)
  18687 words of extra memory for PDF output out of 20736 (max. 10000000)
 
-
-! pdflatex: major issue: So far, you have not checked for MiKTeX updates.
