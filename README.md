@@ -135,6 +135,7 @@ instalación correcta de
 [MikTek](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/0.%20MikTex).
 ¡No olviden cambiar su directorio de trabajo!
 
+<<<<<<< HEAD
 3.  [**Inlfuencia espacial en
     enfermedades**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/3.%20Inlfuencia%20espacial%20en%20enfermedades)
 
@@ -156,6 +157,9 @@ análisis.
 
 4.  [**Modelos Lineales Generalizados sobre Alumnos de
     Maestría**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/4.%20Modelos%20Lineales%20Generalizados%20sobre%20Alumnos%20de%20Maestr%C3%ADa)
+=======
+3.  [**Modelos Lineales Generalizados sobre Alumnos de Maestría**](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica/4.%20Modelos%20Lineales%20Generalizados%20sobre%20Alumnos%20de%20Maestr%C3%ADa)
+>>>>>>> f6536661d68339d0bcf7534158762421db8eff51
 
 Los datos que se trabajan en este
 [documento](https://github.com/A1arcon/R_Actuarial/blob/main/Estad%C3%ADstica/4.%20Modelos%20Lineales%20Generalizados%20sobre%20Alumnos%20de%20Maestr%C3%ADa/Proyecto.pdf)
@@ -171,7 +175,7 @@ nivel académico que se maneja y reporta a instituciones como el Consejo
 Nacional de Ciencia y Tecnología (CONACyT).
 
 Por tal motivo, la elección correcta de los aspirantes resulta ser un
-aspecto fundamental para prgoresar con dicho rendimiento y desempeño
+aspecto fundamental para progresar con dicho rendimiento y desempeño
 académico. De tal manera que se ha recopilado información estadística de
 algunos de los aspirantes a entrar a la maestría de los semestres 2015-1
 al 2019-2 con el objetivo de buscar alguna relación que favorezca la
