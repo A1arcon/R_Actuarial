@@ -124,7 +124,7 @@ Se recomienda la instalación de [MikTek](https://github.com/A1arcon/R_Actuarial
 
 En este [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/Blocks_de_Colores.pdf) en formato de presentación Beamer escrito en un [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/Blocks_de_Colores.RMD) R Markdown mostramos el uso de una serie de funciones creadas en formato `LaTeX` en un [preámbulo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/preamble.tex) que nos permitirán crear los conocidos "Blocks" de diferentes colores en un ambiente de `LaTeX`. [Beamer](https://es.overleaf.com/learn/latex/beamer) es una herramienta de `LaTeX` sumamente utilizada en el ámbito matemático para hacer presentaciones. Resulta que R permite hacer este tipo de presentaciones en su modalidad R Markdown. Más aún, es posible ligar un preámbulo escrito en la extensión `.tex` a un archivo R Markdown. Este documento es un ejemplo de ello. Para ver más colores, da clic [aquí](https://en.wikibooks.org/wiki/LaTeX/Colors).
 
-## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_)
+## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_) (Actualizado al 14/5/2021)
 
 Este apartado está dedicado a funciones que he creado con la finalidad de realizar tareas repetitivas que pueden consumir bastante código y tiempo. Los scripts de este apartado vienen tienen como objetivo lo siguiente:
 

@@ -302,7 +302,7 @@ escrito en la extensión `.tex` a un archivo R Markdown. Este documento
 es un ejemplo de ello. Para ver más colores, da clic
 [aquí](https://en.wikibooks.org/wiki/LaTeX/Colors).
 
-## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_)
+## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_) (Actualizado al 14/5/2021)
 
 Este apartado está dedicado a funciones que he creado con la finalidad
 de realizar tareas repetitivas que pueden consumir bastante código y
