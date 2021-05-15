@@ -5,7 +5,7 @@ output: github_document
 ```{r setup, include=FALSE}
 library(dplyr)
 knitr::opts_chunk$set(echo = FALSE)
-source("Funciones_RMD.R",encoding = "UTF-8")
+source("_Edgar Package_/Funciones_RMD.R",encoding = "UTF-8")
 ```
 
 <a href="https://www.unam.mx/">
