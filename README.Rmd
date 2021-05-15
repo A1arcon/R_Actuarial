@@ -4,7 +4,9 @@ output: github_document
 
 ```{r setup, include=FALSE}
 library(dplyr)
+library(ggplot2)
 knitr::opts_chunk$set(echo = FALSE)
+source("_Edgar Package_/mis_funciones.R",encoding = "UTF-8")
 source("_Edgar Package_/Funciones_RMD.R",encoding = "UTF-8")
 ```
 
@@ -121,6 +123,54 @@ Se recomienda la instalación de [MikTek](https://github.com/A1arcon/R_Actuarial
 2. [**Blocks de Colores en Beamer**](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown/2.%20Blocks%20de%20Colores)
 
 En este [documento](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/Blocks_de_Colores.pdf) en formato de presentación Beamer escrito en un [archivo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/Blocks_de_Colores.RMD) R Markdown mostramos el uso de una serie de funciones creadas en formato `LaTeX` en un [preámbulo](https://github.com/A1arcon/R_Actuarial/blob/main/R%20Markdown/2.%20Blocks%20de%20Colores/preamble.tex) que nos permitirán crear los conocidos "Blocks" de diferentes colores en un ambiente de `LaTeX`. [Beamer](https://es.overleaf.com/learn/latex/beamer) es una herramienta de `LaTeX` sumamente utilizada en el ámbito matemático para hacer presentaciones. Resulta que R permite hacer este tipo de presentaciones en su modalidad R Markdown. Más aún, es posible ligar un preámbulo escrito en la extensión `.tex` a un archivo R Markdown. Este documento es un ejemplo de ello. Para ver más colores, da clic [aquí](https://en.wikibooks.org/wiki/LaTeX/Colors).
+
+## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_)
+
+Este apartado está dedicado a funciones que he creado con la finalidad de realizar tareas repetitivas que pueden consumir bastante código y tiempo. Los scripts de este apartado vienen tienen como objetivo lo siguiente:
+
+1. [`Funciones_RMD.R`](https://github.com/A1arcon/R_Actuarial/blob/main/_Edgar%20Package_/Funciones_RMD.R): son funciones que facilitan la creación de documentos con `R Markdown` en `LaTeX`, la elaboración de tablas, entre otras entidades para `R Markdown`. Con este `script`, por ejemplo, la elaboración de una tabla como la siguiente para un **modelo lineal generalizado** dado por la función `glm()` resulta ser cuestión de un par de líneas de código e incluso tendrá una referencia para que se pueda citar usando el comando `\autoref` o `\ref` de `LaTeX`.
+
+```{r,echo=TRUE,eval=FALSE}
+# Creación del modelo
+fit_gamma <- glm(Crash_Score~.,family = Gamma(link = "log"),data = June)
+# Creación de la tabla
+kabla_fit_glm(fit_gamma,
+              title = "Estadísticas del modelo lineal generalizado (Gamma) $log\\left(\\mathbb{E}[y_i]\\right) = \\underline{\\beta}^T X_i$",
+              ref="fit_gamma_tabla")
+```
+
+
+```{r,out.width='50%',fig.align = 'center'}
+foto("README_files/figure-gfm/Tabla_GLM.PNG")
+```
+
+2. [`mis_funciones.R`](https://github.com/A1arcon/R_Actuarial/blob/main/_Edgar%20Package_/mis_funciones.R): son funciones que facilitan la creación y manipulación principalmente de gráficos. Este `script` está principalmente cimentado en la librería `ggplot` y llevado a un nivel fácil de usar para cualquier usuario de R y podremos tener gráficos como los siguientes
+
+```{r,echo=TRUE,out.width='50%',fig.align = 'center'}
+# Datos
+X <- runif(100,-5,5)
+Y <- ifelse(test = X>=0,yes = X^2+2,no = X^2-2)
+Ymin <- Y + abs(rnorm(length(X),sd=2))
+Ymax <- Y - abs(rnorm(length(X),sd=2))
+Label_column <- ifelse(test = X>=0,yes = "Negativo",no = "Positivo")
+Data <- data.frame(X,Y,Ymin,Ymax,Label_column)
+
+# Gráfico
+ggplot_time_series(data = Data,x = "X",y = "Y",
+                   label_column = "Label_column",
+                   ymin = "Ymin",ymax = "Ymax",
+                   title = "Parábola partida",
+                   subtitle = "En positivos y negativos",
+                   xlab = "X",
+                   ylab = latex2exp::TeX("$Y=X^2 + '\\epsilon'$"),
+                   alpha = 0.25,x_breaks = 10,y_breaks = 20)
+```
+
+Entre otros ejemplos...
+
+```{r,echo=FALSE,out.width='75%',fig.align = 'center'}
+foto("README_files/figure-gfm/Serie_tiemp_hist.PNG")
+```
 
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 

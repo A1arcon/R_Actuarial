@@ -302,6 +302,66 @@ escrito en la extensión `.tex` a un archivo R Markdown. Este documento
 es un ejemplo de ello. Para ver más colores, da clic
 [aquí](https://en.wikibooks.org/wiki/LaTeX/Colors).
 
+## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_)
+
+Este apartado está dedicado a funciones que he creado con la finalidad
+de realizar tareas repetitivas que pueden consumir bastante código y
+tiempo. Los scripts de este apartado vienen tienen como objetivo lo
+siguiente:
+
+1.  [`Funciones_RMD.R`](https://github.com/A1arcon/R_Actuarial/blob/main/_Edgar%20Package_/Funciones_RMD.R):
+    son funciones que facilitan la creación de documentos con
+    `R Markdown` en `LaTeX`, la elaboración de tablas, entre otras
+    entidades para `R Markdown`. Con este `script`, por ejemplo, la
+    elaboración de una tabla como la siguiente para un **modelo lineal
+    generalizado** dado por la función `glm()` resulta ser cuestión de
+    un par de líneas de código e incluso tendrá una referencia para que
+    se pueda citar usando el comando `\autoref` o `\ref` de `LaTeX`.
+
+``` r
+# Creación del modelo
+fit_gamma <- glm(Crash_Score~.,family = Gamma(link = "log"),data = June)
+# Creación de la tabla
+kabla_fit_glm(fit_gamma,
+              title = "Estadísticas del modelo lineal generalizado (Gamma) $log\\left(\\mathbb{E}[y_i]\\right) = \\underline{\\beta}^T X_i$",
+              ref="fit_gamma_tabla")
+```
+
+<img src="README_files/figure-gfm/Tabla_GLM.PNG" width="50%" style="display: block; margin: auto;" />
+
+2.  [`mis_funciones.R`](https://github.com/A1arcon/R_Actuarial/blob/main/_Edgar%20Package_/mis_funciones.R):
+    son funciones que facilitan la creación y manipulación
+    principalmente de gráficos. Este `script` está principalmente
+    cimentado en la librería `ggplot` y llevado a un nivel fácil de usar
+    para cualquier usuario de R y podremos tener gráficos como los
+    siguientes
+
+``` r
+# Datos
+X <- runif(100,-5,5)
+Y <- ifelse(test = X>=0,yes = X^2+2,no = X^2-2)
+Ymin <- Y + abs(rnorm(length(X),sd=2))
+Ymax <- Y - abs(rnorm(length(X),sd=2))
+Label_column <- ifelse(test = X>=0,yes = "Negativo",no = "Positivo")
+Data <- data.frame(X,Y,Ymin,Ymax,Label_column)
+
+# Gráfico
+ggplot_time_series(data = Data,x = "X",y = "Y",
+                   label_column = "Label_column",
+                   ymin = "Ymin",ymax = "Ymax",
+                   title = "Parábola partida",
+                   subtitle = "En positivos y negativos",
+                   xlab = "X",
+                   ylab = latex2exp::TeX("$Y=X^2 + '\\epsilon'$"),
+                   alpha = 0.25,x_breaks = 10,y_breaks = 20)
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" />
+
+Entre otros ejemplos…
+
+<img src="README_files/figure-gfm/Serie_tiemp_hist.PNG" width="75%" style="display: block; margin: auto;" />
+
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde
