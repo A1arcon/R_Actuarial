@@ -362,6 +362,29 @@ Entre otros ejemplos…
 
 <img src="README_files/figure-gfm/Serie_tiemp_hist.PNG" width="75%" style="display: block; margin: auto;" />
 
+## [Conteo Rápido 2021 (INE)]()
+
+<img src="README_files/figure-gfm/CR2021.png" width="30%" style="display: block; margin: auto;" />
+
+El objetivo es estimar la conformación de la cámara de diputados como
+parte de los resultados del conteo rápido de las elecciones federales
+del año 2021. Esto se realiza mediante técnicas de muestreo aplicado en
+el lenguaje de programación estadística R y llevado a aplicaciones Shiny
+dinámicas en tiempo real. A continuación se exhiben algunos de los
+códigos implementados para lograr los resultados obtenidos en la jornada
+electoral del día 6 de Junio del 2021. Estos se pueden consultar en la
+página oficial [Portal
+INE](https://portal.ine.mx/conteos-rapidos-procesos-electorales-federal-y-locales-2020-2021/).
+
+Como parte de la transparencia técnica para la [Tesis de
+Maestría](https://www.overleaf.com/read/xjkpvtrsnspj) de [Edgar Gerardo
+Alarcón González](https://www.linkedin.com/in/a1arcon/), los códigos se
+enumeran con base en los capítulos de este documento.
+
+3.  [La Cámara de Diputados](): Códigos relacionados con los ejemplos
+    poblacionales del cálculo de la conformación de la cámara de
+    Diputados para los años 2015 y 2018.
+
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde

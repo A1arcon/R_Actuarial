@@ -1,4 +1,20 @@
 
+
+# Funciones Diversas ------------------------------------------------------
+
+substrRight <- function(x, n){
+  substr(x, nchar(x)-n+1, nchar(x))
+}
+
+
+substrLeft <- function(x, n){
+  substr(x, 1, n)
+}
+
+copy2clipboard <- function(x){
+  clipr::write_clip(x)
+}
+
 # Series de tiempo ggplot -------------------------------------------------
 
 # Este puede ser un auxiliar
