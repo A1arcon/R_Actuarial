@@ -362,7 +362,7 @@ Entre otros ejemplos…
 
 <img src="README_files/figure-gfm/Serie_tiemp_hist.PNG" width="75%" style="display: block; margin: auto;" />
 
-## [Conteo Rápido 2021 (INE)]()
+## [Conteo Rápido 2021 (INE)](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE))
 
 <img src="README_files/figure-gfm/CR2021.png" width="30%" style="display: block; margin: auto;" />
 
@@ -381,9 +381,10 @@ Maestría](https://www.overleaf.com/read/xjkpvtrsnspj) de [Edgar Gerardo
 Alarcón González](https://www.linkedin.com/in/a1arcon/), los códigos se
 enumeran con base en los capítulos de este documento.
 
-3.  [La Cámara de Diputados](): Códigos relacionados con los ejemplos
-    poblacionales del cálculo de la conformación de la cámara de
-    Diputados para los años 2015 y 2018.
+3.  [La Cámara de
+    Diputados](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/3.%20La%20C%C3%A1mara%20de%20Diputados):
+    Códigos relacionados con los ejemplos poblacionales del cálculo de
+    la conformación de la cámara de Diputados para los años 2015 y 2018.
 
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 

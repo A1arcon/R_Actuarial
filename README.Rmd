@@ -172,7 +172,7 @@ Entre otros ejemplos...
 foto("README_files/figure-gfm/Serie_tiemp_hist.PNG")
 ```
 
-## [Conteo Rápido 2021 (INE)]()
+## [Conteo Rápido 2021 (INE)](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE))
 
 ```{r,echo=FALSE,out.width='30%',fig.align = 'center'}
 foto("README_files/figure-gfm/CR2021.png")
@@ -182,7 +182,7 @@ El objetivo es estimar la conformación de la cámara de diputados como parte de
 
 Como parte de la transparencia técnica para la [Tesis de Maestría](https://www.overleaf.com/read/xjkpvtrsnspj) de [Edgar Gerardo Alarcón González](https://www.linkedin.com/in/a1arcon/), los códigos se enumeran con base en los capítulos de este documento.
 
-3. [La Cámara de Diputados](): Códigos relacionados con los ejemplos poblacionales del cálculo de la conformación de la cámara de Diputados para los años 2015 y 2018.
+3. [La Cámara de Diputados](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/3.%20La%20C%C3%A1mara%20de%20Diputados): Códigos relacionados con los ejemplos poblacionales del cálculo de la conformación de la cámara de Diputados para los años 2015 y 2018.
 
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
