@@ -11,9 +11,95 @@ substrLeft <- function(x, n){
   substr(x, 1, n)
 }
 
-copy2clipboard <- function(x){
+write_clipboard <- function(x){
   clipr::write_clip(x)
 }
+
+read_clipboard <- function(){
+  clipr::read_clip()
+}
+
+
+
+# Función de distribución Empírica ----------------------------------------
+
+# Implementación de la función de distribución empírica con gráfica
+ECDF <- function(x,CI=TRUE,CI.interval=0.95,plot=TRUE){
+  
+  # x  = Vector de datos para obtener la ECDF
+  # CI = Calcula los intervalos de confianza
+  # CI.Interval = Nivel de confianza de los intervalos
+  # plot = Indica si se desea realizar un gráfico
+  
+  # https://rdrr.io/github/SwampThingPaul/AnalystHelper/src/R/ecdf_fun.R
+  ecdf_fun=function(x,CI=TRUE,CI.interval=0.95){
+    x <- sort(x)
+    n <- length(x)
+    vals <- unique(x)
+    rval <- approxfun(vals, cumsum(tabulate(match(x, vals)))/n,
+                      method = "constant", yleft = 0, 
+                      yright = 1, f = 0, ties = "ordered")
+    class(rval) <- c("ecdf", "stepfun", class(rval))
+    assign("nobs", n, envir = environment(rval))
+    attr(rval, "call") <- sys.call()
+    rval
+    x.val=environment(rval)$x
+    y.val=environment(rval)$y
+    
+    if(CI==TRUE){
+      alpha=1-CI.interval
+      eps=sqrt(log(2/alpha)/(2*n))
+      ll=pmax(y.val-eps,0) 
+      uu=pmin(y.val+eps,1)
+      return(data.frame(value=x.val,proportion=y.val,
+                        lwr.CI=ll,upr.CI=uu))
+    }else{
+      return(data.frame(value=x.val,proportion=y.val))
+    }
+  }
+  # Se guardan los resultados
+  Fn <- ecdf_fun(x)
+  # Procedemos a calcular el gráfico si es necesario
+  if(plot){
+    # Formato del gráfico
+    plot(Fn$proportion~Fn$value,ylim=c(0,1),
+         ylab=latex2exp::TeX("$F_n$"),xlab="Valores",
+         main = "CDF")
+    # Fondo
+    rect(par("usr")[1], par("usr")[3],
+         par("usr")[2], par("usr")[4],
+         col = "#ebebeb")
+    grid(col="white",lwd=2)
+    if(CI){
+      # Gráfico de los intervalos de confianza
+      with(Fn,polygon(c(value,rev(value)), c(lwr.CI,rev(upr.CI)),
+                      col = adjustcolor("red",alpha.f=0.25) ,
+                      border=NA))
+      with(Fn,lines(lwr.CI~value,type="s",lty=2,col="red"),lwd=2)
+      with(Fn,lines(upr.CI~value,type="s",lty=2,col="red"),lwd=2)
+    }
+    # Gráfico de la ECDF
+    with(Fn,lines(proportion~value,type="s",col="blue"))
+    # Observaciones
+    with(Fn,points(rep(-0.01,length(value))~value,pch="|",lty=2,col="black",cex=0.75))
+  }
+  
+  return(Fn)
+  
+}
+
+# # Ejemplo
+# 
+# # Datos iniciales
+# set.seed(2012)
+# sim <- rnorm(100)
+# ECDF(sim)
+# #Gráfico de la CDF
+# curve(expr = pnorm(x),col="darkgreen",add = TRUE,lwd=2)
+# # Leyenda
+# legend("topleft", legend=c("CDF", "ECDF","CI(95%)"),
+#        col=c("darkgreen", "blue","red"), lty=c(1,1,2), cex=0.8,
+#        title="Curvas", text.font=4, bg='lightblue')
 
 # Series de tiempo ggplot -------------------------------------------------
 
