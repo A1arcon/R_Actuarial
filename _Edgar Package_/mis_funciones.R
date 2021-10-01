@@ -24,7 +24,8 @@ read_clipboard <- function(){
 # Función de distribución Empírica ----------------------------------------
 
 # Implementación de la función de distribución empírica con gráfica
-ECDF <- function(x,CI=TRUE,CI.interval=0.95,plot=TRUE){
+ECDF <- function(x,CI=TRUE,CI.interval=0.95,plot=TRUE,
+                 main="CDF",xlab="Valores",ylab=latex2exp::TeX("$F_n$")){
   
   # x  = Vector de datos para obtener la ECDF
   # CI = Calcula los intervalos de confianza
@@ -63,8 +64,8 @@ ECDF <- function(x,CI=TRUE,CI.interval=0.95,plot=TRUE){
   if(plot){
     # Formato del gráfico
     plot(Fn$proportion~Fn$value,ylim=c(0,1),
-         ylab=latex2exp::TeX("$F_n$"),xlab="Valores",
-         main = "CDF")
+         ylab=ylab,xlab=xlab,
+         main = main)
     # Fondo
     rect(par("usr")[1], par("usr")[3],
          par("usr")[2], par("usr")[4],
