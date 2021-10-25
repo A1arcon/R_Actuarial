@@ -2,8 +2,8 @@
 # my_dir_datos <- "/Volumes/GoogleDrive/Mi unidad/CR2021/7BASES_DATOS/DIPUTADOS/BD2015/"
 # my_dir_fun <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/CONFORMACION_VERIF/"
 
-my_dir_datos <- "G:/.shortcut-targets-by-id/1tKDoiKBxsn-56umiXkZo5qz5hLc9SkB0/CR2021/7BASES_DATOS/DIPUTADOS/BD2015/"
-my_dir_fun <- "G:/.shortcut-targets-by-id/1tKDoiKBxsn-56umiXkZo5qz5hLc9SkB0/CR2021/2EDGAR/CONFORMACION_VERIF/"
+my_dir_datos <- "C:/Users/alarc/Documents/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/BASES_DATOS/DIPUTADOS/BD2015/"
+my_dir_fun <- "C:/Users/alarc/Documents/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/3. La Cámara de Diputados/"
 
 
 # CARGAMOS FUNCIONES Y LIBRERIAS

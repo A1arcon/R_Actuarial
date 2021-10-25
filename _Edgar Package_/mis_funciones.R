@@ -20,6 +20,25 @@ read_clipboard <- function(){
 }
 
 
+# Para hacer un gráfico bonito --------------------------------------------
+fondo_plot <- function(fondo.col="#ebebeb",grid.col="white",lwd=2){
+  # Fondo
+  rect(par("usr")[1], par("usr")[3],
+       par("usr")[2], par("usr")[4],
+       col = fondo.col)
+  grid(col=grid.col,lwd=lwd)
+}
+
+# # Ejemplo
+# h <- function(x){
+#   dbeta(x,a,b)/dunif(x)
+# }
+# # Crea el gráfico
+# curve(h(x),from=0,to=1,main=latex2exp::TeX("h(x)=$f_X(x)/g_U (x)$"))
+# # Pone el fondo
+# fondo_plot()
+# # Sobre este ya pone el gráfico
+# curve(h(x),from=0,to=1,add=TRUE)
 
 # Función de distribución Empírica ----------------------------------------
 
@@ -253,7 +272,6 @@ ggplot_time_series <- function(data,x,y=NULL,
 
 
 # Histogramas ggplot ------------------------------------------------------
-
 
 # Para histogramas y densidades empíricas con ggplot
 
