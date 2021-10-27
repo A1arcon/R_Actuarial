@@ -1,0 +1,57 @@
+"id_equipo","nombre_equipo","nickname_equipo","division","conferencia","record_g","record_p","record_e","anyo_fund"
+"ARI","Arizona","Cardenales","Oeste","Nacional",8,8,0,1920
+"ATL","Atlanta","Halcones negros","Sur","Nacional",4,12,0,1966
+"BAL","Baltimore","Cuervos","Norte","Americana",5,11,0,1997
+"BUF","Buffalo","Bufalos","Este","Americana",7,9,0,1960
+"CAR","Carolina","Panteras","Sur","Nacional",7,9,0,1995
+"CIN","Cincinnati","Bengalies","Norte","Americana",7,9,0,1968
+"CLE","Cleveland","Cafes","Norte","Americana",10,6,0,1946
+"CHI","Chicago","Osos","Norte","Nacional",7,9,0,1920
+"DAL","Dallas","Vaqueros","Este","Nacional",13,3,0,1960
+"DEN","Denver","Broncos","Oeste","Americana",7,9,0,1960
+"DET","Detroit","Leones","Norte","Nacional",7,9,0,1930
+"HOU","Houston","Texanos","Sur","Americana",8,8,0,2002
+"IND","Indianapolis","Potros","Sur","Americana",13,3,0,1944
+"JAX","Jacksonville","Jaguares","Sur","Americana",11,5,0,1995
+"MIA","Miami","Delfines","Este","Americana",1,15,0,1966
+"MIN","Minnesota","Vikingos","Norte","Nacional",8,8,0,1961
+"NYG","New York","Gigantes","Este","Nacional",10,6,0,1925
+"NYJ","New York","Jets","Este","Americana",4,12,0,1960
+"OAK","Oakland","Malosos","Oeste","Americana",4,12,0,1960
+"PHI","Filadelfia","Aguilas","Este","Nacional",8,8,0,1933
+"PIT","Pittsburgh","Acereros","Norte","Americana",10,6,0,1933
+"SEA","Seattle","Halcones marinos","Oeste","Nacional",10,6,0,1976
+"STL","San Luis","Carneros","Oeste","Nacional",3,13,0,1937
+"TEN","Tennessee","Titanes","Sur","Americana",10,6,0,1960
+"WAS","Washington","Pieles rojas","Este","Nacional",9,7,0,1932
+"CCM","ITESM","Borregos salvajes","Sur","12 Grandes",3,13,0,1995
+"CEM","ITESM","Borregos salvajes","Sur","12 Grandes",4,12,0,1995
+"CGP","CGP","Centinelas","Oeste","12 Grandes",8,8,0,1980
+"CHA","UACHA","Toros salvajes","Este","Centro",3,13,0,1991
+"CUM","CUM","Gamos","Este","Centro",9,7,0,1982
+"IPN","IPN","Burros blancos","Sur","12 Grandes",12,4,0,1954
+"ITQ","ITQ","Zorros","Oeste","Centro",10,6,0,1993
+"MTY","ITESM","Borregos salvajes","Norte","12 Grandes",5,10,1,1995
+"TOL","ITESM","Borregos salvajes","Sur","12 Grandes",7,9,0,1995
+"UAC","UAC","Lobos","Norte","Centro",10,6,0,1987
+"UAG","UAG","Tecos","Oeste","Centro",9,7,0,1986
+"UAM","UAM","Panteras negras","Este","Centro",12,4,0,1993
+"UAS","UAS","Leones","Oeste","Centro",8,8,0,1993
+"UAT","UAT","Correcaminos","Norte","Centro",8,8,0,1999
+"UCH","UACH","Aguilas","Norte","12 Grandes",9,7,0,1992
+"UDL","UDLA","Aztecas","Sur","12 Grandes",7,8,1,1994
+"UEM","UAEM","Potros salvajes","Este","Centro",7,9,0,1997
+"UMM","UMM","Leones","Este","Centro",7,9,0,1981
+"UNL","UANL","Tigres","Norte","12 Grandes",8,8,0,1983
+"UNM","UNAM","Pumas","Sur","12 Grandes",13,3,0,1952
+"URM","UR","Jaguares","Norte","Centro",6,10,0,1976
+"TEP","UT","Frailes","Oeste","12 Grandes",4,11,1,1979
+"UVM","UVM","Linces","Oeste","12 Grandes",11,4,1,1991
+"UVR","UV","Halcones","Este","Centro",9,5,2,1990
+"KC","Kansas City","Jefes","Oeste","Americana",4,12,0,1960
+"SD","San Diego","Cargadores","Oeste","Americana",11,5,0,1960
+"SF","San Francisco","49's","Oeste","Nacional",5,11,0,1946
+"TB","Tampa Bay","Bucaneros","Sur","Nacional",9,7,0,1976
+"GB","Green Bay","Empacadores","Norte","Nacional",13,3,0,1921
+"NE","New England","Patriotas","Este","Americana",16,0,0,1960
+"NO","Nueva Orleans","Santos","Sur","Nacional",7,9,0,1967

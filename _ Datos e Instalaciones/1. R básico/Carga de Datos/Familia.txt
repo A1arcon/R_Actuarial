@@ -1,0 +1,4 @@
+"Nombre" "Apellido" "Edad" "Estatura" "Ciudad_origen"
+"1" "Pedro" "Gutiérrez Ramírez" 52 1.78 "Madrid"
+"2" "Javier" "Gutiérrez Salas" 18 1.75 "Mexico"
+"3" "Fabiana" "Salas Medina" 50 1.7 "Mexico"

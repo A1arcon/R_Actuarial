@@ -1,0 +1,61 @@
+"id_estadio","nombre_estadio","capacidad","grama","condicion","anyo_construccion","id_ciudad"
+1,"University of Phoenix",63000,"Natural","Excelente",2006,1
+2,"Georgia Dome",71149,"Artificial","Regular",1992,2
+3,"M&T Bank Stadium",69084,"Artificial","Regular",1998,3
+4,"Ralph Wilson",75339,"Artificial","Buena",1973,4
+5,"Bank of America",73250,"Natural","Buena",1996,5
+6,"Paul Brown Stadium",65600,"Artificial","Buena",2000,6
+7,"Cleveland Browns Stadium",72300,"Natural","Excelente",1999,7
+8,"Soldier Field II",63000,"Natural","Excelente",2003,8
+9,"Texas Stadium",65675,"Artificial","Buena",1971,9
+10,"Invesco Field",76125,"Natural","Excelente",2001,10
+11,"Ford Field",65000,"Artificial","Excelente",2002,11
+12,"Lambeau Field",72515,"Natural","Regular",1957,12
+13,"Reliant Stadium",69500,"Artificial","Excelente",2002,13
+14,"RCA Dome",60272,"Artificial","Pesima",1984,14
+15,"Jacksonville Municipal Stadium",67174,"Natural","Buena",1995,15
+16,"Arrowhead Stadium",79409,"Natural","Buena",1972,16
+17,"Dolphin Stadium",75000,"Natural","Regular",1987,17
+18,"Metrodome",64935,"Artificial","Mala",1982,18
+19,"Gillette Stadium",68000,"Artificial","Buena",2002,19
+20,"Superdome",69082,"Artificial","Regular",1975,20
+21,"Giants Stadium",79469,"Artificial","Regular",1976,21
+22,"McAfee Coliseum",63146,"Natural","Regular",1966,22
+23,"Lincoln Financial Field",68532,"Natural","Excelente",2003,23
+24,"Heinz Field",64450,"Natural","Excelente",2001,24
+25,"Qualcomm Stadium",71500,"Natural","Mala",1967,25
+26,"Qwest Field",68000,"Natural","Excelente",2002,26
+27,"Monster Park",64450,"Natural","Excelente",2000,27
+28,"Edward Jones Dome",66000,"Artificial","Buena",1995,28
+29,"Raymond James",65657,"Natural","Excelente",1998,29
+30,"LP Field",68798,"Natural","Excelente",1999,30
+31,"FedEx Field",91665,"Natural","Excelente",1997,31
+32,"LA Coliseum",112768,"Natural","Excelente",1983,32
+33,"Aloha Stadium",50000,"Artificial","Excelente",1975,33
+34,"Rose Bowl",92542,"Natural","Buena",1936,34
+35,"PGE Park",23136,"Natural","Mala",1926,35
+36,"Periferico",9342,"Artificial","Regular",2002,42
+37,"Corral de Plastico",3995,"Artificial","Buena",1957,42
+38,"Joaquin Amaro",9972,"Natural","Regular",2002,42
+39,"Palomo Ruiz Tapia",4961,"Natural","Buena",1984,36
+40,"Union Mexico",8194,"Natural","Mala",1995,42
+41,"Wilfrido Massieu",8985,"Natural","Buena",1972,42
+42,"El Pocito",8908,"Natural","Regular",1987,44
+43,"Tecnologico",25920,"Natural","Buena",1982,43
+44,"La Congeladora",7861,"Artificial","Buena",2002,46
+45,"Jorge Castro",6744,"Natural","Regular",1975,45
+46,"3 de Marzo",2358,"Natural","Mala",1976,40
+47,"Selva Negra",5497,"Natural","Buena",2002,42
+48,"El Anahuac",6334,"Natural","Mala",1975,42
+49,"Eugenio Alvizo Porras",7511,"Natural","Regular",1976,39
+50,"Nido Aguila",1697,"Natural","Buena",1966,37
+51,"Templo del Dolor",9833,"Natural","Regular",2003,38
+52,"Juan Josafat Pichardo",7651,"Natural","Regular",2001,46
+53,"Ciudad Deportiva",2569,"Natural","Regular",1967,43
+54,"Gaspar Mass",7019,"Natural","Buena",1981,43
+55,"Olimpico Universitario",68927,"Natural","Excelente",1967,42
+56,"Raymundo Chico Rivera",9979,"Natural","Mala",1979,43
+57,"Vista Hermosa",6213,"Natural","Buena",1981,42
+58,"Perros Negros",1588,"Natural","Regular",1975,42
+59,"USBI Xalapa",6085,"Artificial","Regular",1991,47
+60,"El Desierto",9237,"Natural","Mala",1990,41

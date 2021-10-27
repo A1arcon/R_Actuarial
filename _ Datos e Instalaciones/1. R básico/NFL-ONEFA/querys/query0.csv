@@ -1,0 +1,57 @@
+"","id_equipo","id_estadio","nombre_estadio","capacidad","condicion","nombre_equipo","division","record_g","record_p","record_e"
+"1","MIA",17,"Dolphin Stadium",75000,"Regular","Miami","Este",1,15,0
+"2","CHA",39,"Palomo Ruiz Tapia",4961,"Buena","UACHA","Este",3,13,0
+"3","NYJ",21,"Giants Stadium",79469,"Regular","New York","Este",4,12,0
+"4","BUF",4,"Ralph Wilson",75339,"Buena","Buffalo","Este",7,9,0
+"5","UEM",52,"Juan Josafat Pichardo",7651,"Regular","UAEM","Este",7,9,0
+"6","UMM",53,"Ciudad Deportiva",2569,"Regular","UMM","Este",7,9,0
+"7","PHI",23,"Lincoln Financial Field",68532,"Excelente","Filadelfia","Este",8,8,0
+"8","CUM",40,"Union Mexico",8194,"Mala","CUM","Este",9,7,0
+"9","UVR",59,"USBI Xalapa",6085,"Regular","UV","Este",9,5,2
+"10","WAS",31,"FedEx Field",91665,"Excelente","Washington","Este",9,7,0
+"11","NYG",21,"Giants Stadium",79469,"Regular","New York","Este",10,6,0
+"12","UAM",47,"Selva Negra",5497,"Buena","UAM","Este",12,4,0
+"13","DAL",9,"Texas Stadium",65675,"Buena","Dallas","Este",13,3,0
+"14","NE",19,"Gillette Stadium",68000,"Buena","New England","Este",16,0,0
+"15","BAL",3,"M&T Bank Stadium",69084,"Regular","Baltimore","Norte",5,11,0
+"16","MTY",43,"Tecnologico",25920,"Buena","ITESM","Norte",5,10,1
+"17","URM",56,"Raymundo Chico Rivera",9979,"Mala","UR","Norte",6,10,0
+"18","CHI",8,"Soldier Field II",63000,"Excelente","Chicago","Norte",7,9,0
+"19","CIN",6,"Paul Brown Stadium",65600,"Buena","Cincinnati","Norte",7,9,0
+"20","DET",11,"Ford Field",65000,"Excelente","Detroit","Norte",7,9,0
+"21","MIN",18,"Metrodome",64935,"Mala","Minnesota","Norte",8,8,0
+"22","UAT",49,"Eugenio Alvizo Porras",7511,"Regular","UAT","Norte",8,8,0
+"23","UNL",54,"Gaspar Mass",7019,"Buena","UANL","Norte",8,8,0
+"24","UCH",50,"Nido Aguila",1697,"Buena","UACH","Norte",9,7,0
+"25","CLE",7,"Cleveland Browns Stadium",72300,"Excelente","Cleveland","Norte",10,6,0
+"26","PIT",24,"Heinz Field",64450,"Excelente","Pittsburgh","Norte",10,6,0
+"27","UAC",45,"Jorge Castro",6744,"Regular","UAC","Norte",10,6,0
+"28","GB",12,"Lambeau Field",72515,"Regular","Green Bay","Norte",13,3,0
+"29","STL",28,"Edward Jones Dome",66000,"Buena","San Luis","Oeste",3,13,0
+"30","KC",16,"Arrowhead Stadium",79409,"Buena","Kansas City","Oeste",4,12,0
+"31","OAK",22,"McAfee Coliseum",63146,"Regular","Oakland","Oeste",4,12,0
+"32","TEP",57,"Vista Hermosa",6213,"Buena","UT","Oeste",4,11,1
+"33","SF",27,"Monster Park",64450,"Excelente","San Francisco","Oeste",5,11,0
+"34","DEN",10,"Invesco Field",76125,"Excelente","Denver","Oeste",7,9,0
+"35","ARI",1,"University of Phoenix",63000,"Excelente","Arizona","Oeste",8,8,0
+"36","CGP",38,"Joaquin Amaro",9972,"Regular","CGP","Oeste",8,8,0
+"37","UAS",48,"El Anahuac",6334,"Mala","UAS","Oeste",8,8,0
+"38","UAG",46,"3 de Marzo",2358,"Mala","UAG","Oeste",9,7,0
+"39","ITQ",42,"El Pocito",8908,"Regular","ITQ","Oeste",10,6,0
+"40","SEA",26,"Qwest Field",68000,"Excelente","Seattle","Oeste",10,6,0
+"41","SD",25,"Qualcomm Stadium",71500,"Mala","San Diego","Oeste",11,5,0
+"42","UVM",58,"Perros Negros",1588,"Regular","UVM","Oeste",11,4,1
+"43","CCM",36,"Periferico",9342,"Regular","ITESM","Sur",3,13,0
+"44","ATL",2,"Georgia Dome",71149,"Regular","Atlanta","Sur",4,12,0
+"45","CEM",37,"Corral de Plastico",3995,"Buena","ITESM","Sur",4,12,0
+"46","CAR",5,"Bank of America",73250,"Buena","Carolina","Sur",7,9,0
+"47","NO",20,"Superdome",69082,"Regular","Nueva Orleans","Sur",7,9,0
+"48","TOL",44,"La Congeladora",7861,"Buena","ITESM","Sur",7,9,0
+"49","UDL",51,"Templo del Dolor",9833,"Regular","UDLA","Sur",7,8,1
+"50","HOU",13,"Reliant Stadium",69500,"Excelente","Houston","Sur",8,8,0
+"51","TB",29,"Raymond James",65657,"Excelente","Tampa Bay","Sur",9,7,0
+"52","TEN",30,"LP Field",68798,"Excelente","Tennessee","Sur",10,6,0
+"53","JAX",15,"Jacksonville Municipal Stadium",67174,"Buena","Jacksonville","Sur",11,5,0
+"54","IPN",41,"Wilfrido Massieu",8985,"Buena","IPN","Sur",12,4,0
+"55","IND",14,"RCA Dome",60272,"Pesima","Indianapolis","Sur",13,3,0
+"56","UNM",55,"Olimpico Universitario",68927,"Excelente","UNAM","Sur",13,3,0

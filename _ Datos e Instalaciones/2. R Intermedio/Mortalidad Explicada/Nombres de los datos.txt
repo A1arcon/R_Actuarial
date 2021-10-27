@@ -1,0 +1,10 @@
+#1. Temperatura promedio en enero.
+#2. Tempreratura promedio en julio.
+#3. Tamaño promedio de las familias.
+#4. Mediana de los años de escolaridad de los mayores de 22 años.
+#5. Porcentaje de población no blanca en las áreas urbanizadas.
+#6. Porcentaje de familias con bajo ingreso.
+#7. Potencial relativo de contaminación por hidrocarburos
+#8. Potencial relativo de contaminación por óxido de nitrógeno
+#9. Potencial relativo de contaminación por bioxido de azufre
+#Y. Tasa de mortalidad total ajustada por edad por cada 100000 habitantes

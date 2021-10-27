@@ -1,0 +1,61 @@
+"id_ciudad","nombre_ciudad","estado_ciudad","clima","habitantes","indice_crecimiento","region","ingreso_promedio"
+1,"Phoenix","AZ","Caluroso","1321045",4,"Suroeste",33
+2,"Atlanta","GA","Templado","416474",0,"Sureste",45
+3,"Baltimore","MD","Frio","651154",-3,"Noreste",41
+4,"Buffalo","NY","Frio","292648",-1,"Noreste",30
+5,"Charlotte","NC","Templado","540828",3,"Sureste",41
+6,"Cincinnati","OH","Frio","331285",-1,"Medioeste",34
+7,"Cleveland","OH","Frio","478403",-1,"Medioeste",39
+8,"Chicago","IL","Frio","2896016",-1,"Mediooeste",39
+9,"Dallas","TX","Caluroso","1118580",1,"Suroeste",47
+10,"Denver","CO","Frio","554636",0,"Mediooeste",47
+11,"Detroit","MI","Frio","951270",-1,"Mediooeste",47
+12,"Green Bay","WI","Frio","102313",1,"Mediooeste",36
+13,"Houston","TX","Templado","1953631",2,"Sureste",47
+14,"Indianapolis","IN","Frio","781870",0,"Mediooeste",39
+15,"Jacksonville","FL","Caluroso","735617",2,"Sureste",36
+16,"Kansas City","MO","Templado","441545",4,"Mediooeste",40
+17,"Miami","FL","Caluroso","362470",2,"Sureste",38
+18,"Minneapolis","MN","Frio","382618",0,"Mediooeste",45
+19,"Foxboro","MA","Frio","589141",1,"Noreste",50
+20,"New Orleans","LO","Templado","484674",-2,"Sureste",34
+21,"New York","NY","Frio","8008278",1,"Noreste",53
+22,"Oakland","CA","Templado","399484",1,"Noroeste",55
+23,"Philadelphia","PA","Frio","1517550",-2,"Noreste",44
+24,"Pittsburgh","PA","Frio","334563",-1,"Noreste",38
+25,"San Diego","CA","Caluroso","1223400",2,"Suroeste",42
+26,"Seattle","WA","Frio","563374",0,"Noroeste",51
+27,"San Francisco","CA","Templado","776733",-1,"Noroeste",66
+28,"St Louis","MO","Templado","348189",-3,"Mediooeste",39
+29,"Tampa Bay","FL","Caluroso","303447",3,"Sureste",35
+30,"Nashville","TN","Templado","545524",-1,"Sureste",37
+31,"Wasington","DC","Frio","22900",2,"Noreste",41
+32,"Los Angeles","CA","Caluroso","3694820",2,"Suroeste",37
+33,"Honolulu","HI","Caluroso","371657",0,"Suroeste",24
+34,"Portland","OR","Frio","529121",2,"Noroeste",61
+35,"Salt Lake City","UT","Caluroso","181743",1,"Suroeste",44
+36,"Chapingo","MX","Templado","675198",2,"Sureste",45
+37,"Chihuahua","MX","Caluroso","369024",-2,"Noroeste",37
+38,"Cholula","MX","Templado","496837",-1,"Sureste",23
+39,"Ciudad Victoria","MX","Caluroso","853428",0,"Noreste",23
+40,"Guadalajara","MX","Caluroso","8786718",4,"Noroeste",45
+41,"Hermosillo","MX","Caluroso","729606",0,"Noroeste",40
+42,"Mexico","MX","Templado","22610290",5,"Central",24
+43,"Monterrey","MX","Caluroso","7516741",4,"Noreste",13
+44,"Queretaro","MX","Templado","374141",-2,"Central",37
+45,"Saltillo","MX","Caluroso","78132",-3,"Noreste",14
+46,"Toluca","MX","Templado","922900",3,"Central",10
+47,"Xalapa","MX","Caluroso","533243",-1,"Sureste",35
+48,"Cancun","MX","Caluroso","871698",5,"Sureste",41
+49,"Villahermosa","MX","Templado","781368",-1,"Sureste",17
+50,"Morelia","MX","Templado","746796",2,"Central",18
+51,"Pachuca","MX","Frio","261116",2,"Central",19
+52,"Aguascalientes","MX","Templado","727694",0,"Central",44
+53,"Leon","MX","Templado","466445",1,"Central",40
+54,"Culiacan","MX","Caluroso","123185",2,"Noroeste",24
+55,"Tijuana","MX","Caluroso","790819",3,"Noroeste",43
+56,"Merida","MX","Templado","718613",2,"Sureste",36
+57,"Oaxaca","MX","Templado","225742",-3,"Sureste",34
+58,"San Luis","MX","Templado","384404",-1,"Central",31
+59,"Zacatecas","MX","Templado","107026",1,"Central",26
+60,"Tlaxcala","MX","Frio","740763",0,"Central",41
