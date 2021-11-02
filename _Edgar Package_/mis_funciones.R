@@ -428,3 +428,46 @@ superficie3d <- function(x.from,x.to,y.from,y.to,fxy,x.lab="x",y.lab="y",z.lab="
 # superficie3d(x.from = -3,x.to = 3,y.from = -5,y.to = 5,
 #              fxy = fxy,x.lab = "eje x",y.lab = "eje y", z.lab = "eje z",
 #              main = "Gráfico",sombra = TRUE)
+
+
+# Plot Matriz de Confusión ------------------------------------------------
+
+plot_confusion_matrix <- function(pred,truth){
+  
+  library(caret)
+  library(ggplot2)
+  library(dplyr)
+  
+  table <- confusionMatrix(pred, truth)
+  print(table)
+  
+  table <- data.frame(table$table)
+  
+  plotTable <- table %>%
+    mutate(goodbad = ifelse(table$Prediction == table$Reference, "good", "bad")) %>%
+    group_by(Reference) %>%
+    mutate(prop = Freq/sum(Freq))
+  
+  
+  # fill alpha relative to sensitivity/specificity by proportional outcomes within reference groups (see dplyr code above as well as original confusion matrix for comparison)
+  ggplot(data = plotTable, 
+         mapping = aes(x = Reference, y = Prediction, fill = goodbad, alpha = prop)) +
+    geom_tile() +
+    geom_text(aes(label = Freq), vjust = .5, fontface  = "bold", alpha = 1) +
+    scale_fill_manual(values = c(good = "green", bad = "red")) +
+    theme_bw() +
+    xlim(rev(levels(table$Reference)))
+  
+}
+
+# # Ejemplo:
+# # https://stackoverflow.com/questions/37897252/plot-confusion-matrix-in-r-using-ggplot
+# lvs <- c("normal", "abnormal")
+# truth <- factor(rep(lvs, times = c(86, 258)),
+#                 levels = rev(lvs))
+# pred <- factor(
+#   c(
+#     rep(lvs, times = c(54, 32)),
+#     rep(lvs, times = c(27, 231))),
+#   levels = rev(lvs))
+# plot_confusion_matrix(pred,truth)
