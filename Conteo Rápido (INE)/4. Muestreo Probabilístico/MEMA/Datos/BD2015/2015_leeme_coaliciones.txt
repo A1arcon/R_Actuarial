@@ -1,0 +1,8 @@
+
+
+Si en la columna GANA_PRI_PVEM hay un 1, entonces en ese distrito hubo una coalición entre el PRI y el PVEM. Si en esta columna hay un 0, entonces no hubo coalición entre estos dos partidos. En caso de que la coalición PRI_PVEM ganara en ese distrito, y en la columna GANA_PRI haya un 1, entonces el diputado iría al PRI, en caso contrario debe haber un 1 en la columna GANA_PVEM y por lo tanto el diputado iría a al PVEM. 
+
+
+Si en la columna GANA_PRD_PT hay un 1, entonces en ese distrito hubo una coalición entre el PRD y el PT. Si en esta columna hay un 0, entonces no hubo coalición entre estos dos partidos. En caso de que la coalición PRD_PT ganara en ese distrito, y en la columna GANA_PRD haya un 1, entonces el diputado iría al PRD, en caso contrario debe haber un 1 en la columna GANA_PT y por lo tanto el diputado iría a al PT.
+
+Para calcular el número de votos para cada partido en caso de una coalición simplemente se divide el número total de votos obtenido por la coalición entre el número de partidos en la coalición. Hay algunas reglas para resolver el problema de los decimales, pero no tienen impacto en la estimación de la conformación.  
