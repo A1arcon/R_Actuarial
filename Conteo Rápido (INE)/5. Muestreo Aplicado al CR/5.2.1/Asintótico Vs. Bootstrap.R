@@ -1,5 +1,5 @@
 
-setwd("~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/4. Muestreo Probabilístico")
+setwd("~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/5. Muestreo Aplicado al CR/5.2.1")
 source("CREA_BASE_2018.R",encoding = "UTF-8")
 
 # Invocamos las librerías que se utilizarán
