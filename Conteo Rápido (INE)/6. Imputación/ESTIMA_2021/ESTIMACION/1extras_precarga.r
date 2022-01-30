@@ -1,10 +1,10 @@
 # DIRECTORIOS: FUNCIONES Y BASES DE DATOS
-my_dir_pob <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/POBLACION/"
-my_dir_fun <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/ESTIMACION/"
+my_dir_pob <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/POBLACION/"
+my_dir_fun <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/ESTIMACION/"
 # 
-my_copy_from <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/REMESAS_UNICOM/"
-my_copy_to <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/REMESAS/"
-my_save <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/rodriguez/"
+my_copy_from <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/REMESAS_UNICOM/"
+my_copy_to <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/REMESAS/"
+my_save <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/rodriguez/"
 #
 # CARTOGRAFIA
 my_dir_carto_vve <- paste0(my_save, "pef/")

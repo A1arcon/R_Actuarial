@@ -285,7 +285,8 @@ plot_multi_histogram_density <- function(df, feature, label_column=NULL,
                                          histogram=TRUE,density=TRUE,mean=TRUE,
                                          title=NULL,subtitle=NULL,
                                          ylab="Density",xlab=feature,
-                                         alpha_hist=0.7,alpha_dens=0.7) {
+                                         alpha_hist=0.7,alpha_dens=0.7,
+                                         color_vector="viridis") {
   
   # En caso de que no haya grupos
   if(is.null(label_column)){
@@ -295,7 +296,13 @@ plot_multi_histogram_density <- function(df, feature, label_column=NULL,
   
   # Definimos los colores
   df[,label_column] <- df[,label_column] %>% as.factor()
+  if(color_vector=="viridis"){
   colores = df[,label_column] %>% levels() %>% length() %>% viridis::viridis()
+  }else if(color_vector=="rainbow"){
+    colores = df[,label_column] %>% levels() %>% length() %>% rainbow()
+  }else{
+    colores = color_vector
+  }
   
   library(ggplot2)
   plt <- ggplot(df, aes(x=df[,feature], 

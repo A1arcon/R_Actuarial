@@ -1,11 +1,11 @@
 # PRE CARGA
-my_dir <- "/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/ESTIMACION/"
+my_dir <- "~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/ESTIMACION/"
 DIA0 <- "0006"
 HORA0 <- "1805"
-source(paste0(my_dir, "1extras_precarga.r"))
+source(paste0(my_dir, "1extras_precarga.r"),encoding = "UTF-8")
 
 # 1- LEE REMESA
-my_ffiles <- list.files("/Volumes/GoogleDrive/Mi unidad/CR2021/1ERWIN/PAPER/ESTIMA_2021/REMESAS_UNICOM/")[-c(1:5, 53:89)]
+my_ffiles <- list.files("~/Actuaría/GitHub/R_Actuarial/Conteo Rápido (INE)/6. Imputación/ESTIMA_2021/REMESAS_UNICOM/")[-c(1:5, 53:89)]
 vect_HORA <- substr(my_ffiles, 14, 17)
 DIA <- "0006"
 kkk <- length(vect_HORA)
@@ -20,7 +20,7 @@ for(jj in 1:kkk){
     cat("estratos:", sum(res_lee$nh > 0), "\n")}
   
   # 2- IMPUTACIÓN
-  pred <- crea_pred_mat3(res_lee$REMESA)
+  pred <- crea_pred_mat3(REMESA = res_lee$REMESA)
   #pred <- make.predictorMatrix(res_lee$REMESA)
   m0 <- 15
   tt0 <- system.time(res_imp <- mice(res_lee$REMESA, pred = pred,
