@@ -1,0 +1,9 @@
+Para que esta aplicación funcione ES NECESARIO mover la carpeta 
+"R_Apps" directamente a la carpeta "C:\" en windows.
+
+Posteriormente se sigue la ruta:
+C:\R_Apps\TESIS_INE_2021\SHINY
+y se corren los scripts:
+
+	- Actualiza_Intervalos.R
+	- app.R

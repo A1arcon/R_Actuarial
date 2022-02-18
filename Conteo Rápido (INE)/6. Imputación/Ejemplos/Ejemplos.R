@@ -161,7 +161,7 @@ datos %>% with(points(Solar.R,Ozone,xlab="Solar.R", ylab="Ozone",col=color_vecto
 
 # Imputación Múltiple -----------------------------------------------------
 
-# Regresión quitando los datos faltantes
+# Regresión quitando los datos faltantes (Listwise)
 #
 fit <- with(datos, lm(Ozone ~ Wind + Temp + Solar.R))
 summary(fit)
@@ -172,7 +172,7 @@ aux$coefficients %>% round(3) %>% write_clipboard()
 
 # Regresión con Imputación Múltiple
 #
-imp <- mice(datos, seed = 2, m = 20, print = FALSE)
+imp <- mice(datos, seed = 1, m = 20, print = FALSE)
 fit <- with(imp, lm(Ozone ~ Wind + Temp + Solar.R))
 summary(pool(fit))
 #
