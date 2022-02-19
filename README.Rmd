@@ -19,7 +19,7 @@ source("_Edgar Package_/Funciones_RMD.R",encoding = "UTF-8")
 <a href="https://amat.mx/cursos">
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
-# ["R Actuarial"](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.facebook.com/EdgarGerardoAlarconGonzalez)
+# ["R Actuarial"](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.linkedin.com/in/a1arcon/)
 
 El objetivo de este repositorio es brindar un apoyo a la comunidad interesada en mejorar sus técnicas en el lenguaje de programación R o emprenderlo desde un punto de vista muy aplicado.  Un repositorio con códigos de R para aplicaciones actuariales: probabilidad, estadística, riesgo y finanzas.
 
@@ -183,6 +183,14 @@ El objetivo es estimar la conformación de la cámara de diputados como parte de
 Como parte de la transparencia técnica para la [Tesis de Maestría]() de [Edgar Gerardo Alarcón González](https://www.linkedin.com/in/a1arcon/), los códigos se enumeran con base en los capítulos de este documento.
 
 3. [La Cámara de Diputados](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/3.%20La%20C%C3%A1mara%20de%20Diputados): Códigos relacionados con los ejemplos poblacionales del cálculo de la conformación de la cámara de Diputados para los años 2015 y 2018.
+
+4. [Muestreo Probailístico](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/4.%20Muestreo%20Probabil%C3%ADstico): Se muestran los códigos que fueron implementados para ejemplificar temas como la función de distribución acumulada, *bootstrap* y cómo obtener intervalos de confianza utilizando estos temas.
+
+5. [Muestreo Aplicado al Conteo Rápido](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/5.%20Muestreo%20Aplicado%20al%20CR): Se muestran los códigos que fueron utilizados para comparar la metodología teórica vs. la implementación *bootstrap*. Y además el código de la aplicación *Shiny* con la que se seleccionó la muestra en vivo el día 4 de Junio del 2021 ([Video](https://www.youtube.com/watch?v=SbySl89rwLA)).
+
+6. [Imputación](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/6.%20Imputaci%C3%B3n): En este apartado se crean los códigos para mostrar ejemplos básicos de imputación y también se muestran los scripts que fueron utilizados para crear los intervalos que contuvieron los valores reales para la estimación de la conformación de la cámara de diputados el día de la jornada electoral.
+
+7. [Día de la elección: 6 de junio de 2021](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/7.%20Jornada%20Electoral): Aquí se muestra la aplicación de en *Shiny* original que se utilizó para mostrar y estimar la conformación de la cámara de diputados en tiempo real cada 5 minutos utilizando los datos reales que fueron proporcionados por el INE el día de la Jornada Electoral. Una versión *beta* de esta aplicación puede utilizarse dando clic [aquí](https://edgar-alarcon.shinyapps.io/CONF_2021/).
 
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
