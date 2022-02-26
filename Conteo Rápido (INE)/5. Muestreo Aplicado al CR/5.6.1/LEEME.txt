@@ -1,0 +1,13 @@
+Para que esta aplicación funcione ES NECESARIO mover la carpeta 
+"R_Apps" directamente a la carpeta "C:\" en windows.
+
+Posteriormente se sigue la ruta:
+C:\R_Apps\INSUMOS_MUESTRA
+y se corren los scripts:
+
+	- 0_INSTALA_LIBRERIAS.r
+	- 1_SHINY_SELECCIONA_MUESTRA_CR_2021.r
+	- 2_SHINY_APP.r
+
+La muestra será generada en una carpeta dentro del directorio "C:\"
+y tendrá el nombre de "MUESTRA".
