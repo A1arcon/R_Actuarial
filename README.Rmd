@@ -192,6 +192,18 @@ Como parte de la transparencia técnica para la [Tesis de Maestría]() de [Edgar
 
 7. [Día de la elección: 6 de junio de 2021](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/7.%20Jornada%20Electoral): Aquí se muestra la aplicación de en *Shiny* original que se utilizó para mostrar y estimar la conformación de la cámara de diputados en tiempo real cada 5 minutos utilizando los datos reales que fueron proporcionados por el INE el día de la Jornada Electoral. Una versión *beta* de esta aplicación puede utilizarse dando clic [aquí](https://edgar-alarcon.shinyapps.io/CONF_2021/).
 
+Los resultados de este proceso fueron publicados en vivo y pueden consultarse dando clic [aquí](https://www.youtube.com/watch?v=XcoLLIsaXfI).
+
+```{r,echo=FALSE,out.width='30%',fig.align = 'center'}
+foto("README_files/figure-gfm/EDGAR.jpg")
+```
+
+De igual manera, existe una plática realizada en el congreso "Actuarios por México" donde se habla a grandes de lo realizado en el conteo Rápido. Este evento fue en vivo de manera virtual y la repetición puede verse dando clic [aquí](https://drive.google.com/file/d/1IAr-iRIlPqyB-KhCKhM9IVlnqU39DrN0/view).
+
+```{r,echo=FALSE,out.width='30%',fig.align = 'center'}
+foto("README_files/figure-gfm/AXMEX.png")
+```
+
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde temas de cálculo, álgebra, análisis; pasando por probabilidad, estadística, riesgo, hasta mangas y libros de música. :) Ojalá les sirva.

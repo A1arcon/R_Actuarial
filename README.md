@@ -415,6 +415,20 @@ los códigos se enumeran con base en los capítulos de este documento.
     versión *beta* de esta aplicación puede utilizarse dando clic
     [aquí](https://edgar-alarcon.shinyapps.io/CONF_2021/).
 
+Los resultados de este proceso fueron publicados en vivo y pueden
+consultarse dando clic
+[aquí](https://www.youtube.com/watch?v=XcoLLIsaXfI).
+
+<img src="README_files/figure-gfm/EDGAR.jpg" width="30%" style="display: block; margin: auto;" />
+
+De igual manera, existe una plática realizada en el congreso “Actuarios
+por México” donde se habla a grandes de lo realizado en el conteo
+Rápido. Este evento fue en vivo de manera virtual y la repetición puede
+verse dando clic
+[aquí](https://drive.google.com/file/d/1IAr-iRIlPqyB-KhCKhM9IVlnqU39DrN0/view).
+
+<img src="README_files/figure-gfm/AXMEX.png" width="30%" style="display: block; margin: auto;" />
+
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde
