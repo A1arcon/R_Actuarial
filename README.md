@@ -417,7 +417,7 @@ los códigos se enumeran con base en los capítulos de este documento.
 
 Los resultados de este proceso fueron publicados en vivo y pueden
 consultarse dando clic
-[aquí](https://www.youtube.com/watch?v=XcoLLIsaXfI).
+[aquí](https://www.youtube.com/watch?v=eQfz5pVP-aU).
 
 <img src="README_files/figure-gfm/EDGAR.jpg" width="30%" style="display: block; margin: auto;" />
 
