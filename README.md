@@ -16,7 +16,7 @@ emprenderlo desde un punto de vista muy aplicado. Un repositorio con
 códigos de R para aplicaciones actuariales: probabilidad, estadística,
 riesgo y finanzas.
 
-## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)) (actualizado al 5/11/2020)
+## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM))
 
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en
 diversos semestres en la facultad de Ciencias de la UNAM por su
@@ -24,7 +24,7 @@ servidor. El curso tiene un enfoque principalmente basado en temas
 teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y
 STAM de la SoA (Society Of Actuaries).
 
-## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) (actualizado al 8/11/2020) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
+## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 <img src="README_files/figure-gfm/AMAT.PNG" width="50%" style="display: block; margin: auto;" />
 
@@ -88,7 +88,7 @@ una integral definida (área bajo la curva en una región) usando teoremas
 sencillos de probabilidad y mostrándonos el código de esta aplicación en
 R-Studio y una aplicación en Shiny que realiza todo el proceso.
 
-## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica) (Actualizado al 26/01/2021)
+## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica)
 
 El objetivo de mostrar estos documentos es dar ejemplos de cómo puede
 estár organizado un reporte estadístico, ya sea mostrando y ejecutando
@@ -182,7 +182,7 @@ Lineales Generalizados (MLG). El software que estaremos trabajando será
 y el reporte estará hecho en [R
 Markdown](https://github.com/A1arcon/R_Actuarial/blob/main/Estad%C3%ADstica/4.%20Modelos%20Lineales%20Generalizados%20sobre%20Alumnos%20de%20Maestr%C3%ADa/Proyecto.Rmd).
 
-## [Probabilidad](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad) (Actualizado al 7/11/2020)
+## [Probabilidad](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad)
 
 Aquí encontrarán ejercicios e implementaciones, con sus respectivas
 aplicaciones en el lenguaje de programación estadística R relacionados
@@ -207,7 +207,7 @@ código vamos a verificar vía simulaciones que en efecto esta paradoja es
 cierta y las probabilidades exactas se comportan de acuerdo al
 comportamiento estocástico del experimento.
 
-## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas) (Actualizado al 5/1/2021)
+## [Finanzas](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas)
 
 1.  [**Tiempo continuo** -
     1](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/1.%20Tiempo%20continuo%20-%201)
@@ -251,7 +251,7 @@ descargando la
 [presentación](https://github.com/A1arcon/R_Actuarial/blob/main/Finanzas/2.%20Modelo%20de%20Vasicek/Presentation/Modelo-de-Vasicek.pdf)
 en `.pdf`.
 
-## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown) (Actualizado al 15/01/2021)
+## [R Markdown](https://github.com/A1arcon/R_Actuarial/tree/main/R%20Markdown)
 
 Lo mejor de dos mundos LaTeX + R. Los archivos del estilo R Markdown
 permiten al usuario escribir ecuaciones, instertar gráficos, crear
@@ -302,7 +302,7 @@ escrito en la extensión `.tex` a un archivo R Markdown. Este documento
 es un ejemplo de ello. Para ver más colores, da clic
 [aquí](https://en.wikibooks.org/wiki/LaTeX/Colors).
 
-## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_) (Actualizado al 14/5/2021)
+## [Paquetería personal](https://github.com/A1arcon/R_Actuarial/tree/main/_Edgar%20Package_)
 
 Este apartado está dedicado a funciones que he creado con la finalidad
 de realizar tareas repetitivas que pueden consumir bastante código y
