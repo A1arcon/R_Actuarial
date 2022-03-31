@@ -78,7 +78,7 @@ ECDF <- function(x,CI=TRUE,CI.interval=0.95,plot=TRUE,
     }
   }
   # Se guardan los resultados
-  Fn <- ecdf_fun(x)
+  Fn <- ecdf_fun(x,CI,CI.interval)
   # Procedemos a calcular el gráfico si es necesario
   if(plot){
     # Formato del gráfico
