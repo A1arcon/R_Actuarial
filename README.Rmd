@@ -67,6 +67,27 @@ En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una interesan
 
 Subimos el curso completo de Teoría del Riesgo que se ha impartido en diversos semestres en la facultad de Ciencias de la UNAM por su servidor. El curso tiene un enfoque principalmente basado en temas teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y STAM de la SoA (Society Of Actuaries).
 
+Los temas que se ven en este curso son los siguientes:
+
+1. [Conceptos Básicos y Preeliminares]() [(Notas)]() [(Código)]()
+
+2. [Medidas de Riesgo]() [(Notas)]() [(Código)]()
+
+3. [Frecuencia]() [(Notas)]() [(Código)]()
+
+4. [Severidad]() [(Notas)]() [(Código)]()
+
+5. [Modelo Individual]() [(Notas)]() [(Código)]()
+
+6. [Modelo Colectivo]() [(Notas)]() [(Código)]()
+
+7. [Reaseguro]() [(Notas)]() [(Código)]()
+
+8. [Cálculo de Primas]() [(Notas)]() [(Código)]()
+
+9. [Credibilidad]() [(Notas)]() [(Código)]()
+
+
 ## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica) 
 
 El objetivo de mostrar estos documentos es dar ejemplos de cómo puede estár organizado un reporte estadístico, ya sea mostrando y ejecutando código de R o bien únicamente mostrando los resultados obtenidos, aún cuando el documento detrás sí ejecute los comandos requeridos.

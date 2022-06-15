@@ -114,6 +114,26 @@ servidor. El curso tiene un enfoque principalmente basado en temas
 teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y
 STAM de la SoA (Society Of Actuaries).
 
+Los temas que se ven en este curso son los siguientes:
+
+1.  [Conceptos Básicos y Preeliminares]() [(Notas)]() [(Código)]()
+
+2.  [Medidas de Riesgo]() [(Notas)]() [(Código)]()
+
+3.  [Frecuencia]() [(Notas)]() [(Código)]()
+
+4.  [Severidad]() [(Notas)]() [(Código)]()
+
+5.  [Modelo Individual]() [(Notas)]() [(Código)]()
+
+6.  [Modelo Colectivo]() [(Notas)]() [(Código)]()
+
+7.  [Reaseguro]() [(Notas)]() [(Código)]()
+
+8.  [Cálculo de Primas]() [(Notas)]() [(Código)]()
+
+9.  [Credibilidad]() [(Notas)]() [(Código)]()
+
 ## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica)
 
 El objetivo de mostrar estos documentos es dar ejemplos de cómo puede
