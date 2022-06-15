@@ -116,23 +116,46 @@ STAM de la SoA (Society Of Actuaries).
 
 Los temas que se ven en este curso son los siguientes:
 
-1.  [Conceptos Básicos y Preeliminares]() [(Notas)]() [(Código)]()
+1.  [Conceptos Básicos y
+    Preeliminares](https://drive.google.com/file/d/10l4FT5PJF_a1zkUZsI0Fx-AUlfH950aX/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_1.%20Conceptos%20B%C3%A1sicos%20y%20Preeliminares/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_1.%20Conceptos%20B%C3%A1sicos%20y%20Preeliminares/C%C3%B3digo)
 
-2.  [Medidas de Riesgo]() [(Notas)]() [(Código)]()
+2.  [Medidas de
+    Riesgo](https://drive.google.com/file/d/10mufZGHciT2JWciQKacCvps0hb4ur8n-/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_2.%20Medidas%20de%20Riesgo/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_2.%20Medidas%20de%20Riesgo/C%C3%B3digo)
 
-3.  [Frecuencia]() [(Notas)]() [(Código)]()
+3.  [Frecuencia](https://drive.google.com/file/d/10oBrcitDnu5QEE_cHTS_x39UuEBcBSya/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_3.%20Frecuencia/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_3.%20Frecuencia/C%C3%B3digo)
 
-4.  [Severidad]() [(Notas)]() [(Código)]()
+4.  [Severidad](https://drive.google.com/file/d/10rZ_gOnxlCWzxGQIswT7TcYKPhyUrA4r/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_4.%20Severidad/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_4.%20Severidad/C%C3%B3digo)
 
-5.  [Modelo Individual]() [(Notas)]() [(Código)]()
+5.  [Modelo
+    Individual](https://drive.google.com/file/d/114XHyLx7v_aSth1Qg846DjLQ7OiG9cdR/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_5.%20Modelo%20Individual/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_5.%20Modelo%20Individual/C%C3%B3digo)
 
-6.  [Modelo Colectivo]() [(Notas)]() [(Código)]()
+6.  [Modelo
+    Colectivo](https://drive.google.com/file/d/115YMbv6VnhMnOZ3neiuQczkHh-aPa-Fg/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_6.%20Modelo%20Colectivo/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_6.%20Modelo%20Colectivo/C%C3%B3digo)
 
-7.  [Reaseguro]() [(Notas)]() [(Código)]()
+7.  [Reaseguro](https://drive.google.com/file/d/115uVhhSs5fms5O_Nv5SMwzs3fn0svR6j/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_7.%20Reaseguro/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_7.%20Reaseguro/C%C3%B3digo)
 
-8.  [Cálculo de Primas]() [(Notas)]() [(Código)]()
+8.  [Cálculo de
+    Primas](https://drive.google.com/file/d/1163CS7CqUEst397O_mTvm4eIsgFftFfn/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_8.%20C%C3%A1lculo%20de%20Primas/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_8.%20C%C3%A1lculo%20de%20Primas/C%C3%B3digo)
 
-9.  [Credibilidad]() [(Notas)]() [(Código)]()
+9.  [Credibilidad](https://drive.google.com/file/d/116r51WXmnHjP22VmpEqtDSonkLibsv5w/view?usp=sharing)
+    [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_9.%20Credibilidad/Notas%20LaTeX)
+    [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_9.%20Credibilidad/C%C3%B3digo)
 
 ## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica)
 
