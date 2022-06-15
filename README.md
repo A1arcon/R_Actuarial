@@ -16,6 +16,9 @@ emprenderlo desde un punto de vista muy aplicado. Un repositorio con
 códigos de R para aplicaciones actuariales: probabilidad, estadística,
 riesgo y finanzas.
 
+**Por favor no olvides dejar tu estrella, eso me motiva a seguir
+subiendo y actualizando este material :)**
+
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 <img src="README_files/figure-gfm/AMAT.PNG" width="50%" style="display: block; margin: auto;" />

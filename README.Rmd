@@ -23,6 +23,8 @@ source("_Edgar Package_/Funciones_RMD.R",encoding = "UTF-8")
 
 El objetivo de este repositorio es brindar un apoyo a la comunidad interesada en mejorar sus técnicas en el lenguaje de programación R o emprenderlo desde un punto de vista muy aplicado.  Un repositorio con códigos de R para aplicaciones actuariales: probabilidad, estadística, riesgo y finanzas.
 
+**Por favor no olvides dejar tu estrella, eso me motiva a seguir subiendo y actualizando este material :)**
+
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 ```{r,out.width='50%',fig.align="center"}
