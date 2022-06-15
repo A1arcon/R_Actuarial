@@ -16,14 +16,6 @@ emprenderlo desde un punto de vista muy aplicado. Un repositorio con
 códigos de R para aplicaciones actuariales: probabilidad, estadística,
 riesgo y finanzas.
 
-## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM))
-
-Subimos el curso completo de Teoría del Riesgo que se ha impartido en
-diversos semestres en la facultad de Ciencias de la UNAM por su
-servidor. El curso tiene un enfoque principalmente basado en temas
-teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y
-STAM de la SoA (Society Of Actuaries).
-
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 <img src="README_files/figure-gfm/AMAT.PNG" width="50%" style="display: block; margin: auto;" />
@@ -31,7 +23,33 @@ STAM de la SoA (Society Of Actuaries).
 Aquí encontrarán los códigos que fueron utilizados para la elaboración
 de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
-1.  [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en
+-   [**Taller de AMAT en el XXXIII Congreso Nacional de
+    Actuaría.**](https://github.com/A1arcon/R_Actuarial/tree/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R)
+    [(Video)](https://www.youtube.com/watch?v=vPwPIvXGtgQ)
+    [(Shiny)](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319)
+
+Ponencia de AMAT en el XXXIII Congreso Nacional de Actuaría.
+
+Impartida por el Mtro. Edgar Alarcón y el Mtro. Erick Mier sobre
+Simulación en R: Aplicaciones actuariales en el tema **“Límite máximo de
+retención y su cálculo en R’’**.
+
+Todo el
+[código](https://github.com/A1arcon/R_Actuarial/blob/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R/Script.R)
+y
+[material](https://github.com/A1arcon/R_Actuarial/blob/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R/Sumas%20aseguradas.csv)
+necesario para realizar lo que se muestra en esta conferencia lo podrán
+encontrar dando clic
+[aquí](https://github.com/A1arcon/R_Actuarial/tree/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R).
+
+De igual manera, se puede consultar el
+[código](https://github.com/A1arcon/R_Actuarial/blob/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R/LRM_AMAT/app.R)
+para la
+[Shiny-App](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319)
+o bien pueden ver su funcionamiento online dando clic
+[aquí](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319).
+
+-   [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en
     R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0))
     [(Video)](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
 
@@ -45,7 +63,7 @@ son de hecho las únicas que satisfacen la propiedad recursiva, dicha
 demostración la podrás ver dando clic
 [aquí](https://github.com/A1arcon/R_Actuarial/blob/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0)/Unicidad%20de%20Clase(a%2Cb%2C0).pdf).
 
-2.  [**Modelo de pérdidas agregadas - Formula de Panjer en
+-   [**Modelo de pérdidas agregadas - Formula de Panjer en
     R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/2.%20Panjer)
     [(Video)](https://www.youtube.com/watch?v=H4ETDaUUvTk&t)
 
@@ -56,7 +74,7 @@ S=X1+…+XN. Para esto, hace uso de las propiedades de la familia de clase
 S, su media y su varianza. Finalmente, implementa las fórmulas en R
 Studio, con la paquetería “actuar”.
 
-3.  [**Función de Verosimilitud y Estimación de Parámetros con
+-   [**Función de Verosimilitud y Estimación de Parámetros con
     R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/3.%20Estimador%20m%C3%A1ximo%20veros%C3%ADmil)
     [(Video)](https://www.youtube.com/watch?v=zPSj0ltrBoc&t)
 
@@ -69,7 +87,7 @@ Finalmente, implementa las fórmulas en R Studio, mostrándonos una
 sencilla aplicación en R Shiny, donde podremos visualizar un ejemplo
 teórico-práctico de lo desarrollado a lo largo del video.
 
-4.  [**Integración de Regiones vía Monte Carlo, con
+-   [**Integración de Regiones vía Monte Carlo, con
     R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/4.%20Integraci%C3%B3n%20de%20Regiones%20v%C3%ADa%20Monte%20Carlo)
     [(Video)](https://www.youtube.com/watch?v=Lot8__UCG5U)
 
@@ -78,7 +96,7 @@ interesante aplicación del Método de Simulación Montecarlo para estimar
 la medida (longitud, área, volumen o hipervolumen) de un subconjunto del
 espacio Euclidiano con ayuda de R-Studio.
 
-5.  [**Integración de Funciones vía Monte Carlo con
+-   [**Integración de Funciones vía Monte Carlo con
     R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/5.%20Integraci%C3%B3n%20de%20Funciones%20v%C3%ADa%20Monte%20Carlo)
     [(Video)](https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t)
 
@@ -87,6 +105,14 @@ interesante aplicación del Método de Simulación Montecarlo para estimar
 una integral definida (área bajo la curva en una región) usando teoremas
 sencillos de probabilidad y mostrándonos el código de esta aplicación en
 R-Studio y una aplicación en Shiny que realiza todo el proceso.
+
+## [Teoría del Riesgo](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM))
+
+Subimos el curso completo de Teoría del Riesgo que se ha impartido en
+diversos semestres en la facultad de Ciencias de la UNAM por su
+servidor. El curso tiene un enfoque principalmente basado en temas
+teoricos y prácticos necesarios para presentar los exámenes P, FM, IFM y
+STAM de la SoA (Society Of Actuaries).
 
 ## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica)
 
@@ -192,7 +218,7 @@ importantes.
 1.  [**Votos (Bertrand’s ballot
     theorem)**](https://github.com/A1arcon/R_Actuarial/tree/main/Probabilidad/1.%20Votos%20(Bertrand's%20ballot%20theorem))
 
-El candidato A obtiene n votos y B obtiene m con n &gt; m. ¿Cuál es la
+El candidato A obtiene n votos y B obtiene m con n \> m. ¿Cuál es la
 probabilidad que A siempre vaya en la delantera en los conteos?. En este
 código explicamos la solución de una forma un tanto eurística y
 verificamos el resultado haciendo uso de simulaciones.
