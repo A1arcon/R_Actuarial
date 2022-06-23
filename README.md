@@ -449,9 +449,10 @@ página oficial [Portal
 INE](https://portal.ine.mx/conteos-rapidos-procesos-electorales-federal-y-locales-2020-2021/).
 
 Como parte de la transparencia técnica para la [Tesis de
-Maestría](https://www.overleaf.com/read/gxvqtpvbnzjq) de [Edgar Gerardo
-Alarcón González](https://www.linkedin.com/in/a1arcon/), los códigos se
-enumeran con base en los capítulos de este documento.
+Maestría](https://github.com/A1arcon/R_Actuarial/blob/main/Conteo%20R%C3%A1pido%20(INE)/Tesis_UNAM.pdf)
+de [Edgar Gerardo Alarcón
+González](https://www.linkedin.com/in/a1arcon/), los códigos se enumeran
+con base en los capítulos de este documento.
 
 3.  [La Cámara de
     Diputados](https://github.com/A1arcon/R_Actuarial/tree/main/Conteo%20R%C3%A1pido%20(INE)/3.%20La%20C%C3%A1mara%20de%20Diputados):
