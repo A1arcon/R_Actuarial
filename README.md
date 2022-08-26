@@ -1,4 +1,6 @@
 
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+
 <a href="https://www.unam.mx/">
 <img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
 
@@ -9,8 +11,6 @@
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
 # [“R Actuarial”](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.linkedin.com/in/a1arcon/)
-
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
 <div class="badge-base LI-profile-badge" data-locale="en_US"
 data-size="large" data-theme="dark" data-type="HORIZONTAL"
