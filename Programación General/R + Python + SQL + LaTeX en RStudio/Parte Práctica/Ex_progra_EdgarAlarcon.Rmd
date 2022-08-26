@@ -1,0 +1,286 @@
+---
+output:  
+  pdf_document:
+    highlight: kate
+    includes:
+      in_header: "preamble.tex"
+---
+
+\includepdf[pages={-}]{Portada.pdf}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE,warning = FALSE)
+```
+
+# Librerías y funciones de R que serán utilizadas
+
+```{r}
+# Propias de R:
+library(readxl) # Requiere java
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(scales)
+# Para SQL:
+library(sqldf)
+# Para Python:
+library(reticulate)
+
+# Del GitHub personal del autor:
+directorio = "C:/Users/alarc/Documents/Actuaría/GitHub/R_Actuarial/Programación General/"
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Scripts de apoyo/"
+archivo = "Funciones_RMD.R"
+ruta = paste0(directorio,carpeta,archivo)
+source(ruta)
+```
+
+# Ejercicio 1 - Histórico de transacciones de venta
+
+Usar el archivo Base_txns.xlsx y sigue las instrucciones:
+
+
+```{r}
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Datos/"
+archivo = "Base_txns.xlsx"
+ruta = paste0(directorio,carpeta,archivo)
+datos <- read_excel(ruta)
+```
+
+
+a)	Lee el archivo Base_txns.xlsx y contesta ¿Cuántos clientes y tiendas únicos hay en la base?
+
+```{r}
+# Cantidad de clientes únicos:
+datos$CURP %>% unique() %>% length()
+
+# Cantidad de tiendas únicas:
+datos$Tienda %>% unique() %>% length()
+```
+
+
+b)	Elabora una tabla por cliente y realiza un conteo de todas sus transacciones y la suma de monto.
+
+```{r}
+datos %>% group_by(CURP) %>% summarize(cantidad_transacciones=n(),
+                                       monto_total=sum(`Monto en pesos`))->datos_b
+```
+```{r,echo=FALSE}
+datos_b %>% 
+  #head(4) %>% 
+  kabla(title = "Resumen de tabla \\ctexttt{Base\\_txns.xlsx} procesada por el inciso b).")
+```
+
+\newpage
+
+c)	Elabora una tabla por tienda y realiza un conteo de todas sus transacciones y suma de monto.
+
+```{r}
+datos %>% group_by(Tienda) %>% summarize(cantidad_transacciones=n(),
+                                       monto_total=sum(`Monto en pesos`))->datos_c
+```
+```{r,echo=FALSE}
+datos_c %>% 
+  #head(4) %>% 
+  kabla(title = "Resumen de tabla \\ctexttt{Base\\_txns.xlsx} procesada por el inciso c).")
+```
+
+
+d)	Crea una nueva columna que se llame periodo que contenga el año y el mes de la fecha de operación (si fecha = 25/02/2022 entonces periodo = 202202). Crea una tabla por periodo y realiza un conteo de todas las transacciones y suma de monto.
+
+```{r}
+(datos <- datos %>% mutate(periodo = paste0(year(`Fecha de operación`),
+                                           ifelse(month(`Fecha de operación`)<10,
+                                                  paste0(0,month(`Fecha de operación`)),
+                                                  month(`Fecha de operación`))
+                                           ) %>% as.factor()
+                          ))->datos_d
+```
+```{r,echo=FALSE}
+datos_d[,c(1:3,7:9)] %>% 
+  head(4) %>% 
+  kabla(title = "Fragmento de tabla \\ctexttt{Base\\_txns.xlsx} procesada por el inciso d).")
+```
+
+
+\newpage
+
+e)	Grafica uno de los resultados del inciso anterior, en donde el eje x = periodo y en y tendrás Monto o transacciones. Ejemplo en la imagen 1.
+
+```{r,out.width="90%"}
+datos %>% 
+  group_by(periodo) %>% summarize(monto=sum(`Monto en pesos`)) %>% 
+  ggplot(aes(x=periodo, y=monto)) +
+  geom_bar(stat="identity", fill="steelblue")+
+  geom_point(col="red")+
+  geom_line(mapping = aes(x=as.numeric(periodo)),linetype="dashed", color="darkgreen", size=0.75)+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 90))
+```
+
+
+
+f)	Exporta los resultados del inciso c en un archivo plano con extensión txt delimitado por un pipe.
+
+```{r}
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Resultados/"
+archivo = "resultados_inciso_c.txt"
+ruta = paste0(directorio,carpeta,archivo)
+write.table(file = ruta,x = datos_c,sep = "|")
+```
+
+
+\newpage
+
+# Ejercicio 2 - Procesa dos bases con código SQL
+
+Utiliza lenguaje SQL para procesar las bases Base_txns.xlsx y Tiendas.xlsx, puedes utilizar sqldf en R, pandasql en Python o alguna otra librería. Sigue las siguientes indicaciones:
+
+a)	Utiliza cualquier función para leer los archivos Base_txns.xlsx y Tiendas.xlsx.
+
+```{r}
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Datos/"
+archivo = "Base_txns.xlsx"
+ruta = paste0(directorio,carpeta,archivo)
+base_txns <- read_excel(ruta)
+archivo = "Tiendas.xlsx"
+ruta = paste0(directorio,carpeta,archivo)
+tiendas <- read_excel(ruta)
+```
+
+
+b)	Cruza las tablas usando como llave la tienda.
+
+```{r}
+sqldf('
+      SELECT * 
+      FROM base_txns t1 JOIN tiendas t2 ON t1.Tienda = t2.ID_TIENDA
+      ') -> query_b
+```
+```{r,echo=FALSE}
+aux <- query_b %>% head(4)
+lista <- list(aux[,1:4],aux[,5:8],aux[,9:12],aux[,13:16])
+lista %>% 
+  kabla(title = "Fragmento del cruce tablas procesada por el inciso b).")
+```
+
+\newpage
+
+c)	Excluye las transacciones realizadas por Milton Rodríguez Muñoz.
+
+```{r}
+sqldf('
+      SELECT * 
+      FROM base_txns t1 JOIN tiendas t2 ON t1.Tienda = t2.ID_TIENDA
+      WHERE Nombre NOT LIKE "Milton" AND
+            [Ap paterno] NOT LIKE "Rodríguez" AND
+            [Ap materno] NOT LIKE "Muñoz"
+      ') -> query_c
+```
+
+
+d)	Calcula el monto y numero de transacciones acumuladas por municipio y guárdalo en una tabla.
+
+```{r}
+sqldf('
+      SELECT cve_mun, COUNT(cve_mun) as cantidad ,  sum([Monto en pesos]) as monto
+      FROM base_txns t1 JOIN tiendas t2 ON t1.Tienda = t2.ID_TIENDA
+      GROUP BY cve_mun
+      ') -> query_d
+```
+```{r,echo=FALSE}
+query_d %>% 
+  kabla(title = "Resumen del curce de tablas procesado por el inciso d). La columna 'cantidad' expresa el número de transacciones acumuladas, y la columna 'monto' el total acumulado del monto en ese municipio." )
+```
+
+
+\newpage
+
+# Ejercicio 3 - Minería con Python
+
+Usar el archivo \ctexttt{Nombres.txt} y sigue las siguientes instrucciones:
+
+a)	Lee el archivo, toma en cuenta el formato txt, el encodig UTF-8 y la delimitación por un pipe.
+
+```{python}
+import pandas as pd
+directorio = "C://Users/alarc/Documents/Actuaría/GitHub/R_Actuarial/Programación General/"
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Datos/"
+archivo = "Nombres.txt"
+ruta = directorio + carpeta + archivo
+# Se guarda en el objeto "datos"
+datos = pd.read_csv(ruta,sep="|",encoding=("UTF-8"))
+```
+```{r,echo=FALSE}
+py$datos %>% head(4) %>% kabla(title = "Primeras observaciones \\ctexttt{Nombres.txt} importada con código Python.")
+```
+
+
+b)	Limpia los campos Nombre y Apellido (quita espacios, acentos y caracteres especiales).
+
+```{python}
+# Asumiremos que también se deben quitar las mayúsculas con el objetivo de tener monotonía.
+
+# Nombre
+import string
+simbolos = str.maketrans('', '', string.punctuation)
+datos["Nombre"] = datos["Nombre"].str.translate(simbolos)
+datos["Nombre"] = datos["Nombre"].str.replace(" ","")
+datos["Nombre"] = datos["Nombre"].str.lower()
+import unidecode
+datos["Nombre"] = datos["Nombre"].apply(unidecode.unidecode)
+
+# Apellido
+datos["Apellido"] = datos["Apellido"].str.translate(simbolos)
+datos["Apellido"] = datos["Apellido"].str.replace(" ","")
+datos["Apellido"] = datos["Apellido"].str.lower()
+datos["Apellido"] = datos["Apellido"].apply(unidecode.unidecode)
+```
+```{r,echo=FALSE}
+py$datos %>% head(4) %>% kabla(title = "Primeras observaciones de tabla \\ctexttt{Nombres.txt} procesada por el inciso b).")
+```
+
+
+c)	Crea un campo que se llame First que contenga la primera letra del apellido.
+
+```{python}
+datos["First"] = datos["Apellido"].str[0]
+```
+```{r,echo=FALSE}
+py$datos %>% head(4) %>% kabla(title = "Primeras observaciones de tabla \\ctexttt{Nombres.txt} procesada por el inciso c).")
+```
+
+
+d)	Usando el campo First, filtra las personas que su nombre inicia con consonante.
+
+```{python}
+datos_consonantes = datos[~(datos.First.isin(["a","e","i","o","u"]))]
+```
+```{r,echo=FALSE}
+py$datos_consonantes %>% head(4) %>% kabla(title = "Primeras observaciones de tabla \\ctexttt{Nombres.txt} procesada por el inciso d).")
+```
+
+
+e)	Agrupa la tabla anterior por los campos 'Nombre','Apellido' y 'Id', y suma el saldo.  
+
+```{python}
+datos_agrupado = datos_consonantes.groupby(["Nombre","Apellido","Id"]).sum()[["Saldo"]].reset_index()
+```
+```{r,echo=FALSE}
+py$datos_agrupado %>% head(4) %>% kabla(title = "Primeras observaciones de tabla \\ctexttt{Nombres.txt} procesada por el inciso e).")
+```
+
+
+
+f)	Exporta los resultados de la tabla agrupada en un archivo Excel con el nombre Nombres_agrupado.xlsx.
+
+```{python}
+import openpyxl
+carpeta = "R + Python + SQL + LaTeX en RStudio/Examen Consultor Sr/Resultados/"
+archivo = "Nombres_agrupado.xlsx"
+ruta = directorio + carpeta + archivo
+writer = pd.ExcelWriter(ruta)
+datos_agrupado.to_excel(writer)
+writer.save()
+```
+
+

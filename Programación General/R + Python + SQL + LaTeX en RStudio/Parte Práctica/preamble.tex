@@ -1,0 +1,57 @@
+\usepackage[spanish,es-tabla]{babel}
+% ------------------------------------------------------------------------
+% Para los colores en el texto -------------------------------------------------
+\usepackage{hyperref}
+\definecolor{colorref}{rgb}{0.65, 0.04, 0.37}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=colorref,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=colorref,
+	anchorcolor = blue
+}
+\usepackage{caption}
+\captionsetup[table]{name=Tabla}
+\captionsetup{labelfont={color=colorref}}
+\def\figureautorefname{Figura}%
+\renewcommand{\tableautorefname}{Tabla}
+%\usepackage{cleveref}
+\urlstyle{same}
+% ------------------------------------------------------------------------
+% Cambiar el color de \texttt{}
+\usepackage{xcolor}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{bronze}{rgb}{0.8, 0.5, 0.2}
+\newcommand{\ctexttt}[2][bronze]{
+\textcolor{#1}{\texttt{\textbf{#2}}}
+}
+% Ejemplo:
+% \ctexttt[red]{Auto} % Pone "Auto" de color rojo
+% \ctexttt{Auto} % Pone "Auto" de color bronze
+% http://latexcolor.com/
+% https://www.overleaf.com/learn/latex/Using_colours_in_LaTeX
+% https://www.dickimaw-books.com/latex/novices/html/newcomopt.html
+% ------------------------------------------------------------------------
+% Poner gráficos y tablas lado a lado
+\usepackage{floatrow}
+\def\tablename{Tabla}
+\newfloatcommand{btabbox}{table}
+% ------------------------------------------------------------------------
+% Paqueterías extra y funciones creadas.
+\usepackage{graphicx}
+\newcommand{\derivada}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\usepackage{pdfpages} % Para poner pdf's en Markdown
+\setcounter{tocdepth}{2} % Para el índice con profundidad 3
+\usepackage[titles]{tocloft} %1. Para que no se vean los puntos en el índice
+\renewcommand{\cftdot}{} %2. Para que no se vean los puntos en el índice
+\usepackage{multicol}
+\usepackage{amsmath,mathrsfs,amssymb,amsthm,commath,thmtools,enumerate}
+\usepackage{tgtermes} %Letra monita.
+\pagenumbering{gobble} %Para quitar el número de página.
+\usepackage{caption}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{Parte Práctica}
+\fancyhead[C]{Examen de Consultor Sr.}
+\fancyhead[R]{Alarcón González Edgar Gerardo}

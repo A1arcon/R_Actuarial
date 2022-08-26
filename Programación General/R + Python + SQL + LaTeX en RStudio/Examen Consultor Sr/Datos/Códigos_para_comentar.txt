@@ -1,0 +1,407 @@
+
+
+-- ________________________________________________________________________________________
+-- ########################################################################################
+-- #                
+-- #            1)   SQL
+-- #    
+
+_________________________
+#########################
+# a)
+#
+
+DROP TABLE ws_envd_analitica.env_movimientos PURGE;
+
+CREATE TABLE ws_envd_analitica.env_movimientos (
+id_master		INT,
+id_cliente      STRING,
+Nombre     		STRING,
+Ap_paterno      STRING,
+Ap_materno      STRING,
+anio			INT,
+txns			INT,
+monto			BIGINT,
+fecha           DATE,
+prod_subprod  	MAP<STRING,STRING>,
+coordenada      ARRAY<INT>,
+estadisticas	STRUCT<CECO:INT, ACC:INT, MATRICULA:INT, REGISTRO:INT>
+) 
+PARTITION BY RANGE(year)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '|'
+collection items terminated by ','
+MAP KEYS TERMINATED BY ':';
+
+LOAD DATA INPATH '/user/agguadarrama/CrystalData/BaseTransaccional.txt'
+INTO TABLE ws_envd_analitica.env_movimientos;
+
+
+_________________________
+#########################
+# b)
+#
+
+drop table if exists ws_pgsd_analitica.tmp_pgs_969077_odp purge;
+
+create table 
+    ws_envd_analitica.env_txns stored as parquet as 
+SELECT
+    id_master
+    ,num_p
+    ,count(*)    as txns
+    ,sum(monto)  as monto
+FROM(
+    select 
+         *
+        ,year(min(fec_reg_ps))*100+month(min(fec_reg_ps)) as num_p
+    from(
+        SELECT
+        	 IF(B.id_master is null,-1*A.ID_CLIENTE,B.id_master)                                                        AS id_master
+        	,IF(FCCLIENTEID = 'N/A', NULL, cast(regexp_replace(FCCLIENTEID, "[^0-9]","") as BIGINT) )                   AS ID_CLIENTE
+        	,concat(fcctenombre,fcctepaterno,fcctematerno,'-',from_timestamp(fcctefechanacimiento,'yy-MM-dd'))          AS persona
+        	,CASE 
+                WHEN prod_subprod['prod'] NOT IN ('2','4') AND prod_subprod['subprod'] = ''    estadisticas.REGISTRO
+                WHEN prod_subprod['prod']     IN ('2','4') AND prod_subprod['subprod'] = 'INT' estadisticas.MATRICULA
+                ELSE estadisticas.ACC END                                                                               AS COD_REG
+        	,IF( anio BETWEEN '2022-01-01' AND  year(to_date(now())), 'anio actual','anios_pasados')                    AS anio_estudio
+        	,row_number() over (partition by id_master,fecha order by fecha desc)                                       AS row1
+        FROM ws_envd_analitica.env_movimientos as A
+        LEFT ANTI JOIN
+            (
+            SELECT 
+                 CAST(id_cliente AS BIGINT) as id_cliente_num
+                ,min(id_master) as id_master
+            FROM cd_baz_bdclientes.cd_cte_master
+            WHERE cod_tipo_cliente = 'CLIENTE_UNICO_0'
+            GROUP BY id_cliente_num
+            ) AS B
+        ON A.ID_CLIENTE = B.id_cliente_num
+        WHERE TO_DATE(fecha) BETWEEN '2010-01-02' AND  '2020-11-09'
+        ) AS C
+    WHERE row1 = 1
+    
+    UNION ALL 
+    
+    SELECT * FROM ws_envd_analitica.env_movimientos_hist
+    
+    ) AS D
+GROUP BY id_master, num_p
+;
+
+_________________________
+#########################
+# c)
+#
+
+drop table if exists ws_envd_analitica.env_txns_hist purge;
+
+create table 
+    ws_envd_analitica.env_txns_hist
+stored as parquet as 
+SELECT
+     id_master
+    ,persona
+    ,num_periodo_mes                                                                                                                     
+    ,txns                                                                                                              AS NUM_DISP_1M
+    ,SUM(txns) OVER (PARTITION BY id_master ORDER BY num_periodo_mes ROWS BETWEEN  2 PRECEDING AND CURRENT ROW)        AS NUM_DISP_3M
+    ,SUM(txns) OVER (PARTITION BY id_master ORDER BY num_periodo_mes ROWS BETWEEN 11 PRECEDING AND CURRENT ROW)        AS NUM_DISP_12M
+    ,monto                                                                                                             AS MTO_DISP_1M
+    ,SUM(monto)       OVER (PARTITION BY id_master ORDER BY num_periodo_mes ROWS BETWEEN  2 PRECEDING AND CURRENT ROW) AS MTO_DISP_3M
+    ,SUM(monto)       OVER (PARTITION BY id_master ORDER BY num_periodo_mes ROWS BETWEEN 11 PRECEDING AND CURRENT ROW) AS MTO_DISP_12M
+FROM(
+    SELECT 
+          id_master
+         ,persona
+        ,num_periodo_mes
+        ,SUM(IF(num_periodo_mes = num_p, txns,0))  AS txns
+        ,SUM(IF(num_periodo_mes = num_p, monto,0)) AS monto
+    FROM
+        ws_envd_analitica.env_txns AS A
+    
+    LEFT JOIN
+        (
+        SELECT
+           DISTINCT num_periodo_mes
+        FROM
+            cd_baz_bdclientes.cd_gen_fechas_cat
+        WHERE
+            num_periodo_mes BETWEEN 201801 AND year(date_add(now(),-1))*100+month(date_add(now(),-1)) 
+        ) AS B
+    ON A.num_p <= B.num_periodo_mes 
+    GROUP BY id_master,num_periodo_mes
+    ) AS C
+;
+
+-- ________________________________________________________________________________________
+-- ########################################################################################
+-- #                
+-- #            1)   R
+-- #   
+
+_________________________
+#########################
+# a)
+#
+
+readTxtDelim<-function(path=NULL,sep=",",HeaderFirstLine=TRUE,quitHeaders=FALSE){
+  if(is.null(path)){
+    tab<-readLines(choose.files(),encoding = "UTF-8")
+  }else{
+    tab<-readLines(path,encoding = "UTF-8")
+  }
+  tab<-str_split(tab,sep)
+  tab<-do.call(rbind.data.frame, tab)
+  names(tab)<-paste("V",1:dim(tab)[2],sep = "")
+  if(HeaderFirstLine==TRUE){
+    if(quitHeaders==TRUE){
+      tab<-tab[2:dim(tab)[1],]
+    }else{
+      namesTab=as.character(c(tab[1,]))
+      if(length(namesTab)==dim(tab)[2]){
+        tab<-tab[2:dim(tab)[1],]
+        names(tab)<-namesTab
+      }else{
+        print("The length of titles does not correspond to the number of columns")
+      }
+    }
+  }
+  return(tab)
+}
+
+_________________________
+#########################
+# b)
+#
+
+asignacion_dt_V1109<-function(tab,mt,Campo_estados,Campo_CP,Campos_out_main,estado_mal,estado_bien){
+
+  campos_originales<-paste(names(tab),collapse="-")
+  columnas_originales<-paste(names(tab))
+  tab[,Estado2 := eval(Campo_estados) ]
+  tab[,Estado2:=toupper(stri_trans_general(Estado2,"Latin-ASCII"))]
+  if(length(estado_mal)!=length(estado_bien)){
+    print("Vectores mal")
+  }else{
+    for (i in 1:length(estado_mal)) {
+      tab[Estado2==estado_mal[i], Estado2 := estado_bien[i]]
+    }
+  }
+
+  tab[,CP2 := eval(Campo_CP)]
+  tab[,CP2:=as.character(as.numeric(trimws(CP2)))]
+  tab[nchar(CP2)==4, CP2 := paste("0",CP2,sep="")]
+  
+  tab[,Llave:=gsub(" ","_",paste(Estado2,CP2,sep="_")) ]
+  main<-data.table(unique(read.csv(mt,encoding ='UTF-8',header = TRUE, stringsAsFactors = FALSE)))
+  estados_main<-unique(substr(main$Origen,1,nchar(main$Origen)-6))
+  estados_tab<-unique(gsub(" ","_",tab[,Estado2] ))
+  
+  setkey(tab,Llave)
+  setkey(main,Origen)
+  RES<-main[tab]
+  resultados<-list() 
+  nombres<-c()
+  
+  if( dim(RES[is.na(BAZ_1)])[1]==0 ){
+    resultados[[1]]<-0
+    nombres[2]<-"EXITO - Se encontraron todos los CP"
+  }else{
+    resultados[[1]]<-data.table(table(RES[is.na(BAZ_1),Origen]))[order(-N)]
+    nombres[2]<-"CP"
+  }
+ 
+  resultados[[2]]<-RES[,c(columnas_originales,Campos_out_main),with=F]
+  nombres[2]<-"Archivo"
+  
+  names(resultados)<-nombres
+  return(resultados)
+}
+
+
+_________________________
+#########################
+# c)
+#
+
+numCores <- detectCores()
+clus <- makeCluster(numCores)
+
+clusterEvalQ(clus, {
+  library(sp)
+  library(rgdal)
+  library(data.table)  
+})
+
+intersect_function <- function(a,b){
+  
+  for ( k in 1:dim(b)[1] ) {
+    if( b[k,] == "TRUE"   ){
+      resultados <- paste(a$llave,b$CVEGEO[k],sep="|")
+      break
+    }else{
+      resultados <- NA
+    }
+  }
+}
+
+dt_a <- fread(choose.files(),colClasses = "character",encoding = 'Latin1')
+dt_b <- fread(choose.files(),colClasses = "character",encoding = 'Latin1')
+
+rest <- parApply( cl=clus, dt_a, 1, intersect_function, b=dt_b  )
+
+
+-- ________________________________________________________________________________________
+-- ########################################################################################
+-- #                
+-- #            1)   Python
+-- #   
+
+_________________________
+#########################
+# a)
+#
+
+import numpy as np 
+import matplotlib.pyplot as plt 
+#%matplotlib inline
+from sklearn.linear_model import LinearRegression 
+def f(x):  
+    np.random.seed(42) 
+    y = 0.1*x + 1.25 + 0.2*np.random.randn(x.shape[0])
+    return y
+
+x = np.arange(0, 20, 0.5) 
+y = f(x) 
+plt.scatter(x,y,label='data', color='blue')
+plt.title('Ejercicio para comentar')
+regresion_lineal = LinearRegression() 
+regresion_lineal.fit(x.reshape(-1,1), y) 
+print('w = ' + str(regresion_lineal.coef_) + ', b = ' + 
+      str(regresion_lineal.intercept_))
+n_x = np.array([5]) 
+p1 = regresion_lineal.predict(n_x.reshape(-1,1))
+print(p1)
+
+_________________________
+#########################
+# b)
+#
+
+from datetime import date,timedelta
+
+fi=date(2021,1,4)
+today=date.today()
+
+for s in list(range(0, 371,7)):
+    if (fi+timedelta(days=s)<=today and today<fi+timedelta(days=s+7)):
+      s_p=int(s/7+1)
+
+print(str(s_p-1))
+
+for i in range(s_p):
+    if i==0 or i==1:
+        continue
+    sem_b=i
+    if ( len(str(sem_b))==1 ):
+        semana_b="""str(0)"""+str(sem_b)
+    else:
+        semana_b=str(sem_b)
+    semana_num=i
+    
+def df_in_h(titulo,df_t):
+    df_t=df_t.to_numpy()
+    tab="""
+    <h3><strong>"""+titulo+"""</strong></h3>
+    <table border="3">
+    <tbody>
+    <tr>
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Cuentas</strong></td>
+    </tr>
+    """
+    for row in df_t:
+        tab=tab+"""<tr>
+    """
+        for elem in row:
+            tab=tab+"""<td style="text-align: center;">&nbsp;"""+str(elem)+"""</td>
+    """
+        tab=tab+"""</tr>
+    """
+    tab=tab+"""</tbody>
+    </table>
+    <p></p>"""
+    return tab
+
+tab1=df_in_h("""Resultados de la semana """+str(s_p)+""":""",df)
+print(tab1)
+
+_________________________
+#########################
+# c)
+#
+ 
+conf = SparkConf().setAppName('Portafolio_envio_email')
+sc = SparkContext.getOrCreate(conf=conf)
+hiveContext = HiveContext(sc)
+
+periodo=str(hiveContext.sql("""SELECT MAX(num_periodo_mes) from gobiernoprogsocial.cd_dig_cte_hist""").collect()[0][0])
+
+hiveContext.sql("""INSERT INTO gobiernoprogsocial.digital_universo_ps          
+    select *
+    from gobiernoprogsocial.bienestardexalta2020021801 
+""")
+
+df1 =hiveContext.sql("""SELECT * from gobiernoprogsocial.digital_universo_ps""").collect()
+
+def data_frame_in_html(t,d):
+    tab="""
+    <h3><strong>"""+titulo+"""</strong></h3>
+    <table border="3">
+    <tbody>
+    <tr>
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Semana</strong></td>
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Id_programa</strong></td>
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Porcentaje de usuarios con BAZ digital</strong></td>
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Usuarios con actividad digital trimestral</strong></td> 
+    <td style="width: 200px; text-align: center; background-color: #e5e3e2;"><strong>Porcentaje de usuarios actividad digital trimestral</strong></td>
+    </tr>
+    """
+    for row in df2:
+        tab=tab+"""<tr>
+    """
+        for elem in row:
+            tab=tab+"""<td style="text-align: center;">&nbsp;"""+str(elem)+"""</td>
+    """
+        tab=tab+"""</tr>
+    """
+    tab=tab+"""</tbody>
+    </table>
+    <p></p>"""
+    return tab
+
+adena="""
+<body>
+<h1 style="color:black; text-align: center;"><strong>Programas Sociales - Actividad Digital</strong></h1>
+<h2 style="text-align: center;"><strong>Reporte semanal de los usuarios en el programa Bienestar que ya cuentan con la aplicacion </strong></h2>
+"""
+
+######### Configurar y mandar correo
+
+fromaddr = "Programas Sociales <oozie@ektrh7cdhhn2.sie.ad.elektra.com.mx>"
+
+to = ['angel.guadarrama@bancoazteca.com.mx']
+cc= ['angel.guadarrama@bancoazteca.com.mx']
+
+addresses = to+cc
+
+msg = MIMEMultipart('alternative')
+msg['From'] = fromaddr
+msg['To'] = ", ".join(to)
+msg['CC'] = ", ".join(cc)
+msg['Subject'] = "Actividad digital en Programas Sociales"
+msg.attach(MIMEText(cadena,'html'))
+text = msg.as_string()
+print("body")
+server = smtplib.SMTP(host='localhost',port=25)
+server.sendmail (fromaddr,addresses,text) 
+server.quit()
