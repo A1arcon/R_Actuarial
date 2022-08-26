@@ -1,6 +1,4 @@
 
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-
 <a href="https://www.unam.mx/">
 <img src="https://img.shields.io/badge/Actuar%C3%ADa-UNAM-yellow">
 
@@ -11,14 +9,6 @@
 <img src="https://img.shields.io/badge/Docente-AMAT-red">
 
 # [“R Actuarial”](https://github.com/A1arcon/R_Actuarial) por [Edgar Gerardo Alarcón González](https://www.linkedin.com/in/a1arcon/)
-
-<div class="badge-base LI-profile-badge" data-locale="en_US"
-data-size="large" data-theme="dark" data-type="HORIZONTAL"
-data-vanity="a1arcon" data-version="v1">
-
-<a class="badge-base__link LI-simple-link" href="https://mx.linkedin.com/in/a1arcon/en?trk=profile-badge"></a>
-
-</div>
 
 El objetivo de este repositorio es brindar un apoyo a la comunidad
 interesada en mejorar sus técnicas en el lenguaje de programación R o
