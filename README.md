@@ -119,46 +119,44 @@ STAM de la SoA (Society Of Actuaries).
 
 Los temas que se ven en este curso son los siguientes:
 
-1.  [Conceptos Básicos y
-    Preeliminares](https://drive.google.com/file/d/10l4FT5PJF_a1zkUZsI0Fx-AUlfH950aX/view?usp=sharing)
+1.  Conceptos Básicos y Preeliminares
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_1.%20Conceptos%20B%C3%A1sicos%20y%20Preeliminares/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_1.%20Conceptos%20B%C3%A1sicos%20y%20Preeliminares/C%C3%B3digo)
 
-2.  [Medidas de
-    Riesgo](https://drive.google.com/file/d/10mufZGHciT2JWciQKacCvps0hb4ur8n-/view?usp=sharing)
+2.  Medidas de Riesgo
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_2.%20Medidas%20de%20Riesgo/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_2.%20Medidas%20de%20Riesgo/C%C3%B3digo)
 
-3.  [Frecuencia](https://drive.google.com/file/d/10oBrcitDnu5QEE_cHTS_x39UuEBcBSya/view?usp=sharing)
+3.  Frecuencia
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_3.%20Frecuencia/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_3.%20Frecuencia/C%C3%B3digo)
 
-4.  [Severidad](https://drive.google.com/file/d/10rZ_gOnxlCWzxGQIswT7TcYKPhyUrA4r/view?usp=sharing)
+4.  Severidad
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_4.%20Severidad/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_4.%20Severidad/C%C3%B3digo)
 
-5.  [Modelo
-    Individual](https://drive.google.com/file/d/114XHyLx7v_aSth1Qg846DjLQ7OiG9cdR/view?usp=sharing)
+5.  Modelo Individual
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_5.%20Modelo%20Individual/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_5.%20Modelo%20Individual/C%C3%B3digo)
 
-6.  [Modelo
-    Colectivo](https://drive.google.com/file/d/115YMbv6VnhMnOZ3neiuQczkHh-aPa-Fg/view?usp=sharing)
+6.  Modelo Colectivo
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_6.%20Modelo%20Colectivo/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_6.%20Modelo%20Colectivo/C%C3%B3digo)
 
-7.  [Reaseguro](https://drive.google.com/file/d/115uVhhSs5fms5O_Nv5SMwzs3fn0svR6j/view?usp=sharing)
+7.  Reaseguro
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_7.%20Reaseguro/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_7.%20Reaseguro/C%C3%B3digo)
 
-8.  [Cálculo de
-    Primas](https://drive.google.com/file/d/1163CS7CqUEst397O_mTvm4eIsgFftFfn/view?usp=sharing)
+8.  Cálculo de Primas
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_8.%20C%C3%A1lculo%20de%20Primas/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_8.%20C%C3%A1lculo%20de%20Primas/C%C3%B3digo)
 
-9.  [Credibilidad](https://drive.google.com/file/d/116r51WXmnHjP22VmpEqtDSonkLibsv5w/view?usp=sharing)
+9.  Credibilidad
     [(Notas)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_9.%20Credibilidad/Notas%20LaTeX)
     [(Código)](https://github.com/A1arcon/R_Actuarial/tree/main/Teor%C3%ADa%20del%20Riesgo%20(UNAM)/_9.%20Credibilidad/C%C3%B3digo)
+
+Las notas originales se pueden encontrar dando [clic
+aquí](https://drive.google.com/drive/folders/1k5Tlg072JaKbxVf1t8mp7cptTnNRA-am?usp=sharing)
 
 ## [Estadística](https://github.com/A1arcon/R_Actuarial/tree/main/Estad%C3%ADstica)
 
@@ -302,7 +300,7 @@ en un estilo muy similar a un `R Sweave`.
 2.  [**Modelo de
     Vasicek**](https://github.com/A1arcon/R_Actuarial/tree/main/Finanzas/2.%20Modelo%20de%20Vasicek)
     (Presentación en
-    [**Beamer**](https://drive.google.com/file/d/1VRBjHOOX-RQ7fW1sa8DtAOCTWhXkDV63/view?usp=sharing)
+    [**Beamer**](https://drive.google.com/file/d/1w-Gm2py1HzCLYNyzdoOePNbW8ZwM-EcI/view?usp=sharing)
     y aplicación en
     [**Shiny**](https://edgar-alarcon.shinyapps.io/Modelo_Vacisek/?_ga=2.81008535.1011404247.1609457667-842461214.1606672993))
 
@@ -497,16 +495,16 @@ consultarse dando clic
 
 De igual manera, existe una plática realizada en el congreso “Actuarios
 por México” donde se habla a grandes de lo realizado en el conteo
-Rápido. Este evento fue en vivo de manera virtual y la repetición puede
-verse dando clic
-[aquí](https://drive.google.com/file/d/1IAr-iRIlPqyB-KhCKhM9IVlnqU39DrN0/view).
+Rápido. Este evento fue en vivo de manera virtual, puede verse la
+repetición dando [clic
+aquí](https://drive.google.com/file/d/1Zvb6-fudZm_Gj-kLeXajwwuA9JqQjj1r/view?usp=sharing).
 
 <img src="README_files/figure-gfm/AXMEX.png" width="30%" style="display: block; margin: auto;" />
 
 La tesis en la versión editable más actual puede encontrarse en código
 LaTeX dando clic [aquí](https://www.overleaf.com/read/gxvqtpvbnzjq).
 
-## [Biblioteca Digital](https://drive.google.com/drive/folders/1iZ4_kcita9R3TY32G-LRIMS9HXyteApH?usp=sharing)
+## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde
 temas de cálculo, álgebra, análisis; pasando por probabilidad,
