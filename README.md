@@ -19,6 +19,15 @@ riesgo y finanzas.
 **Por favor no olvides dejar tu estrella, eso me motiva a seguir
 subiendo y actualizando este material :)**
 
+## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
+
+Les comparto todos los libros digitales con los que cuento. Hay desde
+temas de cálculo, álgebra, análisis; pasando por probabilidad,
+estadística, riesgo, hasta mangas y libros de música. :) Ojalá les
+sirva.
+
+<https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing>
+
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 <img src="README_files/figure-gfm/AMAT.PNG" width="50%" style="display: block; margin: auto;" />
@@ -26,10 +35,10 @@ subiendo y actualizando este material :)**
 Aquí encontrarán los códigos que fueron utilizados para la elaboración
 de las cápsulas en las que participo en el canal de Youtube de AMAT.
 
--   [**Taller de AMAT en el XXXIII Congreso Nacional de
-    Actuaría.**](https://github.com/A1arcon/R_Actuarial/tree/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R)
-    [(Video)](https://www.youtube.com/watch?v=vPwPIvXGtgQ)
-    [(Shiny)](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319)
+- [**Taller de AMAT en el XXXIII Congreso Nacional de
+  Actuaría.**](https://github.com/A1arcon/R_Actuarial/tree/main/_Apoyo%20para%20cursos%20y%20congresos_/_%20Congresos/Congreso%20Nacional%20de%20Actuarios%202022/R)
+  [(Video)](https://www.youtube.com/watch?v=vPwPIvXGtgQ)
+  [(Shiny)](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319)
 
 Ponencia de AMAT en el XXXIII Congreso Nacional de Actuaría.
 
@@ -52,9 +61,9 @@ para la
 o bien pueden ver su funcionamiento online dando clic
 [aquí](https://edgar-alarcon.shinyapps.io/LRM_AMAT/?_ga=2.31919422.10606347.1655304637-1851923759.1644002319).
 
--   [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en
-    R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0))
-    [(Video)](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
+- [**Número de reclamaciones - Distribuciones de Clase (a, b, 0) en
+  R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0))
+  [(Video)](https://www.youtube.com/watch?v=ZX2W59Mdaag&t)
 
 El Act. Edgar Alarcón nos plática sobre una clase de familias muy
 importantes para modelar variables aleatorias discretas que representan
@@ -66,9 +75,9 @@ son de hecho las únicas que satisfacen la propiedad recursiva, dicha
 demostración la podrás ver dando clic
 [aquí](https://github.com/A1arcon/R_Actuarial/blob/main/C%C3%A1psulas%20AMAT/1.%20Clase(a%2Cb%2C0)/Unicidad%20de%20Clase(a%2Cb%2C0).pdf).
 
--   [**Modelo de pérdidas agregadas - Formula de Panjer en
-    R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/2.%20Panjer)
-    [(Video)](https://www.youtube.com/watch?v=H4ETDaUUvTk&t)
+- [**Modelo de pérdidas agregadas - Formula de Panjer en
+  R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/2.%20Panjer)
+  [(Video)](https://www.youtube.com/watch?v=H4ETDaUUvTk&t)
 
 El Act. Edgar Alarcón nos habla sobre un modelo fundamental para
 describir el riesgo de una aseguradora: El Modelo de Pérdida Agregada,
@@ -77,9 +86,9 @@ S=X1+…+XN. Para esto, hace uso de las propiedades de la familia de clase
 S, su media y su varianza. Finalmente, implementa las fórmulas en R
 Studio, con la paquetería “actuar”.
 
--   [**Función de Verosimilitud y Estimación de Parámetros con
-    R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/3.%20Estimador%20m%C3%A1ximo%20veros%C3%ADmil)
-    [(Video)](https://www.youtube.com/watch?v=zPSj0ltrBoc&t)
+- [**Función de Verosimilitud y Estimación de Parámetros con
+  R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/3.%20Estimador%20m%C3%A1ximo%20veros%C3%ADmil)
+  [(Video)](https://www.youtube.com/watch?v=zPSj0ltrBoc&t)
 
 El Act. Edgar Alarcón nos habla sobre uno de los elementos estadísticos
 más importantes, la función de verosimilitud y, en particular, sobre un
@@ -90,18 +99,18 @@ Finalmente, implementa las fórmulas en R Studio, mostrándonos una
 sencilla aplicación en R Shiny, donde podremos visualizar un ejemplo
 teórico-práctico de lo desarrollado a lo largo del video.
 
--   [**Integración de Regiones vía Monte Carlo, con
-    R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/4.%20Integraci%C3%B3n%20de%20Regiones%20v%C3%ADa%20Monte%20Carlo)
-    [(Video)](https://www.youtube.com/watch?v=Lot8__UCG5U)
+- [**Integración de Regiones vía Monte Carlo, con
+  R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/4.%20Integraci%C3%B3n%20de%20Regiones%20v%C3%ADa%20Monte%20Carlo)
+  [(Video)](https://www.youtube.com/watch?v=Lot8__UCG5U)
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una
 interesante aplicación del Método de Simulación Montecarlo para estimar
 la medida (longitud, área, volumen o hipervolumen) de un subconjunto del
 espacio Euclidiano con ayuda de R-Studio.
 
--   [**Integración de Funciones vía Monte Carlo con
-    R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/5.%20Integraci%C3%B3n%20de%20Funciones%20v%C3%ADa%20Monte%20Carlo)
-    [(Video)](https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t)
+- [**Integración de Funciones vía Monte Carlo con
+  R**](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT/4.%20y%205.Integraci%C3%B3n%20Monte%20Carlo/5.%20Integraci%C3%B3n%20de%20Funciones%20v%C3%ADa%20Monte%20Carlo)
+  [(Video)](https://www.youtube.com/watch?v=YiMNZ8Hv6w0&t)
 
 En la cápsula de esta semana, el Act. Edgar Alarcón, nos muestra una
 interesante aplicación del Método de Simulación Montecarlo para estimar
@@ -504,13 +513,6 @@ aquí](https://drive.google.com/file/d/1Zvb6-fudZm_Gj-kLeXajwwuA9JqQjj1r/view?us
 La tesis en la versión editable más actual puede encontrarse en código
 LaTeX dando clic [aquí](https://www.overleaf.com/read/gxvqtpvbnzjq).
 
-## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
-
-Les comparto todos los libros digitales con los que cuento. Hay desde
-temas de cálculo, álgebra, análisis; pasando por probabilidad,
-estadística, riesgo, hasta mangas y libros de música. :) Ojalá les
-sirva.
-
 ## Esperen más próximamente…
 
 ### Contacto
@@ -528,14 +530,14 @@ Quedo a sus órdenes y espero esto ayude al gremio.
 
 ### FAQ
 
--   [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil
-    y rápida?](https://youtu.be/te1fJgn71js)
+- [¿Cómo puedo conectar/subir archivos de R con GitHub de forma fácil y
+  rápida?](https://youtu.be/te1fJgn71js)
 
--   [¿Cómo puedo descargar los archivos que tiene un repositorio en
-    GitHub?](https://youtu.be/vuvp_-cPYNA)
+- [¿Cómo puedo descargar los archivos que tiene un repositorio en
+  GitHub?](https://youtu.be/vuvp_-cPYNA)
 
--   [¿Cómo puedo descargar un archivo en particular de
-    GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
+- [¿Cómo puedo descargar un archivo en particular de
+  GitHub?](https://stackoverflow.com/questions/4604663/download-single-files-from-github)
 
 > Una respuesta rápida a esta última pregunta es la siguiente. 1. Ve al
 > archivo que quieres descargar. 2. Dale click para ver los contenidos

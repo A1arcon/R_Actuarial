@@ -28,6 +28,12 @@ El objetivo de este repositorio es brindar un apoyo a la comunidad interesada en
 
 **Por favor no olvides dejar tu estrella, eso me motiva a seguir subiendo y actualizando este material :)**
 
+## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
+
+Les comparto todos los libros digitales con los que cuento. Hay desde temas de cálculo, álgebra, análisis; pasando por probabilidad, estadística, riesgo, hasta mangas y libros de música. :) Ojalá les sirva.
+
+[https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
+
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
 ```{r,out.width='50%',fig.align="center"}
@@ -244,10 +250,6 @@ foto("README_files/figure-gfm/AXMEX.png")
 ```
 
 La tesis en la versión editable más actual puede encontrarse en código LaTeX dando clic [aquí](https://www.overleaf.com/read/gxvqtpvbnzjq).
-
-## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
-
-Les comparto todos los libros digitales con los que cuento. Hay desde temas de cálculo, álgebra, análisis; pasando por probabilidad, estadística, riesgo, hasta mangas y libros de música. :) Ojalá les sirva.
 
 ## Esperen más próximamente...
 
