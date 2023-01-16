@@ -26,13 +26,22 @@ temas de
 [probabilidad](https://drive.google.com/drive/folders/1oFLIZnKQxCN2aHhgUdUffXv3js9wjXjq?usp=share_link),
 [estadística](https://drive.google.com/drive/folders/1IVpcm5VoZNU5qYwL88LxghagwLs7rArI?usp=share_link),
 [actuaría](https://drive.google.com/drive/folders/1yGlVvbxNDvqyxRYs5qZXJgNYVWavHycF?usp=share_link),
+programación en
+[R](https://drive.google.com/drive/folders/18bdFCpN2W8xVGC-JUG-BxRVHCwXmljWX?usp=share_link),
+[LaTeX](https://drive.google.com/drive/folders/15D5IAnaqNvg4jXJ36bs1qFjQd10GcoTz?usp=share_link),
+[Mathematica](https://drive.google.com/drive/folders/1DyJAKB9kOUiNlvLXDJHCtO-xsZwN2cKL?usp=share_link),
+[Python](https://drive.google.com/drive/folders/1ETdOyMZpp5nYJFxzrYXMy5sh1fPK6yGp?usp=share_link),
 hasta
-[mangas](https://drive.google.com/drive/folders/1j5rjBouRMViJOKWHa1vKTXOgTtDeVfIE?usp=share_link)
-y libros de
-[música](https://drive.google.com/drive/folders/1BZ_cdTLCVjWU13M9m-dLdGxK3C1gtRGU?usp=share_link).
+[mangas](https://drive.google.com/drive/folders/1j5rjBouRMViJOKWHa1vKTXOgTtDeVfIE?usp=share_link),
+libros de
+[música](https://drive.google.com/drive/folders/1BZ_cdTLCVjWU13M9m-dLdGxK3C1gtRGU?usp=share_link),
+[trading](https://drive.google.com/drive/folders/15ISfnRAe3db41h8KF0E3RYFxNUKJ6rgw?usp=share_link)
+y
+[más](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I).
 :) Ojalá les sirva.
 
-<https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing>
+[\>\>\>\> clic aquí
+\<\<\<\<](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
 
 ## [Cápsulas AMAT](https://github.com/A1arcon/R_Actuarial/tree/main/C%C3%A1psulas%20AMAT) [Canal de YouTube - AMAT](https://www.youtube.com/channel/UCuqKbVjXExMCqpVhLYy2aog)
 
