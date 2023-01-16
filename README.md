@@ -22,8 +22,7 @@ subiendo y actualizando este material :)**
 ## [Biblioteca Digital](https://drive.google.com/drive/folders/1iOpJwtYj1GaFI7eKhjYjkcH903OpfC3I?usp=sharing)
 
 Les comparto todos los libros digitales con los que cuento. Hay desde
-temas de [ciencia de
-datos](https://drive.google.com/drive/folders/1nZwu6VlMXCtDeqNxMqb-kX_V9Mf9ZPJH?usp=share_link),
+temas de
 [probabilidad](https://drive.google.com/drive/folders/1oFLIZnKQxCN2aHhgUdUffXv3js9wjXjq?usp=share_link),
 [estadística](https://drive.google.com/drive/folders/1IVpcm5VoZNU5qYwL88LxghagwLs7rArI?usp=share_link),
 [actuaría](https://drive.google.com/drive/folders/1yGlVvbxNDvqyxRYs5qZXJgNYVWavHycF?usp=share_link),
