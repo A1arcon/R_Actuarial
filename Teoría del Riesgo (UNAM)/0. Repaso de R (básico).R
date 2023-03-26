@@ -391,7 +391,27 @@ n*(n+1)/2
 
 #1. Crea un código que muestre la sucesión de fibonacci hasta cierta posición "n".
 
+# --------------------------------------------------------------
 #2. Crea un código que verifique si un número es primo.
+# Respuesta: esta función puede verificar si un numero es primo o no:
+is_prime <- function(n) {
+  if (n <= 1) {
+    return(FALSE)
+  } else if (n == 2) {
+    return(TRUE)
+  } else if (n %% 2 == 0) {
+    return(FALSE)
+  } else {
+    limit <- floor(sqrt(n))
+    for (i in 3:limit) {
+      if (n %% i == 0) {
+        return(FALSE)
+      }
+    }
+    return(TRUE)
+  }
+}
+# --------------------------------------------------------------
 
 #De la base de datos obama_vs_mccain (instala la paquetería learningr):
 
