@@ -388,8 +388,21 @@ n*(n+1)/2
 
 
 # Ejercicios -----------------------------------------------------------------
-
-#1. Crea un código que muestre la sucesión de fibonacci hasta cierta posición "n".
+# ------------------------------------------------------------
+# 1. Crea un código que muestre la sucesión de fibonacci hasta cierta posición "n".
+# Respuesta: usando un bucle `for`.
+n = 10 # La posición hasta donde se desea calcular la secuencia
+fib = numeric(n) # Aquí se genera el vector de longitud n
+# Aquí se asigna los primeros dos números de Fibonacci
+fib[1] = 0
+fib[2] = 1
+# Luego calculamos lo siguientes números de Fibonacci
+for (i in 3:n){
+  fib[i] = fib[i-1] + fib[i-2]
+}
+# Metemos la variable a la consola de R
+fib
+# ------------------------------------------------------------
 
 # --------------------------------------------------------------
 #2. Crea un código que verifique si un número es primo.
